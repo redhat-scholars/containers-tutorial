@@ -1,20 +1,30 @@
-= Welcome to Template Tutorial
+= Welcome to Containers Tutorial
 :page-layout: home
 :!sectids:
 
 [.text-center.strong]
-== Publish Services to Kubernetes
+== Learn about the fundamentals of Containers
 
-A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes cluster as it was a child game.
+A tutorial to show how you can use Containers to ease the distribution and management of your applications.
 
 [.tiles.browse]
 == Browse modules
 
 [.tile]
-.xref:01-setup.adoc[Get Started]
-* xref:01-setup.adoc#minikube[Minikube]
+.xref:01-setup.adoc[Requirements]
+* xref:01-setup.adoc#minikube[Requirements]
 
 [.tile]
-.xref:02-deploy.adoc[Deploying]
-* xref:02-deploy.adoc#package[Package the Application]
-* xref:02-deploy.adoc#deploy[Deploy the Application]
+.xref:02-deploy.adoc[Basics]
+* xref:02-deploy.adoc#package[Container vs Image]
+* xref:02-deploy.adoc#package[Images registry]
+* xref:02-deploy.adoc#package[Dockerfile]
+* xref:02-deploy.adoc#package[Containerfile]
+* xref:02-deploy.adoc#package[Building images]
+* xref:02-deploy.adoc#package[Running containers]
+* xref:02-deploy.adoc#package[Ports]
+* xref:02-deploy.adoc#package[Volumes]
+* xref:02-deploy.adoc#package[Logs]
+* xref:02-deploy.adoc#package[Inside a container]
+* xref:02-deploy.adoc#package[Pushing image to public registry]
+* xref:02-deploy.adoc#package[Docker vs Podman vs minikube vs Kubernetes]
