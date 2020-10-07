@@ -2,7 +2,7 @@ runtime:
   cache_dir: ./.cache/antora
 
 site:
-  title: Template Tutorial(Dev Mode)
+  title: containers-tutorial
   url: http://localhost:3000/rhs-build-course/index.html
   start_page: template-tutorial::index.adoc
 
@@ -13,7 +13,7 @@ content:
       start_path: documentation
 asciidoc:
   attributes:
-    title: Template Tutorial(Dev Mode)
+    title: containers-tutorial
   extensions:
     - ./lib/remote-include-processor.js
     - ./lib/tab-block.js

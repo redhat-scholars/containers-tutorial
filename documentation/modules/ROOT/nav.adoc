@@ -1,7 +1,13 @@
-* xref:01-setup.adoc[1. Setup]
-** xref:01-setup.adoc#prerequisite[Prerequisites]
-** xref:01-setup.adoc#minikube[Setup Minikube]
+* Requirements
+** xref:setup.adoc[Setup]
 
-* xref:02-deploy.adoc[2. Deploy Service]
-** xref:02-deploy.adoc#package[Build Service]
-** xref:02-deploy.adoc#deploy[Deploy Dervice]
+* Basics
+** xref:dockerfile.adoc[Dockerfile]
+** xref:containerfile.adoc[Containerfile]
+** xref:buildingimages.adoc[Building images]
+** xref:runningcontainers.adoc[Running containers]
+** xref:ports.adoc[Ports]
+** xref:volumes.adoc[Volumes]
+** xref:logs.adoc[Logs]
+** xref:insidecontainer.adoc[Inside a container]
+** xref:pushing.adoc[Pushing image to public registry]
