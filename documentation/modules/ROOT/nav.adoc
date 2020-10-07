@@ -7,6 +7,5 @@
 ** xref:runningcontainers.adoc[Running containers]
 ** xref:ports.adoc[Ports]
 ** xref:volumes.adoc[Volumes]
-** xref:logs.adoc[Logs]
 ** xref:insidecontainer.adoc[Inside a container]
 ** xref:pushing.adoc[Pushing image to public registry]

@@ -1,0 +1,171 @@
+= Running containers
+
+If you removed the image on the previous step, you'll need to build it again:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker build -t my-image .
+----
+
+Now we are ready to create a container based on this image. Just run:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker create --name my-container my-image
+----
+
+You container is created. 
+
+== Listing containers
+
+To see your just created container:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker ps
+----
+
+Your output is probably something like this:
+
+[.console-output]
+[source,text]
+----
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+----
+
+Why your container isn't in the list if you've just created it?
+
+Because it isn't running, and using plain `docker ps` will only list the running containers. Now try this:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker ps -a
+----
+
+Now your output should be something like this:
+
+[.console-output]
+[source,text]
+----
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+ccaadddf1c48        my-image            "java -jar /deployme…"   3 minutes ago       Created                                 my-container
+----
+
+It's listing all containers, not matter the status. Your container is listed as `Created`.
+
+
+== Starting containers
+
+To run the container you've just created execute this:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker start my-container
+----
+
+To check if it's running, try the plain `docker ps` again:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker ps
+----
+
+Now your output will be like this:
+
+
+[.console-output]
+[source,text]
+----
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                          NAMES
+ccaadddf1c48        my-image            "java -jar /deployme…"   8 minutes ago       Up 54 seconds       8080/tcp, 8443/tcp, 8778/tcp   my-container
+----
+
+Notice that the status now is `Up 54 seconds`.
+
+== Stopping containers
+
+To stop your container:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker stop my-container
+----
+
+== Removing containers
+
+To remove your container:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker rm my-container
+----
+
+== Creating and starting a container at once
+
+Instead of creating a container and then starting, you can do it at once:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker run --name my-container my-image
+----
+
+You now got an output like this:
+
+[.console-output]
+[source,text]
+----
+__  ____  __  _____   ___  __ ____  ______
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/
+2020-10-07 18:36:05,081 INFO  [io.quarkus] (main) tutorial-app 1.0-SNAPSHOT on JVM (powered by Quarkus 1.8.2.Final) started in 0.651s. Listening on: http://0.0.0.0:8080
+2020-10-07 18:36:05,105 INFO  [io.quarkus] (main) Profile prod activated.
+2020-10-07 18:36:05,105 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
+----
+
+Notice that you terminal is attached to the container process. If you use `CTRL+C`, the container will stop.
+
+So let's create a dettached container. First we remove this one:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker rm my-container
+----
+
+And now we create it dettached:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker run -d --name my-container my-image
+----
+
+== Checking the log of a container
+
+To see what this container is logging, use this:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker logs my-container
+----
+
+If you want to keep following the output:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker logs -f my-container
+----
+
+Use `CTRL+C` to stop following the log.
