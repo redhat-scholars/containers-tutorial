@@ -1,0 +1,69 @@
+= Images Management
+
+== Building an image based on a Dockerfile
+
+With the Dockerfile that we created in the last step, let's build a container image:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker build -t my-image .
+----
+
+You'll seel an output like this:
+
+[.console-output]
+[source,text]
+----
+Sending build context to Docker daemon  10.95MB
+Step 1/4 : FROM registry.access.redhat.com/ubi8/openjdk-11
+latest: Pulling from ubi8/openjdk-11
+396754cf27f9: Pull complete
+41e1474940d5: Pull complete
+fe52369f78c0: Pull complete
+Digest: sha256:98c69a5b81bca0fe331100390c7357c69fd137e8a6228300eda820a0893a1be0
+Status: Downloaded newer image for registry.access.redhat.com/ubi8/openjdk-11:latest
+ ---> e502114b0d20
+Step 2/4 : ADD target/lib/* /deployments/lib/
+ ---> 47e879f30cec
+Step 3/4 : ADD target/*-runner.jar /deployments/app.jar
+ ---> 393bbade30ae
+Step 4/4 : CMD ["java", "-jar", "/deployments/app.jar"]
+ ---> Running in d09c7708954d
+Removing intermediate container d09c7708954d
+ ---> 87776d35fc85
+Successfully built 87776d35fc85
+Successfully tagged my-image:latest
+----
+
+== Listing the available images
+
+To see your just create image, just run:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker images
+----
+
+You'll see at least these two outputs:
+
+[.console-output]
+[source,text]
+----
+REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
+my-image                                     latest              87776d35fc85        4 minutes ago       516MB
+registry.access.redhat.com/ubi8/openjdk-11   latest              e502114b0d20        2 months ago        505MB
+----
+
+Your image is the `my-image` and the `registry.access.redhat.com/ubi8/openjdk-11` is the image used to build yours.
+
+== Removing images
+
+To remove your just created image:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker rmi my-image
+----
