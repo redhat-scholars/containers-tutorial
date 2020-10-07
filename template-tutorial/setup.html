@@ -88,7 +88,7 @@
     <a class="nav-link" href="dockerfile.html">Dockerfile</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#buildingimages.adoc">Building images</a>
+    <a class="nav-link" href="imagemanagement.html">Images Management</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#runningcontainers.adoc">Running containers</a>
@@ -182,6 +182,18 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">Docker Desktop for Mac</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install docker</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">Docker Desktop for Windows</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Java 11</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew tap AdoptOpenJDK/openjdk &amp;&amp; brew cask install adoptopenjdk11</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install java-11-openjdk.x86_64</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptopenjdk.net">Windows</a> (Make sure you set the <code>JAVA_HOME</code> environment variable and add <code>%JAVA_HOME%\bin</code> to your <code>PATH</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Apache Maven 3.6.2+</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew install maven</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install maven</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://maven.apache.org/download.cgi">Windows</a> (Make sure you set the <code>MAVEN_HOME</code> environment variable and add <code>%MAVEN_HOME%\bin</code> to your <code>PATH</code>)</p></td>
 </tr>
 </tbody>
 </table>
