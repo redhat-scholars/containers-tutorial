@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Welcome to Containers Tutorial :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/index.html">
-    <link rel="next" href="setup.html">
+    <title>Setup :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/setup.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="#dockerfile.adoc">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -74,7 +75,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="setup.html">Setup</a>
   </li>
 </ul>
@@ -139,81 +140,67 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">containers-tutorial</a></li>
-    <li><a href="index.html">Welcome to Containers Tutorial</a></li>
+    <li>Requirements</li>
+    <li><a href="setup.html">Setup</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/setup.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Welcome to Containers Tutorial</h1>
-<div class="sect1 text-center strong">
-<h2>Learn about the fundamentals of Containers</h2>
+<h1 class="page">Setup</h1>
+<div class="sect1">
+<h2 id="_cli_tools"><a class="anchor" href="#_cli_tools"></a>CLI Tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A tutorial to show how you can use Containers to ease the distribution and management of your applications.</p>
+<p>The following CLI tools are required for running the exercises in this tutorial.</p>
 </div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Please have them installed and configured before you get started with any of the tutorial chapters.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Tool</strong></th>
+<th class="tableblock halign-left valign-top"><strong>macOS</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Fedora</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Windows</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Docker</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">Docker Desktop for Mac</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install docker</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.docker.com/products/docker-desktop" target="_blank" rel="noopener">Docker Desktop for Windows</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Apache Maven 3.6.2+</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew install maven</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install maven</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://maven.apache.org/download.cgi">Windows</a> (Make sure you set the <code>MAVEN_HOME</code> environment variable and add <code>%MAVEN_HOME%\bin</code> to your <code>PATH</code>)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sect1 tiles browse">
-<h2>Browse modules</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Requirements</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup.html" class="page">Setup</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#dockerfile.adoc" class="page unresolved">Dockerfile</a></p>
-</li>
-<li>
-<p><a href="#containerfile.adoc" class="page unresolved">Containerfile</a></p>
-</li>
-<li>
-<p><a href="#buildingimages.adoc" class="page unresolved">Building images</a></p>
-</li>
-<li>
-<p><a href="#runningcontainers.adoc" class="page unresolved">Running containers</a></p>
-</li>
-<li>
-<p><a href="#ports.adoc" class="page unresolved">Ports</a></p>
-</li>
-<li>
-<p><a href="#volumes.adoc" class="page unresolved">Volumes</a></p>
-</li>
-<li>
-<p><a href="#logs.adoc" class="page unresolved">Logs</a></p>
-</li>
-<li>
-<p><a href="#insidecontainer.adoc" class="page unresolved">Inside a container</a></p>
-</li>
-<li>
-<p><a href="#pushing.adoc" class="page unresolved">Pushing image to public registry</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="setup.html">Setup</a></span>
+  <span class="prev"><a href="index.html">containers-tutorial</a></span>
+  <span class="next"><a href="#dockerfile.adoc">Dockerfile</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
