@@ -18,11 +18,6 @@ Please have them installed and configured before you get started with any of the
 | `dnf install docker`
 | https://www.docker.com/products/docker-desktop[Docker Desktop for Windows, window="_blank"]
 
-| **Apache Maven 3.6.2+**
-| `brew install maven`
-| `dnf install maven`
-| https://maven.apache.org/download.cgi[Windows] (Make sure you set the `MAVEN_HOME` environment variable and add `%MAVEN_HOME%\bin` to your `PATH`)
-
 
 |===
 

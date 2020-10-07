@@ -3,7 +3,6 @@
 
 * Basics
 ** xref:dockerfile.adoc[Dockerfile]
-** xref:containerfile.adoc[Containerfile]
 ** xref:buildingimages.adoc[Building images]
 ** xref:runningcontainers.adoc[Running containers]
 ** xref:ports.adoc[Ports]

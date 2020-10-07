@@ -1,0 +1,130 @@
+= Dockerfile
+
+A Dockerfile is where you'll stabilish the definitions used to build a container image. It uses three main keywords/commands:
+
+* FROM: where you'll inform the base image used to build your own image
+* ADD: where you'll add resources (files) to your image
+* CMD: where you'll inform how to start the application
+
+== Building a Dockerfile
+
+First create a file named Dockerfile.
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+touch Dockerfile
+----
+
+Now open it in you favorite editor and this very first line:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1
+----
+
+== Build and Run the Quarkus Application
+
+include::ROOT:partial$compile-and-run.adoc[]
+
+Notice how *fast* Quarkus was ready to serve your requests. In this particular example Quarkus only required *0.016s* to start.
+
+You can open your browser with the url `http://localhost:8080/hello[window="_blank"]` and you should see a response like `hello`.
+
+Or else if you're a CLI person, you can run a `curl` command like:
+
+[.console-input]
+[source,bash]
+----
+curl localhost:8080/hello
+----
+
+[.console-output]
+[source,bash]
+----
+hello
+----
+
+== Stopping the application
+
+You can stop your running application by issuing a `CTRL+C` in your terminal.
+
+[.console-output]
+[source,bash]
+----
+^C2020-05-10 23:11:03,419 INFO  [io.quarkus] (main) tutorial-app stopped in 0.007s
+----
+
+Quarkus was able to stop in just *0.007s*. Fast to start, fast to stop. Fast always!
+
+== Testing your application
+
+The scaffolding process also creates a test case for the example endpoint.
+
+Check the file `FruitResourceTest.java` in the folder `src/test/java` to see how a Quarkus integration test looks like.
+
+When running this test, the application is started once, then all tests are executed, and finally, the application is stopped. Although it is not mandatory, by default RestAssured project is used to test Rest endpoints but it is up to you to change that.
+
+You can run the test in your IDE or by running Maven:
+
+[.console-input]
+[source,bash]
+----
+./mvnw clean test
+----
+
+[.console-output]
+[source,bash]
+----
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.redhat.developers.HelloResourceTest
+2020-05-11 21:28:53,566 INFO  [io.quarkus] (main) Quarkus 1.4.2.Final started in 1.636s. Listening on: http://0.0.0.0:8081
+2020-05-11 21:28:53,568 INFO  [io.quarkus] (main) Profile test activated.
+2020-05-11 21:28:53,568 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.525 s - in com.redhat.developers.HelloResourceTest
+2020-05-11 21:28:55,158 INFO  [io.quarkus] (main) Quarkus stopped in 0.040s
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.942 s
+[INFO] Finished at: 2020-05-11T21:28:55-04:00
+[INFO] ------------------------------------------------------------------------
+----
+
+== Open the Project in your IDE
+
+Open or import the generated project into your IDE.
+
+If you are using **vscode** you can open the project with:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+code .
+----
+
+NOTE: If you use `tutorial-tools`, your host `quarkus-tutorial/work` contains the application code; point your IDE to this directory.
+
+== Live Coding (Development mode)
+
+Stop the Quarkus application that might be running in `jvm` or `native` mode.
+
+_Live Coding_ or _Development mode_ enables hot deployment with background compilation, which means that when you modify your Java files and/or your resource files and refresh your browser, these changes will automatically take effect.
+
+This is probably one of the best features of Quarkus: enabling a very fast and productive iterative feedback loop.
+
+Let's start the _Live Coding_ mode by invoking `mvn`. You probably won't need to stop/start Quarkus again during this tutorial:
+
+[.console-input]
+[source,bash]
+----
+./mvnw quarkus:dev
+----
