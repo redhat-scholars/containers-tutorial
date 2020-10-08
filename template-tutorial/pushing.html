@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dockerfile :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/dockerfile.html">
-    <link rel="prev" href="setup.html">
-    <link rel="next" href="imagemanagement.html">
+    <title>Pushing an image to a public registry :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/pushing.html">
+    <link rel="prev" href="inside.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -84,7 +83,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Basics</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="dockerfile.html">Dockerfile</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -102,7 +101,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inside.html">Inside a container</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="pushing.html">Pushing an image to a public registry</a>
   </li>
 </ul>
@@ -139,73 +138,35 @@
   <ul>
     <li><a href="index.html">containers-tutorial</a></li>
     <li>Basics</li>
-    <li><a href="dockerfile.html">Dockerfile</a></li>
+    <li><a href="pushing.html">Pushing an image to a public registry</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/dockerfile.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/pushing.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Dockerfile</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Pushing an image to a public registry</h1>
 <div class="paragraph">
-<p>A Dockerfile is where you&#8217;ll stabilish the definitions used to build a container image. It uses three main keywords/commands:</p>
+<p>So far you&#8217;ve been working with your container image locally. Now let&#8217;s take it to a remote registry.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>FROM: where you&#8217;ll inform the base image used to build your own image</p>
-</li>
-<li>
-<p>ADD: where you&#8217;ll add resources (files) to your image</p>
-</li>
-<li>
-<p>CMD: where you&#8217;ll inform how to start the application</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>Sometimes people ask when to use ADD and when to use COPY. Both of them can be used to copy files from the source to destination, but:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ADD: The source can only be the host</p>
-</li>
-<li>
-<p>COPY: The source can be the host or a remote URL</p>
-</li>
-</ul>
-</div>
+Before continue, you need to create an account at Docker Hub (if you haven&#8217;t done yet). Just click here: <a href="https://hub.docker.com/" class="bare">https://hub.docker.com/</a>
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creating_an_application_to_be_containerized"><a class="anchor" href="#_creating_an_application_to_be_containerized"></a>Creating an application to be containerized</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s first create an simple Java application so we can containerize it.</p>
+<p>First you&#8217;ll need to tag your image accordingly to the name you gave to your repository on Docker Hub:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn "io.quarkus:quarkus-maven-plugin:1.8.2.Final:create" \
-  -DprojectGroupId="com.redhat.developers" \
-  -DprojectArtifactId="tutorial-app" \
-  -DprojectVersion="1.0-SNAPSHOT" \
-  -DclassName="HelloResource" \
-  -Dpath="hello"
-cd tutorial-app</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag my-image [repository]/my-image</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -215,75 +176,56 @@ cd tutorial-app</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-All the remaining parts of this tutorial assume that you&#8217;ll be working inside the project folder that was just created. In this case, <code>tutorial-app</code>.
+From this point, replace <code>[repository]</code> with the name of your own repository.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To let this application ready to be distributed, let&#8217;s package it:</p>
+<p>If you now run <code>docker images</code> you&#8217;ll see something like this:</p>
 </div>
-<div class="listingblock console-input">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn package</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building_a_dockerfile"><a class="anchor" href="#_building_a_dockerfile"></a>Building a Dockerfile</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Create a file named Dockerfile.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">touch Dockerfile</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
+my-image                                     latest              a63dec174904        55 minutes ago      516MB
+[repository]/my-image                        latest              a63dec174904        55 minutes ago      516MB</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now open it in you favorite editor and this very first line:</p>
+<p>It&#8217;s now ready to be pushed. Before doing it, you just need to login into your Docker Hub account within your terminal:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi8/openjdk-11</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then let&#8217;s add a new line for adding the application to this Dockerfile:</p>
+<p>And finally you can push it:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">ADD target/lib/* /deployments/lib/
-ADD target/*-runner.jar /deployments/app.jar</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push [repository]/my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Finally, let&#8217;s "tell" to the container engine how to run this application when there is a running container. Add this line to the end of the file:</p>
+<p>You should have an output like this:</p>
 </div>
-<div class="listingblock console-input">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">CMD ["java", "-jar", "/deployments/app.jar"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">The push refers to repository [docker.io/eldermoraes/my-image]
+abea900bc08c: Pushed
+99d5cac89a03: Pushed
+7b08010864ba: Pushed
+90c2e42f948b: Pushed
+f9ddbcc4e795: Pushed
+latest: digest: sha256:de852b7869b9eff45994b676f0dd98cbfb2b8a76a8b11ca6d06e8f93c344e8c9 size: 1371</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Your final Dockerfile should be like this:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi8/openjdk-11
-
-ADD target/lib/* /deployments/lib/
-ADD target/*-runner.jar /deployments/app.jar
-
-CMD ["java", "-jar", "/deployments/app.jar"]</code></pre>
-</div>
-</div>
-</div>
+<p>Now if you go to your Docker Hub account (<a href="https://hub.docker.com" class="bare">https://hub.docker.com</a>) you&#8217;ll see your image right there.</p>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="setup.html">Setup</a></span>
-  <span class="next"><a href="imagemanagement.html">Images management</a></span>
+  <span class="prev"><a href="inside.html">Inside a container</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

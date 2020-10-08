@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dockerfile :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/dockerfile.html">
-    <link rel="prev" href="setup.html">
-    <link rel="next" href="imagemanagement.html">
+    <title>Inside a container :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/inside.html">
+    <link rel="prev" href="env.html">
+    <link rel="next" href="pushing.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -84,7 +84,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Basics</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="dockerfile.html">Dockerfile</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -99,7 +99,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="env.html">Environment variables</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="inside.html">Inside a container</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -139,151 +139,52 @@
   <ul>
     <li><a href="index.html">containers-tutorial</a></li>
     <li>Basics</li>
-    <li><a href="dockerfile.html">Dockerfile</a></li>
+    <li><a href="inside.html">Inside a container</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/dockerfile.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/inside.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Dockerfile</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Inside a container</h1>
 <div class="paragraph">
-<p>A Dockerfile is where you&#8217;ll stabilish the definitions used to build a container image. It uses three main keywords/commands:</p>
+<p>You can easily run commands inside a running container, as you do in any other host.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>FROM: where you&#8217;ll inform the base image used to build your own image</p>
-</li>
-<li>
-<p>ADD: where you&#8217;ll add resources (files) to your image</p>
-</li>
-<li>
-<p>CMD: where you&#8217;ll inform how to start the application</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>Sometimes people ask when to use ADD and when to use COPY. Both of them can be used to copy files from the source to destination, but:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ADD: The source can only be the host</p>
-</li>
-<li>
-<p>COPY: The source can be the host or a remote URL</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creating_an_application_to_be_containerized"><a class="anchor" href="#_creating_an_application_to_be_containerized"></a>Creating an application to be containerized</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s first create an simple Java application so we can containerize it.</p>
+<p>To perform it in our running container, just execute this:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn "io.quarkus:quarkus-maven-plugin:1.8.2.Final:create" \
-  -DprojectGroupId="com.redhat.developers" \
-  -DprojectArtifactId="tutorial-app" \
-  -DprojectVersion="1.0-SNAPSHOT" \
-  -DclassName="HelloResource" \
-  -Dpath="hello"
-cd tutorial-app</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-All the remaining parts of this tutorial assume that you&#8217;ll be working inside the project folder that was just created. In this case, <code>tutorial-app</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To let this application ready to be distributed, let&#8217;s package it:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn package</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_building_a_dockerfile"><a class="anchor" href="#_building_a_dockerfile"></a>Building a Dockerfile</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Create a file named Dockerfile.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">touch Dockerfile</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker exec -it my-container /bin/bash</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now open it in you favorite editor and this very first line:</p>
+<p>Your terminal prompt should by now like this:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi8/openjdk-11</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[jboss@24543489a4b1 ~]$</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then let&#8217;s add a new line for adding the application to this Dockerfile:</p>
+<p>What you can do is directly related to what you installed inside your container, but a <code>curl</code> works in general:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">ADD target/lib/* /deployments/lib/
-ADD target/*-runner.jar /deployments/app.jar</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Finally, let&#8217;s "tell" to the container engine how to run this application when there is a running container. Add this line to the end of the file:</p>
+<p>To go back to your previous terminal, just run:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">CMD ["java", "-jar", "/deployments/app.jar"]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Your final Dockerfile should be like this:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi8/openjdk-11
-
-ADD target/lib/* /deployments/lib/
-ADD target/*-runner.jar /deployments/app.jar
-
-CMD ["java", "-jar", "/deployments/app.jar"]</code></pre>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">exit</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="setup.html">Setup</a></span>
-  <span class="next"><a href="imagemanagement.html">Images management</a></span>
+  <span class="prev"><a href="env.html">Environment variables</a></span>
+  <span class="next"><a href="pushing.html">Pushing an image to a public registry</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
