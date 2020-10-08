@@ -7,5 +7,5 @@
 ** xref:runningcontainers.adoc[Running containers]
 ** xref:ports.adoc[Ports]
 ** xref:env.adoc[Environment variables]
-** xref:insidecontainer.adoc[Inside a container]
-** xref:pushing.adoc[Pushing image to public registry]
+** xref:inside.adoc[Inside a container]
+** xref:pushing.adoc[Pushing an image to a public registry]

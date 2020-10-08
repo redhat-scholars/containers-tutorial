@@ -1,0 +1,57 @@
+= Pushing an image to a public registry
+
+So far you've been working with your container image locally. Now let's take it to a remote registry.
+
+IMPORTANT: Before continue, you need to create an account at Docker Hub (if you haven't done yet). Just click here: https://hub.docker.com/
+
+First you'll need to tag your image accordingly to the name you gave to your repository on Docker Hub:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker tag my-image [repository]/my-image
+----
+
+IMPORTANT: From this point, replace `[repository]` with the name of your own repository.
+
+If you now run `docker images` you'll see something like this:
+
+[.console-output]
+[source,text]
+----
+REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
+my-image                                     latest              a63dec174904        55 minutes ago      516MB
+[repository]/my-image                        latest              a63dec174904        55 minutes ago      516MB
+----
+
+It's now ready to be pushed. Before doing it, you just need to login into your Docker Hub account within your terminal:
+
+[.console-input]  
+[source,bash,subs="+macros,+attributes"]
+----
+docker login
+----
+
+And finally you can push it:
+
+[.console-input]  
+[source,bash,subs="+macros,+attributes"]
+----
+docker push [repository]/my-image
+----
+
+You should have an output like this:
+
+[.console-output]
+[source,text]
+----
+The push refers to repository [docker.io/eldermoraes/my-image]
+abea900bc08c: Pushed
+99d5cac89a03: Pushed
+7b08010864ba: Pushed
+90c2e42f948b: Pushed
+f9ddbcc4e795: Pushed
+latest: digest: sha256:de852b7869b9eff45994b676f0dd98cbfb2b8a76a8b11ca6d06e8f93c344e8c9 size: 1371
+----
+
+Now if you go to your Docker Hub account (https://hub.docker.com) you'll see your image right there.

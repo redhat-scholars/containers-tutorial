@@ -1,0 +1,36 @@
+= Inside a container
+
+You can easily run commands inside a running container, as you do in any other host.
+
+To perform it in our running container, just execute this:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker exec -it my-container /bin/bash
+----
+
+Your terminal prompt should by now like this:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+[jboss@24543489a4b1 ~]$
+----
+
+What you can do is directly related to what you installed inside your container, but a `curl` works in general:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+curl localhost:8080/hello
+----
+
+To go back to your previous terminal, just run:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+exit
+----
+
