@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Images Management :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/imagemanagement.html">
-    <link rel="prev" href="dockerfile.html">
-    <link rel="next" href="runningcontainers.html">
+    <title>Port :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/template-tutorial/ports.html">
+    <link rel="prev" href="runningcontainers.html">
+    <link rel="next" href="env.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -87,13 +87,13 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="dockerfile.html">Dockerfile</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="imagemanagement.html">Images management</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="runningcontainers.html">Running containers</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -139,95 +139,88 @@
   <ul>
     <li><a href="index.html">containers-tutorial</a></li>
     <li>Basics</li>
-    <li><a href="imagemanagement.html">Images management</a></li>
+    <li><a href="ports.html">Ports</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/imagemanagement.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/ports.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Images Management</h1>
-<div class="sect1">
-<h2 id="_building_an_image_based_on_a_dockerfile"><a class="anchor" href="#_building_an_image_based_on_a_dockerfile"></a>Building an image based on a Dockerfile</h2>
-<div class="sectionbody">
+<h1 class="page">Port</h1>
 <div class="paragraph">
-<p>With the Dockerfile that we created in the last step, let&#8217;s build a container image:</p>
+<p>The application running inside your container can be accessed through the port 8080, so let&#8217;s try it:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You&#8217;ll seel an output like this:</p>
+<p>You should have gotten this output:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Sending build context to Docker daemon  10.95MB
-Step 1/4 : FROM registry.access.redhat.com/ubi8/openjdk-11
-latest: Pulling from ubi8/openjdk-11
-396754cf27f9: Pull complete
-41e1474940d5: Pull complete
-fe52369f78c0: Pull complete
-Digest: sha256:98c69a5b81bca0fe331100390c7357c69fd137e8a6228300eda820a0893a1be0
-Status: Downloaded newer image for registry.access.redhat.com/ubi8/openjdk-11:latest
- ---&gt; e502114b0d20
-Step 2/4 : ADD target/lib/* /deployments/lib/
- ---&gt; 47e879f30cec
-Step 3/4 : ADD target/*-runner.jar /deployments/app.jar
- ---&gt; 393bbade30ae
-Step 4/4 : CMD ["java", "-jar", "/deployments/app.jar"]
- ---&gt; Running in d09c7708954d
-Removing intermediate container d09c7708954d
- ---&gt; 87776d35fc85
-Successfully built 87776d35fc85
-Successfully tagged my-image:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">curl: (7) Failed to connect to localhost port 8080: Connection refused</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_listing_the_available_images"><a class="anchor" href="#_listing_the_available_images"></a>Listing the available images</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To see your just create image, just run:</p>
+<p>This is happening because we need to explicit expose the ports you need, and we didn&#8217;t do it so far. So let&#8217;s fix it.</p>
+</div>
+<div class="paragraph">
+<p>First let&#8217;s remove the container:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker images</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Did you see something different?</p>
+</div>
+<div class="paragraph">
+<p>We used the <code>-f</code> flag to force the removal of the container even if its running. Be careful when using it!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now we re-create the container, but exposing the port 8080:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You&#8217;ll see at least these two outputs:</p>
+<p>Let&#8217;s try to reach the application again:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You now got this output:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
-my-image                                     latest              87776d35fc85        4 minutes ago       516MB
-registry.access.redhat.com/ubi8/openjdk-11   latest              e502114b0d20        2 months ago        505MB</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Your image is the <code>my-image</code> and the <code>registry.access.redhat.com/ubi8/openjdk-11</code> is the image used to build yours.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_removing_images"><a class="anchor" href="#_removing_images"></a>Removing images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To remove your just created image:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rmi my-image</code></pre>
-</div>
-</div>
-</div>
+<p>Meaning that your application is now accessible.</p>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="dockerfile.html">Dockerfile</a></span>
-  <span class="next"><a href="runningcontainers.html">Running containers</a></span>
+  <span class="prev"><a href="runningcontainers.html">Running containers</a></span>
+  <span class="next"><a href="env.html">Environment variables</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
