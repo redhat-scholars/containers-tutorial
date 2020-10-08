@@ -134,7 +134,7 @@ __  ____  __  _____   ___  __ ____  ______
 
 Notice that you terminal is attached to the container process. If you use `CTRL+C`, the container will stop.
 
-So let's create a dettached container. First we remove this one:
+So let's create a detached container. First we remove this one:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -142,7 +142,7 @@ So let's create a dettached container. First we remove this one:
 docker rm my-container
 ----
 
-And now we create it dettached:
+And now we create it detached:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]

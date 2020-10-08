@@ -1,0 +1,60 @@
+= Port
+
+The application running inside your container can be accessed through the port 8080, so let's try it:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+curl localhost:8080/hello
+----
+
+You should have gotten this output:
+
+[.console-output]
+[source,text]
+----
+curl: (7) Failed to connect to localhost port 8080: Connection refused
+----
+
+This is happening because we need to explicit expose the ports you need, and we didn't do it so far. So let's fix it.
+
+First let's remove the container:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker rm -f my-container
+----
+
+[TIP]
+====
+Did you see something different?
+
+We used the `-f` flag to force the removal of the container even if its running. Be careful when using it! 
+====
+
+Now we re-create the container, but exposing the port 8080:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker run -d --name my-container -p 8080:8080 my-image
+----
+
+Let's try to reach the application again:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+curl localhost:8080/hello
+----
+
+You now got this output:
+
+[.console-output]
+[source,text]
+----
+hello
+----
+
+Meaning that your application is now accessible.

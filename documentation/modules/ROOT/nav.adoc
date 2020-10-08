@@ -3,9 +3,9 @@
 
 * Basics
 ** xref:dockerfile.adoc[Dockerfile]
-** xref:imagemanagement.adoc[Images Management]
+** xref:imagemanagement.adoc[Images management]
 ** xref:runningcontainers.adoc[Running containers]
 ** xref:ports.adoc[Ports]
-** xref:volumes.adoc[Volumes]
+** xref:env.adoc[Environment variables]
 ** xref:insidecontainer.adoc[Inside a container]
 ** xref:pushing.adoc[Pushing image to public registry]
