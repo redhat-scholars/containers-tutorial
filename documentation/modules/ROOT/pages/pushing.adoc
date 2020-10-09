@@ -9,10 +9,21 @@ First you'll need to tag your image accordingly to the name you gave to your rep
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker tag my-image [repository]/my-image
+docker tag my-image myrepository/my-image
 ----
 
-IMPORTANT: From this point, replace `[repository]` with the name of your own repository.
+[TIP]
+====
+If you build your image already using the tag, you won't need to do this step before pushing it. In our case it would be like this:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker build -t myrepository/my-image .
+----
+====
+
+IMPORTANT: From this point, replace `myrepository` with the name of your own repository.
 
 If you now run `docker images` you'll see something like this:
 
@@ -21,7 +32,7 @@ If you now run `docker images` you'll see something like this:
 ----
 REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
 my-image                                     latest              a63dec174904        55 minutes ago      516MB
-[repository]/my-image                        latest              a63dec174904        55 minutes ago      516MB
+myrepository/my-image                        latest              a63dec174904        55 minutes ago      516MB
 ----
 
 It's now ready to be pushed. Before doing it, you just need to login into your Docker Hub account within your terminal:
@@ -37,7 +48,7 @@ And finally you can push it:
 [.console-input]  
 [source,bash,subs="+macros,+attributes"]
 ----
-docker push [repository]/my-image
+docker push myrepository/my-image
 ----
 
 You should have an output like this:

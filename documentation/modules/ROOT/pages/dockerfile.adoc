@@ -51,43 +51,13 @@ Create a file named Dockerfile.
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-touch Dockerfile
-----
-
-Now open it in you favorite editor and this very first line:
-
-[.console-input]
-[source,docker,subs="+macros,+attributes"]
-----
-FROM registry.access.redhat.com/ubi8/openjdk-11
-----
-
-Then let's add a new line for adding the application to this Dockerfile:
-
-[.console-input]
-[source,docker,subs="+macros,+attributes"]
-----
-ADD target/lib/* /deployments/lib/
-ADD target/*-runner.jar /deployments/app.jar
-----
-
-Finally, let's "tell" to the container engine how to run this application when there is a running container. Add this line to the end of the file:
-
-[.console-input]
-[source,docker,subs="+macros,+attributes"]
-----
-CMD ["java", "-jar", "/deployments/app.jar"]
-----
-
-Your final Dockerfile should be like this:
-
-[.console-input]
-[source,docker,subs="+macros,+attributes"]
-----
+cat <<EOF >Dockerfile
 FROM registry.access.redhat.com/ubi8/openjdk-11
 
 ADD target/lib/* /deployments/lib/
 ADD target/*-runner.jar /deployments/app.jar
 
 CMD ["java", "-jar", "/deployments/app.jar"]
+EOF
 ----
+

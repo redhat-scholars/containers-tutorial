@@ -1,6 +1,6 @@
 = Running containers
 
-If you removed the image on the previous step, you'll need to build it again:
+As we removed the image on the previous step, we need to build it again:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
