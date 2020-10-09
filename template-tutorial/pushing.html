@@ -166,8 +166,27 @@ Before continue, you need to create an account at Docker Hub (if you haven&#8217
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag my-image [repository]/my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag my-image myrepository/my-image</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you build your image already using the tag, you won&#8217;t need to do this step before pushing it. In our case it would be like this:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t myrepository/my-image .</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -176,7 +195,7 @@ Before continue, you need to create an account at Docker Hub (if you haven&#8217
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-From this point, replace <code>[repository]</code> with the name of your own repository.
+From this point, replace <code>myrepository</code> with the name of your own repository.
 </td>
 </tr>
 </table>
@@ -188,7 +207,7 @@ From this point, replace <code>[repository]</code> with the name of your own rep
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
 my-image                                     latest              a63dec174904        55 minutes ago      516MB
-[repository]/my-image                        latest              a63dec174904        55 minutes ago      516MB</code></pre>
+myrepository/my-image                        latest              a63dec174904        55 minutes ago      516MB</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -204,7 +223,7 @@ my-image                                     latest              a63dec174904   
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push [repository]/my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push myrepository/my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
