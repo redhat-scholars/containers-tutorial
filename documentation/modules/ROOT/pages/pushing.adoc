@@ -56,7 +56,7 @@ You should have an output like this:
 [.console-output]
 [source,text]
 ----
-The push refers to repository [docker.io/eldermoraes/my-image]
+The push refers to repository [docker.io/myrepository/my-image]
 abea900bc08c: Pushed
 99d5cac89a03: Pushed
 7b08010864ba: Pushed
