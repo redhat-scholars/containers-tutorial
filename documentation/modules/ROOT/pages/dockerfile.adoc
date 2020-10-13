@@ -3,7 +3,7 @@
 :project-name: tutorial-app
 :quarkus-version: 1.8.2.Final
 
-A Dockerfile is where you'll stabilish the definitions used to build a container image. It uses three main keywords/commands:
+A Dockerfile is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
 
 * FROM: where you'll inform the base image used to build your own image
 * ADD: where you'll add resources (files) to your image
