@@ -177,7 +177,15 @@ Before continue, you need to create an account at Docker Hub (if you haven&#8217
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you build your image already using the tag, you won&#8217;t need to do this step before pushing it. In our case it would be like this:</p>
+<p>If you would like to not use docker.io by default, then prefix the image name with the other registry (Quay.io, for example):</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag my-image quay.io/myrepository/my-image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, if you build your image already using the tag, you won&#8217;t need to do this step before pushing it. In our case it would be like this:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
