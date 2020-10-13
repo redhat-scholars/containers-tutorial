@@ -26,6 +26,38 @@ What you can do is directly related to what you installed inside your container,
 curl localhost:8080/hello
 ----
 
+Let's see the .jar of our application:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+ls /deployments/
+----
+
+We can also print the VM settings of this container:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+java -XshowSettings:vm -version
+----
+
+See Maven's installed version:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+mvn -v
+----
+
+And even check the OS version details:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+cat /etc/os-release
+----
+
 To go back to your previous terminal, just run:
 
 [.console-input]

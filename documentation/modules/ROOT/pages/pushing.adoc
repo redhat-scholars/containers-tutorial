@@ -14,13 +14,22 @@ docker tag my-image myrepository/my-image
 
 [TIP]
 ====
-If you build your image already using the tag, you won't need to do this step before pushing it. In our case it would be like this:
+If you would like to not use docker.io by default, then prefix the image name with the other registry (Quay.io, for example):
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker tag my-image quay.io/myrepository/my-image
+----
+
+Also, if you build your image already using the tag, you won't need to do this step before pushing it. In our case it would be like this:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 docker build -t myrepository/my-image .
 ----
+
 ====
 
 IMPORTANT: From this point, replace `myrepository` with the name of your own repository.
