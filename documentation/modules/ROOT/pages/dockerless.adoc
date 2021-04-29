@@ -1,0 +1,174 @@
+= Dockerless
+
+You can easily build containers within a running container using Dockerless technology.
+
+IMPORTANT: Complete the xref:pushing.adoc[] section before as you'll need to be registered to any public Docker registry like Docker Hub or Quay.io.
+
+== Jib
+
+https://github.com/GoogleContainerTools/jib[Jib] builds optimized Docker and OCI images for your Java applications without a Docker daemon - and without deep mastery of Docker best practices.
+
+We've provided a simple Spring Boot application to containerize using Jib.
+
+Go to application directory:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+cd apps/greeting
+----
+
+Then run the following Maven command to build and push the container without using any Docker host:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=docker.io/lordofthejars/greetings:1.0.0
+----
+
+Change `docker.io` for your container repository location (ie `quay.io`) and `lordofthejars` for your user id.
+
+And the output should be similar:
+
+[.console-output]
+[source,text]
+----
+[INFO] Using credentials from Docker config (/Users/asotobu/.docker/config.json) for adoptopenjdk:11-jre
+[INFO] Using base image with digest: sha256:160242e83558e9ada7038601e1e7b4399903700a0b1685f5dced50e6ca05eced
+[INFO]
+[INFO] Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*, org.acme.greeting.GreetingApplication]
+[INFO]
+[INFO] Built and pushed image as lordofthejars/greetings:1.0.0
+[INFO] Executing tasks:
+[INFO] [============================  ] 91.7% complete
+[INFO] > launching layer pushers
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+----
+
+No credentials are required as they are taken from `~/.docker/config.json` if they are not set.
+
+== Buildah
+
+Buildah is a tool for building OCI-compatible images through a lower-level coreutils interface.
+
+Buildah doesn't depend on a daemon, such as Docker or CRI-O, and it doesn't require root privileges.
+
+Let's start the following Linux container which contains `buildah` binary installed in interactive mode:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable bash
+----
+
+Now we are inside the Linux container so any command is executed in the running container.
+
+[.console-output]
+[source,text]
+----
+[root@eab8e3a260d8 /]# uname --all
+Linux eab8e3a260d8 4.19.76-linuxkit #1 SMP Thu Oct 17 19:31:58 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+----
+
+Create a `Dockerfile` inside the container:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+cat > Dockerfile << END \
+
+FROM fedora:34
+LABEL maintainer Chris Collins <collins.christopher@gmail.com>
+
+RUN dnf install -y tar gzip gcc make \
+        && dnf clean all
+
+ADD http://ftpmirror.gnu.org/hello/hello-2.10.tar.gz /tmp/hello-2.10.tar.gz
+
+RUN tar xvzf /tmp/hello-2.10.tar.gz -C /opt
+
+WORKDIR /opt/hello-2.10
+
+RUN ./configure
+RUN make
+RUN make install
+RUN hello -v
+ENTRYPOINT "/usr/local/bin/hello"
+END
+----
+
+Let's build now the Linux container image using `buildah`. Notice that this container is built within a running container.
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+buildah bud --layers -t docker.io/lordofthejars/hello:1.0.0 .
+----
+
+[.console-output]
+[source,text]
+----
+...
+STEP 10: RUN hello -v
+hello (GNU Hello) 2.10
+
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+--> 30beeea056f
+STEP 11: ENTRYPOINT "/usr/local/bin/hello"
+STEP 12: COMMIT docker.io/lordofthejars/hello:1.0.0
+--> 1de25d78a30
+1de25d78a30d5ded2aaab3c484469752628e188f919defe10c5b1121526909c8
+----
+
+The image is committed to local machine but not pushed to container registry.
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+buildah images
+----
+
+[.console-output]
+[source,text]
+----
+REPOSITORY                          TAG     IMAGE ID       CREATED         SIZE
+docker.io/lordofthejars/hello       1.0.0   1de25d78a30d   7 minutes ago   373 MB
+registry.fedoraproject.org/fedora   34      5f05951e2065   5 days ago      187 MB
+----
+
+To push the image to the container registry:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+buildah push --tls-verify=false --creds=username:password docker.io/lordofthejars/hello:1.0.0 docker.io/lordofthejars/hello:1.0.0
+----
+
+Notice that `--creds` is set with the username and password to access Docker Hub.
+By default, `buildah` reads credentials from `~/.docker/config.json`, but since this is a fresh container, credentials must be provided.
+
+[.console-output]
+[source,text]
+----
+Getting image source signatures
+Copying blob b29c4850380c done
+Copying blob 13ab19dd2ece done
+Copying blob 4793a7e290ce done
+Copying blob 4582e1897cf2 done
+Copying blob cf75f156ae2e done
+Copying blob bdcb28f5294e done
+Copying blob 5f70bf18a086 done
+Copying blob c5e55ed43ef3 done
+Copying config 1de25d78a3 done
+Writing manifest to image destination
+Storing signatures
+----
+
+A Linux container has been created and pushed to the registry from another Linux container. 
+You can stop the `buildah` container by typing `exit`.
