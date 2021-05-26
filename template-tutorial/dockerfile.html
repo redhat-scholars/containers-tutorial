@@ -244,8 +244,8 @@ All the remaining parts of this tutorial assume that you&#8217;ll be working ins
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &lt;&lt;EOF &gt;Dockerfile
 FROM registry.access.redhat.com/ubi8/openjdk-11
 
-ADD target/lib/* /deployments/lib/
-ADD target/*-runner.jar /deployments/app.jar
+ADD target/quarkus-app/lib/* /deployments/lib/
+ADD target/quarkus-app/quarkus-run.jar /deployments/app.jar
 
 CMD ["java", "-jar", "/deployments/app.jar"]
 EOF</code></pre>
