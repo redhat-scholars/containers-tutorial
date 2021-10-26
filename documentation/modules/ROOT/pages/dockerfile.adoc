@@ -1,7 +1,7 @@
 = Dockerfile
 
 :project-name: tutorial-app
-:quarkus-version: 1.13.3.Final
+:quarkus-version: 2.3.0.Final
 
 A Dockerfile is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
 
