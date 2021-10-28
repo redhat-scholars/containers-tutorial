@@ -26,7 +26,7 @@ Let's first create an simple Java application so we can containerize it.
 ----
 mvn io.quarkus.platform:quarkus-maven-plugin:{quarkus-version}.Final:create \
     -DprojectGroupId=com.redhat.developers \
-    -DprojectArtifactId=tutorial-app \
+    -DprojectArtifactId={project-name} \
     -DprojectVersion=1.0-SNAPSHOT \
     -DclassName="HelloResource" \
     -Dpath="hello"
