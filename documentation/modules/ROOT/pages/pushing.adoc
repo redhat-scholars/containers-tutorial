@@ -2,7 +2,7 @@
 
 So far you've been working with your container image locally. Now let's take it to a remote registry.
 
-IMPORTANT: Before continue, you need to create an account at Docker Hub (if you haven't done yet). Just click here: https://hub.docker.com/
+IMPORTANT: Before continuing, you need to create an account at Docker Hub (if you haven't done it yet). Just click here: https://hub.docker.com/
 
 First you'll need to tag your image accordingly to the name you gave to your repository on Docker Hub:
 
