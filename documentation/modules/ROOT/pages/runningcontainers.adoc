@@ -16,7 +16,7 @@ Now we are ready to create a container based on this image. Just run:
 docker create --name my-container my-image
 ----
 
-You container is created. 
+Your container is created. 
 
 == Listing containers
 
@@ -36,7 +36,7 @@ Your output is probably something like this:
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ----
 
-Why your container isn't in the list if you've just created it?
+Why isn't your container in the list if you've just created it?
 
 Because it isn't running, and using plain `docker ps` will only list the running containers. Now try this:
 
@@ -55,12 +55,12 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ccaadddf1c48        my-image            "java -jar /deployme…"   3 minutes ago       Created                                 my-container
 ----
 
-It's listing all containers, not matter the status. Your container is listed as `Created`.
+It's listing all containers, no matter the status. Your container is listed as `Created`.
 
 
 == Starting containers
 
-To run the container you've just created execute this:
+To run the container you've just created, execute this:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -132,7 +132,7 @@ __  ____  __  _____   ___  __ ____  ______
 2020-10-07 18:36:05,105 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]
 ----
 
-Notice that you terminal is attached to the container process. If you use `CTRL+C`, the container will stop.
+Notice that your terminal is attached to the container process. If you use `CTRL+C`, the container will stop.
 
 So let's create a detached container. First we remove this one:
 
