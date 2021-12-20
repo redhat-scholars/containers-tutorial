@@ -10,7 +10,7 @@ With the Dockerfile that we created in the last step, let's build a container im
 docker build -t my-image .
 ----
 
-You'll seel an output like this:
+You'll see an output like this:
 
 [.console-output]
 [source,text]
@@ -38,7 +38,7 @@ Successfully tagged my-image:latest
 
 == Listing the available images
 
-To see your just create image, just run:
+To see your just created image, just run:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
