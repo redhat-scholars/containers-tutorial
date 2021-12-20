@@ -10,7 +10,7 @@ To perform it in our running container, just execute this:
 docker exec -it my-container /bin/bash
 ----
 
-Your terminal prompt should by now like this:
+Your terminal prompt should by now look like this:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
