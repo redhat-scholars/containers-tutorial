@@ -19,7 +19,7 @@ Sometimes people ask when to use ADD and when to use COPY. Both of them can be u
 
 == Creating an application to be containerized
 
-Let's first create an simple Java application so we can containerize it.
+Let's first create a simple Java application so we can containerize it.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -35,7 +35,7 @@ cd {project-name}
 
 IMPORTANT: All the remaining parts of this tutorial assume that you'll be working inside the project folder that was just created. In this case, `{project-name}`.
 
-To let this application ready to be distributed, let's package it:
+To let this application be ready to be distributed, let's package it:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
