@@ -54,7 +54,7 @@ You now got this output:
 [.console-output]
 [source,text]
 ----
-hello
+Hello RESTEasy
 ----
 
 Meaning that your application is now accessible.
