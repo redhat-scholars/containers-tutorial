@@ -52,7 +52,7 @@ Create a file named Dockerfile.
 [source,bash,subs="+macros,+attributes"]
 ----
 cat <<EOF >Dockerfile
-FROM registry.access.redhat.com/ubi8/openjdk-11
+FROM registry.access.redhat.com/ubi8/openjdk-17
 
 COPY target/quarkus-app/lib/ /deployments/lib/
 COPY target/quarkus-app/quarkus-run.jar /deployments/app.jar
