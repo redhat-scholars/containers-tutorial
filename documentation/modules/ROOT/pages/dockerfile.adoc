@@ -1,7 +1,6 @@
 = Dockerfile
 
 :project-name: tutorial-app
-:quarkus-version: 2.3.0.Final
 
 A Dockerfile is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
 
@@ -25,7 +24,7 @@ Let's first create a simple Java application so we can containerize it.
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-mvn "io.quarkus:quarkus-maven-plugin:{quarkus-version}:create" \
+mvn "io.quarkus:quarkus-maven-plugin:create" \
   -DprojectGroupId="com.redhat.developers" \
   -DprojectArtifactId="{project-name}" \
   -DprojectVersion="1.0-SNAPSHOT" \
