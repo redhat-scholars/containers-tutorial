@@ -43,7 +43,7 @@ To see your just created image, just run:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker images
+docker image list
 ----
 
 You'll see at least these two outputs:
@@ -65,5 +65,5 @@ To remove your just created image:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker rmi my-image
+docker image rm my-image
 ----

@@ -13,8 +13,9 @@ A Dockerfile is where you'll estabilish the definitions used to build a containe
 ====
 Sometimes people ask when to use ADD and when to use COPY. Both of them can be used to copy files from the source to destination, but:
 
-* ADD: The source can only be the host
-* COPY: The source can be the host or a remote URL 
+* COPY: Simple copy of local files into the container
+* ADD: Will also extract local tar files and supports remote URL. 
+It is less obvious thus it is preferable to use COPY unless you specifically need these features
 ====
 
 == Creating an application to be containerized
