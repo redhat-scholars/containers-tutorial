@@ -4,12 +4,12 @@ So far you've been working with your container image locally. Now let's take it 
 
 IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or https://hub.docker.com/[Dockerhub]. 
 
-First you'll need to tag your image accordingly to the registry and name you gave to your repository. Eg. if I'm using quay.io and I created a repository 'rhdevelopers'
+First you'll need to tag your image accordingly to the registry and name you gave to your repository. Eg. if I'm using Quay.io and I created a repository 'myrepository'
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker tag my-image quay.io/rhdevelopers/my-image
+docker tag my-image quay.io/myrepository/my-image
 ----
 
 Or, if you have a Docker Hub account:
@@ -17,20 +17,14 @@ Or, if you have a Docker Hub account:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker tag my-image docker.io/rhdevelopers/my-image
+docker tag my-image docker.io/myrepository/my-image
 ----
+
+IMPORTANT: Make sure to replace `myrepository` with the name of your own repository.
 
 [TIP]
 ====
-If you would like to not use docker.io by default, then prefix the image name with the other registry (Quay.io, for example):
-
-[.console-input]
-[source,bash,subs="+macros,+attributes"]
-----
-docker tag my-image quay.io/rhdevelopers/my-image
-----
-
-Also, if you build your image already using the tag, you won't need to do this step before pushing it. In our case it would be like this:
+If you build your image already using the tag, you won't need to do this step before pushing it. In our case it would be like this:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -39,8 +33,6 @@ docker build -t quay.io/myrepository/my-image .
 ----
 
 ====
-
-IMPORTANT: From this point, replace `myrepository` with the name of your own repository.
 
 If you now run `docker images` you'll see something like this:
 
