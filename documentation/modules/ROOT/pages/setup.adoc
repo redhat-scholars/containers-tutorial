@@ -20,7 +20,7 @@ TIP: You can also use https://podman-desktop.io/[Podman] instead of Docker. The 
 | `dnf install docker`
 | https://www.docker.com/products/docker-desktop[Docker Desktop for Windows, window="_blank"]
 
-| **Java 11**
+| **Java 17**
 | `brew tap AdoptOpenJDK/openjdk && brew cask install adoptopenjdk17`
 | `dnf install java-17-openjdk.x86_64`
 | https://adoptopenjdk.net[Windows] (Make sure you set the `JAVA_HOME` environment variable and add `%JAVA_HOME%\bin` to your `PATH`)
