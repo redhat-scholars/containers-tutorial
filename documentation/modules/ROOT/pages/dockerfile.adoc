@@ -5,7 +5,7 @@
 A Dockerfile is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
 
 * FROM: where you'll inform the base image used to build your own image
-* ADD: where you'll add resources (files) to your image
+* COPY: where you'll add resources (files) to your image
 * CMD: where you'll inform how to start the application
 
 [TIP]
@@ -54,10 +54,10 @@ Create a file named Dockerfile.
 cat <<EOF >Dockerfile
 FROM registry.access.redhat.com/ubi8/openjdk-11
 
-ADD target/quarkus-app/lib/ /deployments/lib/
-ADD target/quarkus-app/quarkus-run.jar /deployments/app.jar
-ADD target/quarkus-app/app/ /deployments/app/
-ADD target/quarkus-app/quarkus/ /deployments/quarkus/
+COPY target/quarkus-app/lib/ /deployments/lib/
+COPY target/quarkus-app/quarkus-run.jar /deployments/app.jar
+COPY target/quarkus-app/app/ /deployments/app/
+COPY target/quarkus-app/quarkus/ /deployments/quarkus/
 
 CMD ["java", "-jar", "/deployments/app.jar"]
 EOF
