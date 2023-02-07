@@ -2,6 +2,8 @@
 
 So far you've been working with your container image locally. Now let's take it to a remote registry.
 
+== Pushing an image
+
 IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or https://hub.docker.com/[Dockerhub]. 
 
 First you'll need to tag your image accordingly to the registry and name you gave to your repository. Eg. if I'm using Quay.io and I created a repository 'myrepository'

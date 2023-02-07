@@ -9,7 +9,7 @@ The following CLI tools are required for running the exercises in this tutorial.
 --
 Please have them installed and configured before you get started with any of the tutorial chapters.
 
-TIP: You can also use https://podman-desktop.io/[Podman] instead of Docker. The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges. Just use 'podman' instead of 'docker' throughout the tutorial's instructions, or alias docker=podman
+TIP: You can also use https://podman-desktop.io/[Podman] instead of Docker. The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges. Just use 'podman' instead of 'docker' throughout the tutorial's instructions, or `alias docker=podman`.
 
 [options="header"]
 |===

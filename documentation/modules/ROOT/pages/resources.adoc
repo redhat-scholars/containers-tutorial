@@ -1,0 +1,14 @@
+= Resources
+
+Let's take a look at some free resources to help continue your container journey.
+
+== Cheat sheets
+
+Podman is one of the next-generation container tools (along with Buildah and Skopeo) included in Red Hat Enterprise Linux 7.6 and later. This cheat sheet covers all of the commands that focus on images, containers, and container resources.
+
+This cheat sheet explains how to:
+
+* Find, build, and remove images.
+* Run containers on images.
+* Manage container processes and resources.
+* Work with a container's filesystem.
