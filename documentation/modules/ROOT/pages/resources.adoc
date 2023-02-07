@@ -4,7 +4,21 @@ Let's take a look at some free resources to help continue your container journey
 
 == Cheat sheets
 
-Podman is one of the next-generation container tools (along with Buildah and Skopeo) included in Red Hat Enterprise Linux 7.6 and later. This cheat sheet covers all of the commands that focus on images, containers, and container resources.
+=== https://developers.redhat.com/cheat-sheets/containers[Containers Cheat Sheet (Docker)]
+
+Whether you are new to Containers or have experience, you may find yourself encountering tasks you haven’t done lately. That is where the cheat sheet can help.
+
+In this Containers cheat sheet, you will find:
+
+* Introduction to container architecture
+* Engine, image, registry, and volume-related commands
+* Example of running a web server container
+
+image::containers-cheat-sheet-cover.png[Containers Cheat Sheet, 200]
+
+=== https://developers.redhat.com/cheat-sheets/podman-cheat-sheet[Podman Cheat Sheet]
+
+https://podman.io/[Podman] is one of the next-generation container tools (along with https://buildah.io/[Buildah] and https://github.com/containers/skopeo[Skopeo]) included in Red Hat Enterprise Linux 7.6 and later. This cheat sheet covers all of the commands that focus on images, containers, and container resources.
 
 This cheat sheet explains how to:
 
@@ -12,3 +26,21 @@ This cheat sheet explains how to:
 * Run containers on images.
 * Manage container processes and resources.
 * Work with a container's filesystem.
+
+image::podman_cover.png[Podman Cheat Sheet, 200]
+
+== Interactive Learning Path
+
+=== https://developers.redhat.com/learning/devnation:cloud-native-developer/resource/resources:containers-tutorial[Cloud native developer]
+
+Time to dust off the mental cobwebs and get started with containers! Learn the basics and make a pit stop in our developer sandbox. Try interactive labs and more through this learning path.
+
+image::containers-learning-path.png[Containers learning path, 300]
+
+== eBooks
+
+=== https://developers.redhat.com/e-books/modernizing-enterprise-java[Modernizing Enterprise Java]
+
+While containers, microservices, and distributed systems dominate discussions in the tech world, most applications in use today still run monolithic architectures that follow traditional development processes. This practical book helps developers examine long-established Java-based models and demonstrates how to bring these monolithic applications successfully into the cloud-native model with Kubernetes.
+
+image::modern-java.png[Modern Java eBook, 200]
