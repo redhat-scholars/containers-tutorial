@@ -1,5 +1,9 @@
 = Port
 
+Let's take a look at how to enable communication of the container to the outside world by exposing and mapping ports.
+
+== Exposing ports
+
 The application running inside your container can be accessed through the port 8080, so let's try it:
 
 [.console-input]

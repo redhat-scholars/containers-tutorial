@@ -10,3 +10,6 @@
 ** xref:inside.adoc[Inside a container]
 ** xref:pushing.adoc[Pushing an image to a public registry]
 ** xref:dockerless.adoc[Dockerless]
+
+* Resources
+** xref:resources.adoc[Containers]

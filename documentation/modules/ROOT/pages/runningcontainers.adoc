@@ -1,5 +1,9 @@
 = Running containers
 
+Let's take a look at running a container, as well as listing running containers, starting/stopping containers, and checking container logs.
+
+== Running a container
+
 As we removed the image on the previous step, we need to build it again:
 
 [.console-input]

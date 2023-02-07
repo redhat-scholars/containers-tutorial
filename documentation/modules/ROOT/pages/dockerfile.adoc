@@ -2,7 +2,7 @@
 
 :project-name: tutorial-app
 
-A Dockerfile is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
+A https://docs.docker.com/engine/reference/builder/[Dockerfile] is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
 
 * FROM: where you'll inform the base image used to build your own image
 * COPY: where you'll add resources (files) to your image

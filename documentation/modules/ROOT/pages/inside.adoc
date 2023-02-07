@@ -2,6 +2,8 @@
 
 You can easily run commands inside a running container, as you do in any other host.
 
+== Executing commands inside a container
+
 To perform it in our running container, just execute this:
 
 [.console-input]

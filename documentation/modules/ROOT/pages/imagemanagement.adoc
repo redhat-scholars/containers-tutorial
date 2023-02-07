@@ -1,5 +1,7 @@
 = Images Management
 
+An image can be used to create and run containers. It is like a template, containing instructions on how to build the container. Images are the starting point for any container related activity, and can be thought of as a snapshot in a virtual machine (VM) environment.
+
 == Building an image based on a Dockerfile
 
 With the Dockerfile that we created in the last step, let's build a container image:
