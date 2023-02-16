@@ -173,3 +173,33 @@ docker logs -f my-container
 ----
 
 Use `CTRL+C` to stop following the log.
+
+== Exploring the Desktop interfaces
+
+Let's take a look at running containers in the Desktop interfaces.
+
+[tabs]
+====
+Docker Desktop::
++
+--
+Using Docker Desktop, we can see our container running in the *Containers* tab. Here, we have information about the container, including the the container ID, image name, status, and duration. Let's select the container name to see more information.
+
+image::docker-desktop-containers.png[alt="Docker Desktop Containers tab", align="center"]
+
+Here, we can see much more about the container, for example a stream of logs just as we were able to view in our terminal. We can also inspect environment variables, use a shell to interact within the container, and view CPU/Memory/Network usage.
+
+image::docker-desktop-container-info.png[alt="Docker Desktop Container Info tab", align="center"]
+--
+Podman Desktop::
++
+--
+Using Docker Desktop, we can see our container running in the *Containers* tab. Here, we have information about the container, including the the image name & duration. Let's select the container name to see more information.
+
+image::podman-desktop-containers.png[alt="Podman Desktop Containers tab", align="center"]
+
+Here, we can see much more about the container, for example a stream of logs just as we were able to view in our terminal. We can also inspect environment variables through a JSON format, use a shell to interact within the container, and view CPU/Memory/Network usage.
+
+image::podman-desktop-container-info.png[alt="Podman Desktop Container Info tab", align="center"]
+--
+====

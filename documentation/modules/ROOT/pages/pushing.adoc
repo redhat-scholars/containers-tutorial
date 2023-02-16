@@ -2,24 +2,26 @@
 
 So far you've been working with your container image locally. Now let's take it to a remote registry.
 
-== Pushing an image
+== Tagging an image
 
-IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or https://hub.docker.com/[Dockerhub]. 
+IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or the https://hub.docker.com/[Docker Hub]. 
 
-First you'll need to tag your image accordingly to the registry and name you gave to your repository. Eg. if I'm using Quay.io and I created a repository 'myrepository'
+First you'll need to tag your image accordingly to the registry and name you gave to your repository. Say for example we create a repository `myrepository`.
 
-[.console-input]
-[source,bash,subs="+macros,+attributes"]
-----
-docker tag my-image quay.io/myrepository/my-image
-----
-
-Or, if you have a Docker Hub account:
+If you have a Docker Hub account:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 docker tag my-image docker.io/myrepository/my-image
+----
+
+If using Quay.io:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker tag my-image quay.io/myrepository/my-image
 ----
 
 IMPORTANT: Make sure to replace `myrepository` with the name of your own repository.
@@ -43,16 +45,34 @@ If you now run `docker images` you'll see something like this:
 ----
 REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
 my-image                                     latest              a63dec174904        55 minutes ago      516MB
-quay.io/myrepository/my-image                        latest              a63dec174904        55 minutes ago      516MB
+quay.io/myrepository/my-image                latest              a63dec174904        55 minutes ago      516MB
 ----
 
-It's now ready to be pushed. Before doing it, you just need to login into your Docker Hub account within your terminal:
+== Pushing an image
 
-[.console-input]  
+It's now ready to be pushed. Before doing it, you just need to login into your registry of choice within your terminal:
+
+[tabs]
+====
+Docker Hub::
++
+--
+[.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 docker login
 ----
+--
+Quay.io::
++
+--
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker login quay.io
+----
+--
+====
 
 And finally you can push it:
 

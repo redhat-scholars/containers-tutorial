@@ -1,6 +1,7 @@
 = Port
 
-Let's take a look at how to enable communication of the container to the outside world by exposing and mapping ports.
+Let's take a look at how to enable communication of the container to the outside world by exposing and mapping ports. 
+
 
 == Exposing ports
 
@@ -61,4 +62,4 @@ You now got this output:
 hello
 ----
 
-Meaning that your application is now accessible.
+This means that your application is now accessible!

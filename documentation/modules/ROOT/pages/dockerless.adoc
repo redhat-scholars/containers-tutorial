@@ -48,13 +48,11 @@ And the output should be similar:
 [INFO] ------------------------------------------------------------------------
 ----
 
-No credentials are required as they are taken from `~/.docker/config.json` if they are not set.
+TIP: No credentials are required as they are taken from `~/.docker/config.json` if they are not set.
 
 == Buildah
 
-Buildah is a tool for building OCI-compatible images through a lower-level coreutils interface.
-
-Buildah doesn't depend on a daemon, such as Docker or CRI-O, and it doesn't require root privileges.
+https://buildah.io/[Buildah] is a tool for building OCI-compatible images through a lower-level coreutils interface. Buildah doesn't depend on a daemon, such as Docker or CRI-O, and it doesn't require root privileges.
 
 Let's start the following Linux container which contains `buildah` binary installed in interactive mode:
 
