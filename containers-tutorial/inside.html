@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Inside a container :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/inside.html">
+    <link rel="prev" href="env.html">
+    <link rel="next" href="pushing.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="containers-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Containers Tutorial</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dockerfile.html">Dockerfile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="imagemanagement.html">Image management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="runningcontainers.html">Running containers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ports.html">Ports</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="env.html">Environment variables</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="inside.html">Inside a container</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="pushing.html">Pushing an image to a public registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dockerless.html">Dockerless</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources.html">Containers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Containers Tutorial</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Containers Tutorial</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Containers Tutorial</a></li>
+    <li>Basics</li>
+    <li><a href="inside.html">Inside a container</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/inside.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Inside a container</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can easily run commands inside a running container, as you do in any other host.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_executing_commands_inside_a_container"><a class="anchor" href="#_executing_commands_inside_a_container"></a>Executing commands inside a container</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To perform it in our running container, just execute this:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker exec -it my-container /bin/bash</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your terminal prompt should by now look like this:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[jboss@24543489a4b1 ~]$</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What you can do is directly related to what you installed inside your container, but a <code>curl</code> works in general:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s see the .jar of our application:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls /deployments/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also print the VM settings of this container:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -XshowSettings:vm -version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See Maven&#8217;s installed version:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn -v</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And even check the OS version details:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat /etc/os-release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To go back to your previous terminal, just run:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">exit</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_the_desktop_interfaces"><a class="anchor" href="#_exploring_the_desktop_interfaces"></a>Exploring the Desktop interfaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s take a look at image management in the Desktop interfaces.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_docker-desktop"></a>Docker Desktop</p>
+</li>
+<li>
+<p><a id="tabset1_podman-desktop"></a>Podman Desktop</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_docker-desktop">
+<div class="paragraph">
+<p>Within Docker Desktop, we can use the <strong>Terminal</strong> to run commands against our running container. First, head to the <strong>Containers</strong> tab, select the container, and choose the <strong>Terminal</strong> tab.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/docker-desktop-terminal.png" alt="Docker Desktop Terminal tab">
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_podman-desktop">
+<div class="paragraph">
+<p>Within Docker Desktop, we can use the <strong>Terminal</strong> to run commands against our running container. First, head to the <strong>Containers</strong> tab, select the container, and choose the <strong>Terminal</strong> tab.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-terminal.png" alt="Podman Desktop Terminal tab">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="env.html">Environment variables</a></span>
+  <span class="next"><a href="pushing.html">Pushing an image to a public registry</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
