@@ -1,5 +1,5 @@
-name: template-tutorial
-title: containers-tutorial
+name: containers-tutorial
+title: Containers Tutorial
 version: master
 nav:
   - modules/ROOT/nav.adoc

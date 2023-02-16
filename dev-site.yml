@@ -2,9 +2,9 @@ runtime:
   cache_dir: ./.cache/antora
 
 site:
-  title: containers-tutorial
+  title: Containers Tutorial
   url: http://localhost:3000/rhs-build-course/index.html
-  start_page: template-tutorial::index.adoc
+  start_page: containers-tutorial::index.adoc
 
 content:
   sources:
@@ -13,7 +13,7 @@ content:
       start_path: documentation
 asciidoc:
   attributes:
-    title: containers-tutorial
+    title: Containers Tutorial (Dev)
   extensions:
     - ./lib/remote-include-processor.js
     - ./lib/tab-block.js

@@ -68,3 +68,24 @@ To go back to your previous terminal, just run:
 exit
 ----
 
+== Exploring the Desktop interfaces
+
+Let's take a look at image management in the Desktop interfaces.
+
+[tabs]
+====
+Docker Desktop::
++
+--
+Within Docker Desktop, we can use the *Terminal* to run commands against our running container. First, head to the *Containers* tab, select the container, and choose the *Terminal* tab.
+
+image::docker-desktop-terminal.png[alt="Docker Desktop Terminal tab", align="center"]
+--
+Podman Desktop::
++
+--
+Within Docker Desktop, we can use the *Terminal* to run commands against our running container. First, head to the *Containers* tab, select the container, and choose the *Terminal* tab.
+
+image::podman-desktop-terminal.png[alt="Podman Desktop Terminal tab", align="center"]
+--
+====
