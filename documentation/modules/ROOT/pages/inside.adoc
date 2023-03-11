@@ -70,7 +70,7 @@ exit
 
 == Exploring the Desktop interfaces
 
-Let's take a look at image management in the Desktop interfaces.
+Let's take a look at how we can access the container's terminal from the Desktop interfaces.
 
 [tabs]
 ====
