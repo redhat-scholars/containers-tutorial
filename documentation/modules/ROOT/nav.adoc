@@ -11,5 +11,8 @@
 ** xref:pushing.adoc[Pushing an image to a public registry]
 ** xref:dockerless.adoc[Dockerless]
 
+* Intermediate
+** xref:skopeo.adoc[Skopeo]
+
 * Resources
 ** xref:resources.adoc[Containers]
