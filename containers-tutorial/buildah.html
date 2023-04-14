@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Environment variables :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/env.html">
-    <link rel="prev" href="ports.html">
-    <link rel="next" href="inside.html">
+    <title>Buildah :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/buildah.html">
+    <link rel="prev" href="skopeo.html">
+    <link rel="next" href="jib.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -96,7 +96,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="env.html">Environment variables</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -114,7 +114,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="skopeo.html">Skopeo</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="buildah.html">Buildah</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -162,188 +162,153 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>Basics</li>
-    <li><a href="env.html">Environment variables</a></li>
+    <li>Intermediate</li>
+    <li><a href="buildah.html">Buildah</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/env.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/buildah.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Environment variables</h1>
+<h1 class="page">Buildah</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Environment variables keep your app secure, flexible and organized. Let&#8217;s take a look at how to pass enviroment variables to containers.</p>
+<p>Buildah can be used to build container images compliant with the Open Container Initiative (OCI) image specification.
+Images can be built based on existing images from scratch and using Dockerfiles.</p>
+</div>
+<div class="paragraph">
+<p>Buildah only offers a binary file for Linux, so to make the tutorial generic, we use the <code>buildah</code> container image as a standard way to run buildah.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Buildah is a dockerless technology; you don&#8217;t need any Docker Host to build a container image.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_an_environment_variable_with_your_container"><a class="anchor" href="#_using_an_environment_variable_with_your_container"></a>Using an environment variable with your container</h2>
+<h2 id="_preparation"><a class="anchor" href="#_preparation"></a>Preparation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s edit the Java application you created using Quarkus:</p>
+<p>In a terminal window, start the container having <code>buildah</code> installed:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">code .</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_container"><a class="anchor" href="#_creating_a_container"></a>Creating a container</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Now edit the <code>HelloResource.java</code> class like this:</p>
+<p>Create a <code>Dockerfile</code> file, for this simple example, type <code>vi Dockerfile</code> and copy the content shown in the snippet:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">FROM alpine:3.17.3
 
-import java.util.Optional;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-
-@Path("/hello")
-public class HelloResource {
-
-    @ConfigProperty(name = "config")
-    Optional&lt;String&gt; config;
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return config.orElse("no config");
-    }
-}</code></pre>
+CMD ["echo", "'Hello World'"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Notice that instead of just printing <code>hello</code>, it will print the content of a <code>ConfigProperty</code> or print <code>no config</code> if the config doesn&#8217;t exist.</p>
-</div>
-<div class="paragraph">
-<p>Now, back to terminal, package your project:</p>
+<p>Then exit <code>vi</code> (no joke, please) by typing <code>:wq!</code>.
+When you are back in the shell, use <code>buildah</code> to build the container:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn package -DskipTests=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah build -t quay.io/lordofthejars/hello:latest</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Rebuild our image to get the new version of the application:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Remove your running container:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And run the new one:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now let&#8217;s call the application:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You now got this output.</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">no config</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">STEP 1/2: FROM alpine:3.17.3
+Resolved "alpine" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/alpine:3.17.3...
+Getting image source signatures
+Copying blob f56be85fc22e done
+Copying config 9ed4aefc74 done
+Writing manifest to image destination
+Storing signatures
+STEP 2/2: CMD ["echo", "'Hello World'"]
+COMMIT hello:latest
+Getting image source signatures
+Copying blob f1417ff83b31 skipped: already exists
+Copying blob 5f70bf18a086 done
+Copying config 9baf06d1b6 done
+Writing manifest to image destination
+Storing signatures
+--&gt; 9baf06d1b69
+Successfully tagged quay.io/lordofthejars/hello:latest
+9baf06d1b6916ca09ddb7a4742097d5b4be5f1286146b87d535d0ffa63fd6f90</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>no config</code> output happens because we didn&#8217;t really create the environment variable. Let&#8217;s fix it.</p>
-</div>
-<div class="paragraph">
-<p>Edit your Dockerfile like this:</p>
+<p>The image is committed to local machine but not pushed to container registry.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi8/openjdk-17
-
-COPY target/quarkus-app/lib/ /deployments/lib/
-COPY target/quarkus-app/*.jar /deployments/app.jar
-COPY target/quarkus-app/app/ /deployments/app/
-COPY target/quarkus-app/quarkus/ /deployments/quarkus/
-
-ENV config=dockerfile
-
-CMD ["java", "-jar", "/deployments/app.jar"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah images</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s rebuild our image, re-create the container and call it again:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .
-docker rm -f my-container
-docker run -d --name my-container -p 8080:8080 my-image
-curl localhost:8080/hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now your output is:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">dockerfile</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">REPOSITORY                            TAG         IMAGE ID      CREATED        SIZE
+quay.io/lordofthejars/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
+docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7.34 MB</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pushing_a_container_image"><a class="anchor" href="#_pushing_a_container_image"></a>Pushing a Container Image</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Finally, let&#8217;s replace the variable&#8217;s content. First we remove the container:</p>
+<p>To push the image to the container registry:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah push --tls-verify=false --creds=username:password quay.io/lordofthejars/hello:latest quay.io/lordofthejars/hello:latest</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And then we re-create it passing a new value for the environment variable:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 -e config=container my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then we call the application again:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And the output is:</p>
+<p>Notice that <code>--creds</code> is set with the username and password to access Docker Hub.
+By default, <code>buildah</code> reads credentials from <code>~/.docker/config.json</code>, but since this is a fresh container, credentials must be provided.</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">container</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Getting image source signatures
+Copying blob b29c4850380c done
+Copying blob 13ab19dd2ece done
+Copying blob 4793a7e290ce done
+Copying blob 4582e1897cf2 done
+Copying blob cf75f156ae2e done
+Copying blob bdcb28f5294e done
+Copying blob 5f70bf18a086 done
+Copying blob c5e55ed43ef3 done
+Copying config 1de25d78a3 done
+Writing manifest to image destination
+Storing signatures</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>A Linux container has been created and pushed to the registry from another Linux container.
+You can stop the <code>buildah</code> container by typing <code>exit</code>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="ports.html">Ports</a></span>
-  <span class="next"><a href="inside.html">Inside a container</a></span>
+  <span class="prev"><a href="skopeo.html">Skopeo</a></span>
+  <span class="next"><a href="jib.html">Jib</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

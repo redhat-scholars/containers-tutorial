@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Environment variables :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/env.html">
-    <link rel="prev" href="ports.html">
-    <link rel="next" href="inside.html">
+    <title>Jib :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/jib.html">
+    <link rel="prev" href="buildah.html">
+    <link rel="next" href="resources.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -96,7 +96,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="env.html">Environment variables</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -117,7 +117,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="buildah.html">Buildah</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="jib.html">Jib</a>
   </li>
 </ul>
@@ -162,188 +162,75 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>Basics</li>
-    <li><a href="env.html">Environment variables</a></li>
+    <li>Intermediate</li>
+    <li><a href="jib.html">Jib</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/env.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/jib.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Environment variables</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Jib</h1>
 <div class="paragraph">
-<p>Environment variables keep your app secure, flexible and organized. Let&#8217;s take a look at how to pass enviroment variables to containers.</p>
+<p><a href="https://github.com/GoogleContainerTools/jib">Jib</a> builds optimized Docker and OCI images for your Java applications without a Docker daemon - and without deep mastery of Docker best practices.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_an_environment_variable_with_your_container"><a class="anchor" href="#_using_an_environment_variable_with_your_container"></a>Using an environment variable with your container</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s edit the Java application you created using Quarkus:</p>
+<p>We&#8217;ve provided a simple Spring Boot application to containerize using Jib.</p>
+</div>
+<div class="paragraph">
+<p>Go to application directory:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">code .</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd apps/greeting</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now edit the <code>HelloResource.java</code> class like this:</p>
+<p>Then run the following Maven command to build and push the container without using any Docker host:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
-
-import java.util.Optional;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-
-@Path("/hello")
-public class HelloResource {
-
-    @ConfigProperty(name = "config")
-    Optional&lt;String&gt; config;
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return config.orElse("no config");
-    }
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=docker.io/lordofthejars/greetings:1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Notice that instead of just printing <code>hello</code>, it will print the content of a <code>ConfigProperty</code> or print <code>no config</code> if the config doesn&#8217;t exist.</p>
+<p>Change <code>docker.io</code> for your container repository location (ie <code>quay.io</code>) and <code>lordofthejars</code> for your user id.</p>
 </div>
 <div class="paragraph">
-<p>Now, back to terminal, package your project:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn package -DskipTests=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Rebuild our image to get the new version of the application:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Remove your running container:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And run the new one:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now let&#8217;s call the application:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You now got this output.</p>
+<p>And the output should be similar:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">no config</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] Using credentials from Docker config (/Users/asotobu/.docker/config.json) for adoptopenjdk:11-jre
+[INFO] Using base image with digest: sha256:160242e83558e9ada7038601e1e7b4399903700a0b1685f5dced50e6ca05eced
+[INFO]
+[INFO] Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*, org.acme.greeting.GreetingApplication]
+[INFO]
+[INFO] Built and pushed image as lordofthejars/greetings:1.0.0
+[INFO] Executing tasks:
+[INFO] [============================  ] 91.7% complete
+[INFO] &gt; launching layer pushers
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The <code>no config</code> output happens because we didn&#8217;t really create the environment variable. Let&#8217;s fix it.</p>
-</div>
-<div class="paragraph">
-<p>Edit your Dockerfile like this:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi8/openjdk-17
-
-COPY target/quarkus-app/lib/ /deployments/lib/
-COPY target/quarkus-app/*.jar /deployments/app.jar
-COPY target/quarkus-app/app/ /deployments/app/
-COPY target/quarkus-app/quarkus/ /deployments/quarkus/
-
-ENV config=dockerfile
-
-CMD ["java", "-jar", "/deployments/app.jar"]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s rebuild our image, re-create the container and call it again:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .
-docker rm -f my-container
-docker run -d --name my-container -p 8080:8080 my-image
-curl localhost:8080/hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now your output is:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">dockerfile</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, let&#8217;s replace the variable&#8217;s content. First we remove the container:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And then we re-create it passing a new value for the environment variable:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 -e config=container my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then we call the application again:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And the output is:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">container</code></pre>
-</div>
-</div>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+No credentials are required as they are taken from <code>~/.docker/config.json</code> if they are not set.
+</td>
+</tr>
+</table>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="ports.html">Ports</a></span>
-  <span class="next"><a href="inside.html">Inside a container</a></span>
+  <span class="prev"><a href="buildah.html">Buildah</a></span>
+  <span class="next"><a href="resources.html">Containers</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
