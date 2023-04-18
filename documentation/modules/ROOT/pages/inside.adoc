@@ -84,7 +84,7 @@ image::docker-desktop-terminal.png[alt="Docker Desktop Terminal tab", align="cen
 Podman Desktop::
 +
 --
-Within Docker Desktop, we can use the *Terminal* to run commands against our running container. First, head to the *Containers* tab, select the container, and choose the *Terminal* tab.
+Within Podman Desktop, we can use the *Terminal* to run commands against our running container. First, head to the *Containers* tab, select the container, and choose the *Terminal* tab.
 
 image::podman-desktop-terminal.png[alt="Podman Desktop Terminal tab", align="center"]
 --

@@ -194,7 +194,7 @@ image::docker-desktop-container-info.png[alt="Docker Desktop Container Info tab"
 Podman Desktop::
 +
 --
-Using Docker Desktop, we can see our container running in the *Containers* tab. Here, we have information about the container, including the the image name & duration. Let's select the container name to see more information.
+Using Podman Desktop, we can see our container running in the *Containers* tab. Here, we have information about the container, including the the image name & duration. Let's select the container name to see more information.
 
 image::podman-desktop-containers.png[alt="Podman Desktop Containers tab", align="center"]
 
