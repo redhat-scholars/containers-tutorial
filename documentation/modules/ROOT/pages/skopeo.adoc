@@ -1,6 +1,6 @@
 = Skopeo
 
-Skopeo is a command line utility that performs operations on container images and image repositories.
+https://github.com/containers/skopeo[Skopeo] is a command line utility that performs operations on container images and image repositories.
 One of the big advantages of Skopeo is not requiring docker installed, it works with no Docker host, or requiring `root` permissions.
 
 The operations you can do with Skopeo are:
@@ -10,7 +10,7 @@ The operations you can do with Skopeo are:
 * Deleting an image from an image repository.
 * Syncing an external image repository to an internal registry for air-gapped deployments.
 
-When required by the repository, skopeo can pass the appropriate credentials and certificates for authentication.
+When required by the repository, Skopeo can pass the appropriate credentials and certificates for authentication.
 
 == Inspecting a Container
 
@@ -105,7 +105,7 @@ skopeo inspect docker://quay.io/rhdevelopers/quarkus-demo:v1
 }
 ----
 
-=== Copying a Containers
+== Copying a Containers
 
 Skopeo lets you copy containers from one container registry to anotehr container registry without a Docker host.
 You can copy containers from different sources to different sources, for example, from remote container registry to local directory, or another remote container registry, or local container registry ...
@@ -198,7 +198,7 @@ docker images
 rhdevelopers/quarkus-demo                              skopeo               e40635aea714   3 years ago     135MB
 ----
 
-==== Copying Between Registries
+== Copying Between Registries
 
 To copy between registries, you need to use the `docker` prefix.
 First of all, let's start a container registry inside Docker Host:
@@ -246,7 +246,7 @@ time="2023-04-12T13:29:37.927391556Z" level=info msg="response completed" go.ver
 
 Shut down the container registry by stopping the `docker run` process.
 
-=== Deleting a Container
+== Deleting a Container
 
 Skopeo can delete containers from repositories without requiring to have a Docker host.
 

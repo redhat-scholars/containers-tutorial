@@ -1,11 +1,11 @@
 = Buildah
 
-Buildah can be used to build container images compliant with the Open Container Initiative (OCI) image specification. 
+https://buildah.io[Buildah] can be used to build container images compliant with the Open Container Initiative (OCI) image specification. 
 Images can be built based on existing images from scratch and using Dockerfiles.
 
 Buildah only offers a binary file for Linux, so to make the tutorial generic, we use the `buildah` container image as a standard way to run buildah.
 
-IMPORTANT: Buildah is a dockerless technology; you don't need any Docker Host to build a container image.
+TIP: Buildah is a dockerless technology; you don't need any Docker Host to build a container image.
 
 == Preparation
 
@@ -17,7 +17,7 @@ In a terminal window, start the container having `buildah` installed:
 docker run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash
 ----
 
-== Creating a container
+== Creating a Container Image
 
 Create a `Dockerfile` file, for this simple example, type `vi Dockerfile` and copy the content shown in the snippet:
 

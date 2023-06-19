@@ -2,9 +2,11 @@
 
 https://github.com/GoogleContainerTools/jib[Jib] builds optimized Docker and OCI images for your Java applications without a Docker daemon - and without deep mastery of Docker best practices.
 
+== Building an Image
+
 We've provided a simple Spring Boot application to containerize using Jib.
 
-Go to application directory:
+Go to the application directory:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]

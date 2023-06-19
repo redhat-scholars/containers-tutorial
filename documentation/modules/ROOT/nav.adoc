@@ -11,8 +11,9 @@
 ** xref:pushing.adoc[Pushing an image to a public registry]
 
 * Intermediate
-** xref:skopeo.adoc[Skopeo]
+** xref:podman-desktop.adoc[Podman Desktop]
 ** xref:buildah.adoc[Buildah]
+** xref:skopeo.adoc[Skopeo]
 ** xref:jib.adoc[Jib]
 
 * Resources
