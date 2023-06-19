@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Introduction to Podman Desktop :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/podman-desktop.html">
+    <link rel="prev" href="pushing.html">
+    <link rel="next" href="buildah.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="containers-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Requirements</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html">Setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dockerfile.html">Dockerfile</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="imagemanagement.html">Image management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="runningcontainers.html">Running containers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ports.html">Ports</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="env.html">Environment variables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="inside.html">Inside a container</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="pushing.html">Pushing an image to a public registry</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Intermediate</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="podman-desktop.html">Podman Desktop</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="buildah.html">Buildah</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="skopeo.html">Skopeo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jib.html">Jib</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources.html">Containers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Containers Tutorial</a></li>
+    <li>Intermediate</li>
+    <li><a href="podman-desktop.html">Podman Desktop</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/podman-desktop.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Introduction to Podman Desktop</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://podman-desktop.io">Podman Desktop</a> is a powerful tool for managing containers and images on your desktop environment. It includes benefits such as running Kubernetes pods, deployment to your Kubernetes and OpenShift clusters, and Docker Desktop extension support. Let&#8217;s take a look at some of the features of Podman Desktop and go through some of the basic steps we&#8217;ve done in this tutorial, on Podman Desktop.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_podman_desktop_installation"><a class="anchor" href="#_podman_desktop_installation"></a>Podman Desktop Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Podman Desktop is available for Linux, macOS, and Windows. You can download the latest version from <a href="https://podman-desktop.io/">podman-desktop.io</a>. The installation process is straightforward and only takes a few minutes to complete.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For macOS users, you can easily install Podman Desktop using Homebrew. The command is <code>brew install podman-desktop</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once installed, your Podman Desktop dashboard will show the current version of Podman, featured extensions, and a left-hand navigation menu for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Containers</strong>: Create, manage, and delete containers.</p>
+</li>
+<li>
+<p><strong>Pods</strong>: Create and manage pods, as well as play Kubernetes YAML using Podman or a Kubernetes cluster.</p>
+</li>
+<li>
+<p><strong>Images</strong>: Pull, build (via Dockerfile), and manage images.</p>
+</li>
+<li>
+<p><strong>Volumes</strong>: Manage persistent storage for containers.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop.png" alt="Podman Desktop Container Info tab">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_image_management"><a class="anchor" href="#_image_management"></a>Image Management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Podman Desktop allows you to pull images from Docker Hub, Quay.io, and other registries. You can also build images from a Dockerfile or Containerfile. For this example, let&#8217;s pull the <code>nginx:latest</code> image from Docker Hub. In the <strong>Images</strong> tab, click the <strong>Pull an image</strong> button and enter <code>nginx</code> in the <strong>Image to Pull</strong> field. Click <strong>Pull image</strong> to start the pull process. The default registry is Docker Hub, but you can  add other registries with authentication by selecting <strong>Manage registries</strong>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-pull.png" alt="Podman Desktop Container Info tab">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_containers"><a class="anchor" href="#_running_containers"></a>Running Containers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the <strong>nginx</strong> image downloaded to our local Podman registry, we can now run the container on our system. This is done by clicking the <strong>Run Image</strong>, or Start icon.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-run.png" alt="Podman Desktop Container Run button">
+</div>
+</div>
+<div class="paragraph">
+<p>This presents us with a dialog to set the container name, map host volumes into the container (for persistent data if a container was to be removed), map local ports to exposed container ports, and more. Let&#8217;s go ahead and select <strong>Start Container</strong> from the bottom</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-run-details.png" alt="Podman Desktop Container Run details">
+</div>
+</div>
+<div class="paragraph">
+<p>Great, now we&#8217;ve started the container and can access the exposed port <code>9000</code> set in Podman Desktop by visiting <code><a href="http://localhost:9000" class="bare">http://localhost:9000</a></code> in our browser, or doing a <code>curl</code> command from the terminal.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-nginx.png" alt="Podman Desktop running nginx">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_pod"><a class="anchor" href="#_creating_a_pod"></a>Creating a Pod</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Podman also allows you to create pods, which are groups of containers that share the same network and storage. This is useful for applications that require multiple containers to run together, such as a database and web server. To create a pod, click the <strong>Play Kubernetes YAML</strong> button in the <strong>Pods</strong> tab. This will bring up a dialog where you select the Kubernetes YAML, and apply it to either Podman or a Kubernetes cluster. For this example, we&#8217;ll create a <code>podman-desktop-pod.yaml</code> file with the following content.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: v1
+kind: Pod
+metadata:
+  name: web-db-pod
+  labels:
+    app: web-db-app
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 8080
+  - name: postgres-container
+    image: postgres:latest
+    ports:
+    - containerPort: 54320
+    env:
+    - name: POSTGRES_PASSWORD
+      value: mysecretpassword</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This YAML file will create a pod with two containers, one running nginx and the other running PostgreSQL. The YAML file can be applied to the Podman engine by clicking the <strong>Play</strong> button after selecting the file. This will create the pod and start the containers.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-pod-play.png" alt="Podman Desktop Pod Create">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the pod is created, you can visit the <strong>Pods</strong> tab to see the pod and containers. After clicking the Pod name, you can view the Pod logs and container details.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-pod-logs.png" alt="Podman Desktop Pod Create">
+</div>
+</div>
+<div class="paragraph">
+<p>With everything working correctly, you may even click the <strong>Rocket</strong> icon to deploy it to your Kubernetes or OpenShift cluster, and automatically expose it as well.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-pod-deploy.png" alt="Podman Desktop Pod Create">
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="pushing.html">Pushing an image to a public registry</a></span>
+  <span class="next"><a href="buildah.html">Buildah</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

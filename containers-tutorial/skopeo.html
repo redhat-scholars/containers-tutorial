@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Skopeo :: Containers Tutorial</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/skopeo.html">
-    <link rel="prev" href="pushing.html">
-    <link rel="next" href="buildah.html">
+    <link rel="prev" href="buildah.html">
+    <link rel="next" href="jib.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -91,11 +91,14 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Intermediate</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="skopeo.html">Skopeo</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="podman-desktop.html">Podman Desktop</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="buildah.html">Buildah</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="skopeo.html">Skopeo</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="jib.html">Jib</a>
@@ -138,7 +141,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Skopeo is a command line utility that performs operations on container images and image repositories.
+<p><a href="https://github.com/containers/skopeo">Skopeo</a> is a command line utility that performs operations on container images and image repositories.
 One of the big advantages of Skopeo is not requiring docker installed, it works with no Docker host, or requiring <code>root</code> permissions.</p>
 </div>
 <div class="paragraph">
@@ -161,7 +164,7 @@ One of the big advantages of Skopeo is not requiring docker installed, it works 
 </ul>
 </div>
 <div class="paragraph">
-<p>When required by the repository, skopeo can pass the appropriate credentials and certificates for authentication.</p>
+<p>When required by the repository, Skopeo can pass the appropriate credentials and certificates for authentication.</p>
 </div>
 </div>
 </div>
@@ -258,8 +261,11 @@ In a terminal window, run the following command:</p>
 }</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_copying_a_containers"><a class="anchor" href="#_copying_a_containers"></a>Copying a Containers</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_copying_a_containers"><a class="anchor" href="#_copying_a_containers"></a>Copying a Containers</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Skopeo lets you copy containers from one container registry to anotehr container registry without a Docker host.
 You can copy containers from different sources to different sources, for example, from remote container registry to local directory, or another remote container registry, or local container registry &#8230;&#8203;</p>
@@ -349,8 +355,11 @@ If you run the <code>docker images</code> command, you&#8217;ll see the image do
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rhdevelopers/quarkus-demo                              skopeo               e40635aea714   3 years ago     135MB</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_copying_between_registries"><a class="anchor" href="#_copying_between_registries"></a>Copying Between Registries</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_copying_between_registries"><a class="anchor" href="#_copying_between_registries"></a>Copying Between Registries</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To copy between registries, you need to use the <code>docker</code> prefix.
 First of all, let&#8217;s start a container registry inside Docker Host:</p>
@@ -400,8 +409,9 @@ time="2023-04-12T13:29:37.927391556Z" level=info msg="response completed" go.ver
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_deleting_a_container"><a class="anchor" href="#_deleting_a_container"></a>Deleting a Container</h3>
+<div class="sect1">
+<h2 id="_deleting_a_container"><a class="anchor" href="#_deleting_a_container"></a>Deleting a Container</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Skopeo can delete containers from repositories without requiring to have a Docker host.</p>
 </div>
@@ -415,10 +425,9 @@ time="2023-04-12T13:29:37.927391556Z" level=info msg="response completed" go.ver
 </div>
 </div>
 </div>
-</div>
 <nav class="pagination">
-  <span class="prev"><a href="pushing.html">Pushing an image to a public registry</a></span>
-  <span class="next"><a href="buildah.html">Buildah</a></span>
+  <span class="prev"><a href="buildah.html">Buildah</a></span>
+  <span class="next"><a href="jib.html">Jib</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
