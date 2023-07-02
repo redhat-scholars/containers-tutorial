@@ -7,12 +7,12 @@ image::containers-boat.png[Containers Boat, 400]
 [.text-center.strong]
 == Learn about the fundamentals of Containers
 
-A tutorial to show how you can use Containers to ease the distribution and management of your applications.
+This tutorial shows how you can use Containers to ease the distribution and management of your applications.
 
 [.text-center.strong]
 == What are Containers?
 
-Linux containers are technologies that allow you to package and isolate applications with their entire runtime environment—all of the files necessary to run. This makes it easy to move the contained application between environments (dev, test, production, etc.) while retaining full functionality.
+Linux containers are a technology that allows you to package and isolate applications with their entire runtime environment—all of the files necessary to run. This makes it easy to move the contained application between environments (dev, test, production, etc.) while retaining full functionality.
 
 [.tiles.browse]
 == Tutorial Steps
