@@ -1,7 +1,7 @@
 * Requirements
 ** xref:setup.adoc[Setup]
 
-* Basics
+* I. Basics
 ** xref:dockerfile.adoc[Dockerfile]
 ** xref:imagemanagement.adoc[Image management]
 ** xref:runningcontainers.adoc[Running containers]
@@ -10,7 +10,7 @@
 ** xref:inside.adoc[Inside a container]
 ** xref:pushing.adoc[Pushing an image to a public registry]
 
-* Intermediate
+* II. Intermediate
 ** xref:podman-desktop.adoc[Podman Desktop]
 ** xref:buildah.adoc[Buildah]
 ** xref:skopeo.adoc[Skopeo]
