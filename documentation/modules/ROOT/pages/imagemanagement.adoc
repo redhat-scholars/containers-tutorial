@@ -9,7 +9,7 @@ With the Containerfile that we created in the last step, let's build a container
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker build -t my-image .
+podman build -t my-image .
 ----
 
 You'll see an output like this:
@@ -51,7 +51,7 @@ To see your just created image, just run:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker image list
+podman image list
 ----
 
 You'll see at least these two outputs:
@@ -65,6 +65,16 @@ registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f   
 ----
 
 Your image is the `my-image` and the `registry.access.redhat.com/ubi9/openjdk-21` is the image used to build yours.
+
+== Removing images
+
+To remove your just created image:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+podman image rm my-image
+----
 
 == Exploring the Desktop interface
 

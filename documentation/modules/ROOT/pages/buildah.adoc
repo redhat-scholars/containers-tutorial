@@ -14,7 +14,7 @@ In a terminal window, start the container having `buildah` installed:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash
+podman run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash
 ----
 
 == Creating a Container Image
