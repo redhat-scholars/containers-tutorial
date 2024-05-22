@@ -28,7 +28,7 @@ First let's remove the container:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker rm -f my-container
+podman rm -f my-container
 ----
 
 [TIP]
@@ -43,7 +43,7 @@ Now we re-create the container, but exposing the port 8080:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker run -d --name my-container -p 8080:8080 my-image
+podman run -d --name my-container -p 8080:8080 my-image
 ----
 
 Let's try to reach the application again:

@@ -6,7 +6,7 @@ include::_attributes.adoc[]
 
 The following tools are required for running the exercises in this tutorial. You'll need to have them installed and configured before you get started with any of the tutorial chapters.
 
-TIP: By default, the commands in this tutorial are using Docker, but you use `podman` instead of `docker` throughout the tutorial's instructions, or `alias docker=podman`. The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges.
+TIP: By default, the commands in this tutorial are using podman, but you can use `docker` instead of `podman` throughout the tutorial's instructions as the commands will be identical (eg. `podman run` will be the same as `docker run`). The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges.
 
 [options="header"]
 |===

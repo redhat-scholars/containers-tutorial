@@ -9,7 +9,7 @@ To perform it in our running container, just execute this:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker exec -it my-container /bin/bash
+podman exec -it my-container /bin/bash
 ----
 
 Your terminal prompt should by now look like this:
@@ -79,7 +79,7 @@ exit
 // --
 // Within Docker Desktop, we can use the *Terminal* to run commands against our running container. First, head to the *Containers* tab, select the container, and choose the *Terminal* tab.
 
-// image::docker-desktop-terminal.png[alt="Docker Desktop Terminal tab", align="center"]
+// image::podman-desktop-terminal.png[alt="Docker Desktop Terminal tab", align="center"]
 // --
 // Podman Desktop::
 // +
