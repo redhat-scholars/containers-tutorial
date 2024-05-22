@@ -54,15 +54,6 @@ It's now ready to be pushed. Before doing it, you just need to login into your r
 
 [tabs]
 ====
-Docker Hub::
-+
---
-[.console-input]
-[source,bash,subs="+macros,+attributes"]
-----
-docker login
-----
---
 Quay.io::
 +
 --
@@ -72,9 +63,18 @@ Quay.io::
 docker login quay.io
 ----
 --
+Docker Hub::
++
+--
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+docker login
+----
+--
 ====
 
-And finally you can push it:
+And finally you can push it, eg.:
 
 [.console-input]  
 [source,bash,subs="+macros,+attributes"]

@@ -12,15 +12,11 @@ TIP: By default, the commands in this tutorial are using Docker, but you use `po
 |===
 |**Tool**|**macOS**|**Fedora**|**Windows**
 
-| **Docker**
-| https://docs.docker.com/desktop/install/mac-install/[Docker Desktop for Mac, window="_blank"]
-| `dnf install docker`
-| https://docs.docker.com/desktop/install/windows-install/[Docker Desktop for Windows, window="_blank"]
 
-| **Podman**
-| https://www.docker.com/products/docker-desktop[Podman Desktop for Mac, window="_blank"]
-| `dnf install podman`
-| https://podman-desktop.io/docs/Installation/windows-install[Podman Desktop for Windows, window="_blank"]
+| **Podman Desktop**
+| https://podman-desktop.io/downloads[Podman Desktop for Mac, window="_blank"]
+| https://podman-desktop.io/downloads[Podman Desktop for Linux, window="_blank"]
+| https://podman-desktop.io/downloads[Podman Desktop for Windows, window="_blank"]
 
 | **Java 17**
 | `brew tap AdoptOpenJDK/openjdk && brew cask install adoptopenjdk17`

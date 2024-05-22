@@ -2,7 +2,7 @@
 
 :project-name: tutorial-app
 
-A https://docs.docker.com/engine/reference/builder/[Dockerfile] is where you'll estabilish the definitions used to build a container image. It uses three main keywords/commands:
+A Containerfile, also known as a Dockerfile, is where you'll establish the definitions used to build a container image. It uses three main keywords/commands:
 
 * FROM: where you'll inform the base image used to build your own image
 * COPY: where you'll add resources (files) to your image
@@ -44,20 +44,27 @@ mvn package
 ----
 
 
-== Building a Dockerfile
+== Building a Containerfile
 
-Create a file named Dockerfile.
+Create a file named Containerfile.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-cat <<EOF >Dockerfile
-FROM registry.access.redhat.com/ubi8/openjdk-17
+cat <<EOF >Containerfile
+FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.18-4
 
-COPY target/quarkus-app/lib/ /deployments/lib/
-COPY target/quarkus-app/quarkus-run.jar /deployments/app.jar
-COPY target/quarkus-app/app/ /deployments/app/
-COPY target/quarkus-app/quarkus/ /deployments/quarkus/
+ENV LANGUAGE='en_US:en'
+
+COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
+COPY --chown=185 target/quarkus-app/*.jar /deployments/
+COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+
+EXPOSE 8080
+USER 185
+ENV JAVA_OPTS="-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
 
 CMD ["java", "-jar", "/deployments/app.jar"]
 EOF
