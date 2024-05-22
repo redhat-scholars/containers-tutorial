@@ -66,7 +66,6 @@ USER 185
 ENV JAVA_OPTS="-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
 
-CMD ["java", "-jar", "/deployments/app.jar"]
 EOF
 ----
 
