@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Image Management :: Containers Tutorial</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/imagemanagement.html">
-    <link rel="prev" href="dockerfile.html">
+    <link rel="prev" href="containerfile.html">
     <link rel="next" href="runningcontainers.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -65,7 +65,7 @@
     <span class="nav-text">I. Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="dockerfile.html">Dockerfile</a>
+    <a class="nav-link" href="containerfile.html">Containerfile</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="imagemanagement.html">Image management</a>
@@ -146,10 +146,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_building_an_image_based_on_a_dockerfile"><a class="anchor" href="#_building_an_image_based_on_a_dockerfile"></a>Building an image based on a Dockerfile</h2>
+<h2 id="_building_an_image_based_on_a_containerfile_aka_dockerfile"><a class="anchor" href="#_building_an_image_based_on_a_containerfile_aka_dockerfile"></a>Building an image based on a Containerfile (aka Dockerfile)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the Dockerfile that we created in the last step, let&#8217;s build a container image:</p>
+<p>With the Containerfile that we created in the last step, let&#8217;s build a container image:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -161,25 +161,31 @@
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Sending build context to Docker daemon  10.95MB
-Step 1/4 : FROM registry.access.redhat.com/ubi8/openjdk-11
-latest: Pulling from ubi8/openjdk-11
-396754cf27f9: Pull complete
-41e1474940d5: Pull complete
-fe52369f78c0: Pull complete
-Digest: sha256:98c69a5b81bca0fe331100390c7357c69fd137e8a6228300eda820a0893a1be0
-Status: Downloaded newer image for registry.access.redhat.com/ubi8/openjdk-11:latest
- ---&gt; e502114b0d20
-Step 2/4 : ADD target/lib/* /deployments/lib/
- ---&gt; 47e879f30cec
-Step 3/4 : ADD target/*-runner.jar /deployments/app.jar
- ---&gt; 393bbade30ae
-Step 4/4 : CMD ["java", "-jar", "/deployments/app.jar"]
- ---&gt; Running in d09c7708954d
-Removing intermediate container d09c7708954d
- ---&gt; 87776d35fc85
-Successfully built 87776d35fc85
-Successfully tagged my-image:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">STEP 1/11: FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.18-4
+STEP 2/11: ENV LANGUAGE='en_US:en'
+--&gt; Using cache 7819ee5ffcddd7271987e306c787854c874bc81798370435d6efa7a89cc4990e
+--&gt; 7819ee5ffcdd
+STEP 3/11: COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
+--&gt; 9b51381ccca6
+STEP 4/11: COPY --chown=185 target/quarkus-app/*.jar /deployments/
+--&gt; 4d299e6fd3b4
+STEP 5/11: COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+--&gt; 6fce0c1e1dbc
+STEP 6/11: COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+--&gt; 7177bec47b2f
+STEP 7/11: EXPOSE 8080
+--&gt; 9bd1b9ec7771
+STEP 8/11: USER 185
+--&gt; 61bc6e589684
+STEP 9/11: ENV JAVA_OPTS="-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+--&gt; 08f8fe193e07
+STEP 10/11: ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+--&gt; 2f8f931e08b1
+STEP 11/11: CMD ["java", "-jar", "/deployments/app.jar"]
+COMMIT my-image
+--&gt; a8172ead99ee
+Successfully tagged localhost/my-image:latest
+a8172ead99eece385fa756e85948656896645f7f1848c68dfe498da9d93be073</code></pre>
 </div>
 </div>
 </div>
@@ -201,12 +207,12 @@ Successfully tagged my-image:latest</code></pre>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
-my-image                                     latest              87776d35fc85        4 minutes ago       516MB
-registry.access.redhat.com/ubi8/openjdk-11   latest              e502114b0d20        2 months ago        505MB</code></pre>
+my-image                                     latest              87776d35fc85        4 minutes ago       392MB
+registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f        3 weeks ago         375 MB</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Your image is the <code>my-image</code> and the <code>registry.access.redhat.com/ubi8/openjdk-11</code> is the image used to build yours.</p>
+<p>Your image is the <code>my-image</code> and the <code>registry.access.redhat.com/ubi9/openjdk-21</code> is the image used to build yours.</p>
 </div>
 </div>
 </div>
@@ -223,8 +229,37 @@ registry.access.redhat.com/ubi8/openjdk-11   latest              e502114b0d20   
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_exploring_the_desktop_interface"><a class="anchor" href="#_exploring_the_desktop_interface"></a>Exploring the Desktop interface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s take a look at image management in the Desktop interfaces.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Podman Desktop</dt>
+<dd>
+<p>With Podman Desktop, we can see our newly created image in the <strong>Images</strong> tab. We can find information about the newly created image, including the the image ID, tag, creation date, and size of the image. Let&#8217;s select the image name to see more information about the image.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-images.png" alt="Podman Desktop Images tab">
+</div>
+</div>
+<div class="paragraph">
+<p>We can see information about the image layers, and low-level information about the image in JSON format.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/podman-desktop-image-info.png" alt="Podman Desktop Image Info tab">
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="dockerfile.html">Dockerfile</a></span>
+  <span class="prev"><a href="containerfile.html">Containerfile</a></span>
   <span class="next"><a href="runningcontainers.html">Running containers</a></span>
 </nav>
 </article>

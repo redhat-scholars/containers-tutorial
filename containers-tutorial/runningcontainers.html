@@ -65,7 +65,7 @@
     <span class="nav-text">I. Basics</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="dockerfile.html">Dockerfile</a>
+    <a class="nav-link" href="containerfile.html">Containerfile</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="imagemanagement.html">Image management</a>
@@ -288,13 +288,15 @@ ccaadddf1c48        my-image            "java -jar /deployme…"   8 minutes ago
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">__  ____  __  _____   ___  __ ____  ______
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">INFO exec -a "java" java -Djava.util.logging.manager=org.jboss.logmanager.LogManager -cp "." -jar /deployments/quarkus-run.jar
+INFO running in /deployments
+__  ____  __  _____   ___  __ ____  ______
  --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
  -/ /_/ / /_/ / __ |/ , _/ ,&lt; / /_/ /\ \
 --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
-2020-10-07 18:36:05,081 INFO  [io.quarkus] (main) tutorial-app 1.0-SNAPSHOT on JVM (powered by Quarkus 1.8.2.Final) started in 0.651s. Listening on: http://0.0.0.0:8080
-2020-10-07 18:36:05,105 INFO  [io.quarkus] (main) Profile prod activated.
-2020-10-07 18:36:05,105 INFO  [io.quarkus] (main) Installed features: [cdi, resteasy]</code></pre>
+2024-05-22 10:53:37,988 INFO  [io.quarkus] (main) tutorial-app 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.10.1) started in 0.455s. Listening on: http://0.0.0.0:8080
+2024-05-22 10:53:37,989 INFO  [io.quarkus] (main) Profile prod activated.
+2024-05-22 10:53:37,989 INFO  [io.quarkus] (main) Installed features: [cdi, rest, smallrye-context-propagation, vertx]</code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Setup :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/setup.html">
-    <link rel="prev" href="index.html">
-    <link rel="next" href="containerfile.html">
+    <title>Dockerfile :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/containerfile.html">
+    <link rel="prev" href="setup.html">
+    <link rel="next" href="imagemanagement.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -55,7 +55,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html">Setup</a>
   </li>
 </ul>
@@ -64,7 +64,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">I. Basics</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="containerfile.html">Containerfile</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -129,20 +129,32 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>Requirements</li>
-    <li><a href="setup.html">Setup</a></li>
+    <li>I. Basics</li>
+    <li><a href="containerfile.html">Containerfile</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/containerfile.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Setup</h1>
-<div class="sect1">
-<h2 id="_required_tools"><a class="anchor" href="#_required_tools"></a>Required Tools</h2>
+<h1 class="page">Dockerfile</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following tools are required for running the exercises in this tutorial. You&#8217;ll need to have them installed and configured before you get started with any of the tutorial chapters.</p>
+<p>A Containerfile, also known as a Dockerfile, is where you&#8217;ll establish the definitions used to build a container image. It uses three main keywords/commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>FROM: where you&#8217;ll inform the base image used to build your own image</p>
+</li>
+<li>
+<p>COPY: where you&#8217;ll add resources (files) to your image</p>
+</li>
+<li>
+<p>CMD: where you&#8217;ll inform how to start the application</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -151,57 +163,96 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-By default, the commands in this tutorial are using Docker, but you use <code>podman</code> instead of <code>docker</code> throughout the tutorial&#8217;s instructions, or <code>alias docker=podman</code>. The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges.
+<div class="paragraph">
+<p>Sometimes people ask when to use ADD and when to use COPY. Both of them can be used to copy files from the source to destination, but:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>COPY: Simple copy of local files into the container</p>
+</li>
+<li>
+<p>ADD: Will also extract local tar files and supports remote URL.
+It is less obvious thus it is preferable to use COPY unless you specifically need these features</p>
+</li>
+</ul>
+</div>
 </td>
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Tool</strong></th>
-<th class="tableblock halign-left valign-top"><strong>macOS</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Fedora</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Windows</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Podman Desktop</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Mac</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Linux</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Windows</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Java 17</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew tap AdoptOpenJDK/openjdk &amp;&amp; brew cask install adoptopenjdk17</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install java-17-openjdk.x86_64</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptopenjdk.net">Windows</a> (Make sure you set the <code>JAVA_HOME</code> environment variable and add <code>%JAVA_HOME%\bin</code> to your <code>PATH</code>)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Apache Maven 3.6.2+</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew install maven</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install maven</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://maven.apache.org/download.cgi">Windows</a> (Make sure you set the <code>MAVEN_HOME</code> environment variable and add <code>%MAVEN_HOME%\bin</code> to your <code>PATH</code>)</p></td>
-</tr>
-</tbody>
-</table>
-<div class="openblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_an_application_to_be_containerized"><a class="anchor" href="#_creating_an_application_to_be_containerized"></a>Creating an application to be containerized</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s first create a simple Java application so we can containerize it.</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn "io.quarkus:quarkus-maven-plugin:create" \
+  -DprojectGroupId="com.redhat.developers" \
+  -DprojectArtifactId="tutorial-app" \
+  -DprojectVersion="1.0-SNAPSHOT" \
+  -DclassName="HelloResource" \
+  -Dpath="hello"
+cd tutorial-app</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All the remaining parts of this tutorial assume that you&#8217;ll be working inside the project folder that was just created. In this case, <code>tutorial-app</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To let this application be ready to be distributed, let&#8217;s package it:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn package</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_a_containerfile"><a class="anchor" href="#_building_a_containerfile"></a>Building a Containerfile</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a file named Containerfile.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &lt;&lt;EOF &gt;Containerfile
+FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.18-4
 
+ENV LANGUAGE='en_US:en'
+
+COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
+COPY --chown=185 target/quarkus-app/*.jar /deployments/
+COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+
+EXPOSE 8080
+USER 185
+ENV JAVA_OPTS="-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+
+EOF</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Containers Tutorial</a></span>
-  <span class="next"><a href="containerfile.html">Containerfile</a></span>
+  <span class="prev"><a href="setup.html">Setup</a></span>
+  <span class="next"><a href="imagemanagement.html">Image management</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
