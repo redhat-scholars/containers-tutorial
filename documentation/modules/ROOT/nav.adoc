@@ -2,7 +2,7 @@
 ** xref:setup.adoc[Setup]
 
 * I. Basics
-** xref:dockerfile.adoc[Dockerfile]
+** xref:containerfile.adoc[Containerfile]
 ** xref:imagemanagement.adoc[Image management]
 ** xref:runningcontainers.adoc[Running containers]
 ** xref:ports.adoc[Ports]

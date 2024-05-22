@@ -54,12 +54,12 @@ Let's try to reach the application again:
 curl localhost:8080/hello
 ----
 
-You now got this output:
+You should now see output like this:
 
 [.console-output]
 [source,text]
 ----
-hello
+Hello from Quarkus REST
 ----
 
 This means that your application is now accessible!

@@ -2,9 +2,9 @@
 
 An image can be used to create and run containers. It is like a template, containing instructions on how to build the container. Images are the starting point for any container related activity, and can be thought of as a snapshot in a virtual machine (VM) environment.
 
-== Building an image based on a Dockerfile
+== Building an image based on a Containerfile (aka Dockerfile)
 
-With the Dockerfile that we created in the last step, let's build a container image:
+With the Containerfile that we created in the last step, let's build a container image:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -17,25 +17,31 @@ You'll see an output like this:
 [.console-output]
 [source,text]
 ----
-Sending build context to Docker daemon  10.95MB
-Step 1/4 : FROM registry.access.redhat.com/ubi8/openjdk-11
-latest: Pulling from ubi8/openjdk-11
-396754cf27f9: Pull complete
-41e1474940d5: Pull complete
-fe52369f78c0: Pull complete
-Digest: sha256:98c69a5b81bca0fe331100390c7357c69fd137e8a6228300eda820a0893a1be0
-Status: Downloaded newer image for registry.access.redhat.com/ubi8/openjdk-11:latest
- ---> e502114b0d20
-Step 2/4 : ADD target/lib/* /deployments/lib/
- ---> 47e879f30cec
-Step 3/4 : ADD target/*-runner.jar /deployments/app.jar
- ---> 393bbade30ae
-Step 4/4 : CMD ["java", "-jar", "/deployments/app.jar"]
- ---> Running in d09c7708954d
-Removing intermediate container d09c7708954d
- ---> 87776d35fc85
-Successfully built 87776d35fc85
-Successfully tagged my-image:latest
+STEP 1/11: FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.18-4
+STEP 2/11: ENV LANGUAGE='en_US:en'
+--> Using cache 7819ee5ffcddd7271987e306c787854c874bc81798370435d6efa7a89cc4990e
+--> 7819ee5ffcdd
+STEP 3/11: COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
+--> 9b51381ccca6
+STEP 4/11: COPY --chown=185 target/quarkus-app/*.jar /deployments/
+--> 4d299e6fd3b4
+STEP 5/11: COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+--> 6fce0c1e1dbc
+STEP 6/11: COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+--> 7177bec47b2f
+STEP 7/11: EXPOSE 8080
+--> 9bd1b9ec7771
+STEP 8/11: USER 185
+--> 61bc6e589684
+STEP 9/11: ENV JAVA_OPTS="-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+--> 08f8fe193e07
+STEP 10/11: ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
+--> 2f8f931e08b1
+STEP 11/11: CMD ["java", "-jar", "/deployments/app.jar"]
+COMMIT my-image
+--> a8172ead99ee
+Successfully tagged localhost/my-image:latest
+a8172ead99eece385fa756e85948656896645f7f1848c68dfe498da9d93be073
 ----
 
 == Listing the available images
@@ -54,11 +60,11 @@ You'll see at least these two outputs:
 [source,text]
 ----
 REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
-my-image                                     latest              87776d35fc85        4 minutes ago       516MB
-registry.access.redhat.com/ubi8/openjdk-11   latest              e502114b0d20        2 months ago        505MB
+my-image                                     latest              87776d35fc85        4 minutes ago       392MB
+registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f        3 weeks ago         375 MB
 ----
 
-Your image is the `my-image` and the `registry.access.redhat.com/ubi8/openjdk-11` is the image used to build yours.
+Your image is the `my-image` and the `registry.access.redhat.com/ubi9/openjdk-21` is the image used to build yours.
 
 == Removing images
 
@@ -70,36 +76,17 @@ To remove your just created image:
 docker image rm my-image
 ----
 
-// == Exploring the Desktop interfaces
+== Exploring the Desktop interface
 
-// Let's take a look at image management in the Desktop interfaces.
+Let's take a look at image management in the Desktop interfaces.
 
-// [tabs]
-// ====
-// Docker Desktop::
-// +
-// --
-// Using Docker Desktop, we can see our newly created image in the *Images* tab. Here, we have information about the newly created image, including the the image ID, tag, creation date, and size of the image. Let's select the image name to see more information about the image.
 
-// image::docker-desktop-images.png[alt="Docker Desktop Images tab", align="center"]
+Podman Desktop::
 
-// Here, we see information about the image hierarchy, as well as the various layers added, any vulnerabilities that may exist, and packages added.
+With Podman Desktop, we can see our newly created image in the *Images* tab. We can find information about the newly created image, including the the image ID, tag, creation date, and size of the image. Let's select the image name to see more information about the image.
 
-// image::docker-desktop-image-info.png[alt="Docker Desktop Image Info tab", align="center"]
+image::podman-desktop-images.png[alt="Podman Desktop Images tab", align="center"]
 
-// Returning back to the Images tab, we could also use the *Hub* tab to see our images that have been published to Docker Hub.
+We can see information about the image layers, and low-level information about the image in JSON format.
 
-// image::docker-desktop-hub.png[alt="Docker Desktop Hub tab", align="center"]
-// --
-// Podman Desktop::
-// +
-// --
-// With Podman Desktop, we can see our newly created image in the *Images* tab. Here, we have information about the newly created image, including the the image ID, tag, creation date, and size of the image. Let's select the image name to see more information about the image.
-
-// image::podman-desktop-images.png[alt="Podman Desktop Images tab", align="center"]
-
-// Here, we see information about the image layers, and low-level information about the image in JSON format.
-
-// image::podman-desktop-image-info.png[alt="Podman Desktop Image Info tab", align="center"]
-// --
-// ====
+image::podman-desktop-image-info.png[alt="Podman Desktop Image Info tab", align="center"]
