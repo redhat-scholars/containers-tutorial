@@ -217,19 +217,6 @@ registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f   
 </div>
 </div>
 <div class="sect1">
-<h2 id="_removing_images"><a class="anchor" href="#_removing_images"></a>Removing images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To remove your just created image:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker image rm my-image</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_exploring_the_desktop_interface"><a class="anchor" href="#_exploring_the_desktop_interface"></a>Exploring the Desktop interface</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -255,6 +242,68 @@ registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f   
 <div class="content">
 <img src="_images/podman-desktop-image-info.png" alt="Podman Desktop Image Info tab">
 </div>
+</div>
+<div class="paragraph">
+<p>For now though, let&#8217;s stick to the terminal and get a little more comfortable with the command line instructions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_managing_images"><a class="anchor" href="#_managing_images"></a>Managing images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Podman or Docker CLI offer many ways to manage container images. You can find out more by issuing the following help command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker image -h</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Manage images
+
+Description:
+  Manage images
+
+Usage:
+  podman image [command]
+
+Available Commands:
+  build       Build an image using instructions from Containerfiles
+  diff        Inspect changes to the image's file systems
+  exists      Check if an image exists in local storage
+  history     Show history of a specified image
+  import      Import a tarball to create a filesystem image
+  inspect     Display the configuration of an image
+  list        List images in local storage
+  load        Load image(s) from a tar archive
+  mount       Mount an image's root filesystem
+  prune       Remove unused images
+  pull        Pull an image from a registry
+  push        Push an image to a specified destination
+  rm          Remove one or more images from local storage
+  save        Save image(s) to an archive
+  scp         Securely copy images
+  search      Search registry for image
+  sign        Sign an image
+  tag         Add an additional name to a local image
+  tree        Print layer hierarchy of an image in a tree format
+  trust       Manage container image trust policy
+  unmount     Unmount an image's root filesystem
+  untag       Remove a name from a local image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try to remove your just created image:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker image rm my-image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Great! You&#8217;re well on your way to becoming a Container Image expert :)</p>
 </div>
 </div>
 </div>
