@@ -13,7 +13,7 @@ If you have a Docker Hub account:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker tag my-image docker.io/myrepository/my-image
+podman tag my-image docker.io/myrepository/my-image
 ----
 
 If using Quay.io:
@@ -21,7 +21,7 @@ If using Quay.io:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker tag my-image quay.io/myrepository/my-image
+podman tag my-image quay.io/myrepository/my-image
 ----
 
 IMPORTANT: Make sure to replace `myrepository` with the name of your own repository.
@@ -33,12 +33,12 @@ If you build your image already using the tag, you won't need to do this step be
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker build -t quay.io/myrepository/my-image .
+podman build -t quay.io/myrepository/my-image .
 ----
 
 ====
 
-If you now run `docker images` you'll see something like this:
+If you now run `podman images` you'll see something like this:
 
 [.console-output]
 [source,text]
@@ -60,7 +60,7 @@ Quay.io::
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker login quay.io
+podman login quay.io
 ----
 --
 Docker Hub::
@@ -69,7 +69,7 @@ Docker Hub::
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker login
+podman login
 ----
 --
 ====
@@ -79,7 +79,7 @@ And finally you can push it, eg.:
 [.console-input]  
 [source,bash,subs="+macros,+attributes"]
 ----
-docker push quay.io/myrepository/my-image
+podman push quay.io/myrepository/my-image
 ----
 
 You should have an output like this:
