@@ -18,10 +18,10 @@ TIP: By default, the commands in this tutorial are using Docker, but you use `po
 | https://podman-desktop.io/downloads[Podman Desktop for Linux, window="_blank"]
 | https://podman-desktop.io/downloads[Podman Desktop for Windows, window="_blank"]
 
-| **Java 17**
-| `brew tap AdoptOpenJDK/openjdk && brew cask install adoptopenjdk17`
-| `dnf install java-17-openjdk.x86_64`
-| https://adoptopenjdk.net[Windows] (Make sure you set the `JAVA_HOME` environment variable and add `%JAVA_HOME%\bin` to your `PATH`)
+| **Java 21 (or 17)**
+| https://adoptium.net/installation/
+| https://adoptium.net/installation/
+| https://adoptium.net/installation/ (Make sure you set the `JAVA_HOME` environment variable and add `%JAVA_HOME%\bin` to your `PATH`)
 
 | **Apache Maven 3.6.2+**
 | `brew install maven`
