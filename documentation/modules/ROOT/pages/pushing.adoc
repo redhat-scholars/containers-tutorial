@@ -4,7 +4,7 @@ So far you've been working with your container image locally. Now let's take it 
 
 == Tagging an image
 
-IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or the https://hub.podman.com/[Docker Hub]. 
+IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or the https://hub.docker.com/[Docker Hub]. 
 
 First you'll need to tag your image accordingly to the registry and name you gave to your repository. Say for example we create a repository `myrepository`.
 
