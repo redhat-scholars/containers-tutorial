@@ -18,12 +18,14 @@ TIP: By default, the commands in this tutorial are using podman, but you can use
 | https://podman-desktop.io/downloads[Podman Desktop for Linux, window="_blank"]
 | https://podman-desktop.io/downloads[Podman Desktop for Windows, window="_blank"]
 
-| **Java 21 (or 17)**
+| **Java 21**
 | https://adoptium.net/installation/
-| https://adoptium.net/installation/
+| https://adoptium.net/installation/ alternatively: 
+
+`dnf install java-21-openjdk-devel`
 | https://adoptium.net/installation/ (Make sure you set the `JAVA_HOME` environment variable and add `%JAVA_HOME%\bin` to your `PATH`)
 
-| **Apache Maven 3.6.2+**
+| **Apache Maven 3.9.9+**
 | `brew install maven`
 | `dnf install maven`
 | https://maven.apache.org/download.cgi[Windows] (Make sure you set the `MAVEN_HOME` environment variable and add `%MAVEN_HOME%\bin` to your `PATH`)

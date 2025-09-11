@@ -44,12 +44,18 @@ We can also print the VM settings of this container:
 java -XshowSettings:vm -version
 ----
 
-See Maven's installed version:
+Since you are not in your host machine, `mvn` cannot be found:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 mvn -v
+----
+
+[.console-output]
+[source,bash,subs="+macros,+attributes"]
+----
+bash: mvn: command not found
 ----
 
 And even check the OS version details:
