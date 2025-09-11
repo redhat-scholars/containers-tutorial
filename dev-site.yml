@@ -9,17 +9,19 @@ site:
 content:
   sources:
     - url: .
-      branches: HEAD
+      branches: [master, podman]
       start_path: documentation
 asciidoc:
   attributes:
     title: Containers Tutorial (Dev)
+    release-version: master
+    page-pagination: true
   extensions:
     - ./lib/remote-include-processor.js
     - ./lib/tab-block.js
 ui:
   bundle:
-    url: https://github.com/redhat-scholars/course-ui/releases/download/v0.1.10/ui-bundle.zip
+    url: https://github.com/redhat-scholars/course-ui/releases/download/v0.1.14/ui-bundle.zip
     snapshot: true
   supplemental_files: ./supplemental-ui
 output:
