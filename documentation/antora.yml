@@ -1,7 +1,8 @@
 name: containers-tutorial
 title: Containers Tutorial
-version: master
-display_version: v1.0
+version: podman
+display_version: v1.5
+prerelease: true
 nav:
   - modules/ROOT/nav.adoc
 
