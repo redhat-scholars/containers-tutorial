@@ -101,7 +101,7 @@ The Podman or Docker CLI offer many ways to manage container images. You can fin
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker image -h
+podman image -h
 ----
 
 [.console-output]
@@ -145,7 +145,7 @@ Let's try to remove your just created image:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-docker image rm my-image
+podman image rm my-image
 ----
 
 Great! You're well on your way to becoming a Container Image expert :)
