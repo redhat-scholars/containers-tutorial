@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Running containers :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/runningcontainers.html">
     <link rel="prev" href="imagemanagement.html">
     <link rel="next" href="ports.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../../_/css/site.css">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -16,7 +17,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -61,7 +62,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="podman">
+<div class="nav-container" data-component="containers-tutorial" data-version="master">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -141,14 +142,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.5</span>
+    <span class="version">v1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
         <li class="version is-current">
-          <a href="index.html">v1.5</a>
+          <a href="index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -168,7 +169,7 @@
     <li><a href="runningcontainers.html">Running containers</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/runningcontainers.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/runningcontainers.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -188,7 +189,7 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman build -t my-image .</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -196,7 +197,7 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman create --name my-container my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker create --name my-container my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -212,7 +213,7 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman ps</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -227,11 +228,11 @@
 <p>Why isn&#8217;t your container in the list if you&#8217;ve just created it?</p>
 </div>
 <div class="paragraph">
-<p>Because it isn&#8217;t running, and using plain <code>podman ps</code> will only list the running containers. Now try this:</p>
+<p>Because it isn&#8217;t running, and using plain <code>docker ps</code> will only list the running containers. Now try this:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman ps -a</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps -a</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -256,15 +257,15 @@ ccaadddf1c48        my-image            "java -jar /deployme…"   3 minutes ago
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman start my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker start my-container</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To check if it&#8217;s running, try the plain <code>podman ps</code> again:</p>
+<p>To check if it&#8217;s running, try the plain <code>docker ps</code> again:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman ps</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker ps</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -289,7 +290,7 @@ ccaadddf1c48        my-image            "java -jar /deployme…"   8 minutes ago
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman stop my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker stop my-container</code></pre>
 </div>
 </div>
 </div>
@@ -302,7 +303,7 @@ ccaadddf1c48        my-image            "java -jar /deployme…"   8 minutes ago
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman rm my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm my-container</code></pre>
 </div>
 </div>
 </div>
@@ -315,7 +316,7 @@ ccaadddf1c48        my-image            "java -jar /deployme…"   8 minutes ago
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run --name my-container my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --name my-container my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -342,7 +343,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman rm my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm my-container</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -350,7 +351,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run -d --name my-container my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container my-image</code></pre>
 </div>
 </div>
 </div>
@@ -363,7 +364,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman logs my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker logs my-container</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -371,7 +372,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman logs -f my-container</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker logs -f my-container</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -393,8 +394,8 @@ __  ____  __  _____   ___  __ ____  ______
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../../_/js/vendor/clipboard.js"></script>
-<script src="../../_/js/site.js"></script>
-<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
   </body>
 </html>

@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Image Management :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/imagemanagement.html">
     <link rel="prev" href="containerfile.html">
     <link rel="next" href="runningcontainers.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../../_/css/site.css">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -16,7 +17,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -61,7 +62,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="podman">
+<div class="nav-container" data-component="containers-tutorial" data-version="master">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -141,14 +142,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.5</span>
+    <span class="version">v1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
         <li class="version is-current">
-          <a href="index.html">v1.5</a>
+          <a href="index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -168,7 +169,7 @@
     <li><a href="imagemanagement.html">Image management</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/imagemanagement.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/imagemanagement.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -188,7 +189,7 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman build -t my-image .</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -233,7 +234,7 @@ a8172ead99eece385fa756e85948656896645f7f1848c68dfe498da9d93be073</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman image list</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker image list</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -248,19 +249,6 @@ registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f   
 </div>
 <div class="paragraph">
 <p>Your image is the <code>my-image</code> and the <code>registry.access.redhat.com/ubi9/openjdk-21</code> is the image used to build yours.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_removing_images"><a class="anchor" href="#_removing_images"></a>Removing images</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To remove your just created image:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman image rm my-image</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -304,7 +292,7 @@ registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f   
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman image -h</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker image -h</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -347,7 +335,7 @@ Available Commands:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman image rm my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker image rm my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -369,8 +357,8 @@ Available Commands:
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../../_/js/vendor/clipboard.js"></script>
-<script src="../../_/js/site.js"></script>
-<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
   </body>
 </html>

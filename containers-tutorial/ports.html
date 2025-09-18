@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Resources :: Containers Tutorial</title>
-    <link rel="prev" href="jib.html">
+    <title>Port :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/ports.html">
+    <link rel="prev" href="runningcontainers.html">
+    <link rel="next" href="env.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../../_/css/site.css">
-<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -15,7 +17,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -60,7 +62,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="podman">
+<div class="nav-container" data-component="containers-tutorial" data-version="master">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -91,7 +93,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="runningcontainers.html">Running containers</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -127,7 +129,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Resources</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="resources.html">Containers</a>
   </li>
 </ul>
@@ -140,14 +142,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.5</span>
+    <span class="version">v1.0</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
         <li class="version is-current">
-          <a href="index.html">v1.5</a>
+          <a href="index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -163,118 +165,101 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>Resources</li>
-    <li><a href="resources.html">Containers</a></li>
+    <li>I. Basics</li>
+    <li><a href="ports.html">Ports</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/resources.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/ports.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Resources</h1>
+<h1 class="page">Port</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s take a look at some free resources to help continue your container journey.</p>
+<p>Let&#8217;s take a look at how to enable communication of the container to the outside world by exposing and mapping ports.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cheat_sheets"><a class="anchor" href="#_cheat_sheets"></a>Cheat sheets</h2>
+<h2 id="_exposing_ports"><a class="anchor" href="#_exposing_ports"></a>Exposing ports</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_containers_cheat_sheet_docker"><a class="anchor" href="#_containers_cheat_sheet_docker"></a><a href="https://developers.redhat.com/cheat-sheets/containers">Containers Cheat Sheet (Docker)</a></h3>
 <div class="paragraph">
-<p>Whether you are new to Containers or have experience, you may find yourself encountering tasks you haven’t done lately. That is where the cheat sheet can help.</p>
+<p>The application running inside your container can be accessed through the port 8080, so let&#8217;s try it:</p>
 </div>
-<div class="paragraph">
-<p>In this Containers cheat sheet, you will find:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Introduction to container architecture</p>
-</li>
-<li>
-<p>Engine, image, registry, and volume-related commands</p>
-</li>
-<li>
-<p>Example of running a web server container</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/containers-cheat-sheet-cover.png" alt="Containers Cheat Sheet" width="200">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_podman_cheat_sheet"><a class="anchor" href="#_podman_cheat_sheet"></a><a href="https://developers.redhat.com/cheat-sheets/podman-cheat-sheet">Podman Cheat Sheet</a></h3>
-<div class="paragraph">
-<p><a href="https://podman.io/">Podman</a> is one of the next-generation container tools (along with <a href="https://buildah.io/">Buildah</a> and <a href="https://github.com/containers/skopeo">Skopeo</a>) included in Red Hat Enterprise Linux 7.6 and later. This cheat sheet covers all of the commands that focus on images, containers, and container resources.</p>
 </div>
 <div class="paragraph">
-<p>This cheat sheet explains how to:</p>
+<p>You should have gotten this output:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Find, build, and remove images.</p>
-</li>
-<li>
-<p>Run containers on images.</p>
-</li>
-<li>
-<p>Manage container processes and resources.</p>
-</li>
-<li>
-<p>Work with a container&#8217;s filesystem.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
+<div class="listingblock console-output">
 <div class="content">
-<img src="_images/podman_cover.png" alt="Podman Cheat Sheet" width="200">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">curl: (7) Failed to connect to localhost port 8080: Connection refused</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_interactive_learning_path"><a class="anchor" href="#_interactive_learning_path"></a>Interactive Learning Path</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_cloud_native_developer"><a class="anchor" href="#_cloud_native_developer"></a><a href="https://developers.redhat.com/learning/devnation:cloud-native-developer/resource/resources:containers-tutorial">Cloud native developer</a></h3>
 <div class="paragraph">
-<p>Time to dust off the mental cobwebs and get started with containers! Learn the basics and make a pit stop in our developer sandbox. Try interactive labs and more through this learning path.</p>
+<p>This is happening because we need to explicitly expose the ports you need, and we didn&#8217;t do it so far. So let&#8217;s fix it.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/containers-learning-path.png" alt="Containers learning path" width="300">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ebooks"><a class="anchor" href="#_ebooks"></a>eBooks</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_modernizing_enterprise_java"><a class="anchor" href="#_modernizing_enterprise_java"></a><a href="https://developers.redhat.com/e-books/modernizing-enterprise-java">Modernizing Enterprise Java</a></h3>
 <div class="paragraph">
-<p>While containers, microservices, and distributed systems dominate discussions in the tech world, most applications in use today still run monolithic architectures that follow traditional development processes. This practical book helps developers examine long-established Java-based models and demonstrates how to bring these monolithic applications successfully into the cloud-native model with Kubernetes.</p>
+<p>First let&#8217;s remove the container:</p>
 </div>
-<div class="imageblock">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/modern-java.png" alt="Modern Java eBook" width="200">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Did you see something different?</p>
+</div>
+<div class="paragraph">
+<p>We used the <code>-f</code> flag to force the removal of the container even if it&#8217;s running. Be careful when using it!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now we re-create the container, but exposing the port 8080:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 my-image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try to reach the application again:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now see output like this:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello from Quarkus REST</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means that your application is now accessible!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="jib.html" class="query-params-link">Jib</a></span>
+  <span class="prev"><a href="runningcontainers.html" class="query-params-link">Running containers</a></span>
+  <span class="next"><a href="env.html" class="query-params-link">Environment variables</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -286,8 +271,8 @@
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../../_/js/vendor/clipboard.js"></script>
-<script src="../../_/js/site.js"></script>
-<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
   </body>
 </html>
