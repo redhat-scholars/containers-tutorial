@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Setup :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/setup.html">
-    <link rel="prev" href="index.html">
-    <link rel="next" href="containerfile.html">
+    <title>Resources :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/resources.html">
+    <link rel="prev" href="jib.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -17,7 +16,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -62,7 +61,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="master">
+<div class="nav-container" data-component="containers-tutorial" data-version="podman">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -75,7 +74,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html">Setup</a>
   </li>
 </ul>
@@ -129,7 +128,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Resources</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="resources.html">Containers</a>
   </li>
 </ul>
@@ -142,17 +141,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.0</span>
+    <span class="version">v1.5</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
-        <li class="version">
-          <a href="podman/index.html">v1.5</a>
-        </li>
         <li class="version is-current">
-          <a href="index.html">v1.0</a>
+          <a href="index.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -164,90 +163,129 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>Requirements</li>
-    <li><a href="setup.html">Setup</a></li>
+    <li>Resources</li>
+    <li><a href="resources.html">Containers</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">v1.0</button>
+  <button class="version-menu-toggle" title="Show other versions of page">v1.5</button>
   <div class="version-menu">
-    <a class="version" href="podman/setup.html">v1.5</a>
-    <a class="version is-current" href="setup.html">v1.0</a>
+    <a class="version is-current" href="resources.html">v1.5</a>
+    <a class="version" href="../resources.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/resources.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Setup</h1>
-<div class="sect1">
-<h2 id="_required_tools"><a class="anchor" href="#_required_tools"></a>Required Tools</h2>
+<h1 class="page">Resources</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following tools are required for running the exercises in this tutorial. You&#8217;ll need to have them installed and configured before you get started with any of the tutorial chapters.</p>
+<p>Let&#8217;s take a look at some free resources to help continue your container journey.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-By default, the commands in this tutorial are using Docker, but you use <code>podman</code> instead of <code>docker</code> throughout the tutorial&#8217;s instructions, or <code>alias docker=podman</code>. The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges.
-</td>
-</tr>
-</table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Tool</strong></th>
-<th class="tableblock halign-left valign-top"><strong>macOS</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Fedora</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Windows</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Podman Desktop</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Mac</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Linux</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Windows</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Java 21 (or 17)</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptium.net/installation/" class="bare">https://adoptium.net/installation/</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptium.net/installation/" class="bare">https://adoptium.net/installation/</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptium.net/installation/" class="bare">https://adoptium.net/installation/</a> (Make sure you set the <code>JAVA_HOME</code> environment variable and add <code>%JAVA_HOME%\bin</code> to your <code>PATH</code>)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Apache Maven 3.6.2+</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew install maven</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install maven</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://maven.apache.org/download.cgi">Windows</a> (Make sure you set the <code>MAVEN_HOME</code> environment variable and add <code>%MAVEN_HOME%\bin</code> to your <code>PATH</code>)</p></td>
-</tr>
-</tbody>
-</table>
-<div class="openblock">
+</div>
+<div class="sect1">
+<h2 id="_cheat_sheets"><a class="anchor" href="#_cheat_sheets"></a>Cheat sheets</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_containers_cheat_sheet_docker"><a class="anchor" href="#_containers_cheat_sheet_docker"></a><a href="https://developers.redhat.com/cheat-sheets/containers">Containers Cheat Sheet (Docker)</a></h3>
+<div class="paragraph">
+<p>Whether you are new to Containers or have experience, you may find yourself encountering tasks you haven’t done lately. That is where the cheat sheet can help.</p>
+</div>
+<div class="paragraph">
+<p>In this Containers cheat sheet, you will find:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduction to container architecture</p>
+</li>
+<li>
+<p>Engine, image, registry, and volume-related commands</p>
+</li>
+<li>
+<p>Example of running a web server container</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
 <div class="content">
-
+<img src="_images/containers-cheat-sheet-cover.png" alt="Containers Cheat Sheet" width="200">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_podman_cheat_sheet"><a class="anchor" href="#_podman_cheat_sheet"></a><a href="https://developers.redhat.com/cheat-sheets/podman-cheat-sheet">Podman Cheat Sheet</a></h3>
+<div class="paragraph">
+<p><a href="https://podman.io/">Podman</a> is one of the next-generation container tools (along with <a href="https://buildah.io/">Buildah</a> and <a href="https://github.com/containers/skopeo">Skopeo</a>) included in Red Hat Enterprise Linux 7.6 and later. This cheat sheet covers all of the commands that focus on images, containers, and container resources.</p>
+</div>
+<div class="paragraph">
+<p>This cheat sheet explains how to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Find, build, and remove images.</p>
+</li>
+<li>
+<p>Run containers on images.</p>
+</li>
+<li>
+<p>Manage container processes and resources.</p>
+</li>
+<li>
+<p>Work with a container&#8217;s filesystem.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/podman_cover.png" alt="Podman Cheat Sheet" width="200">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interactive_learning_path"><a class="anchor" href="#_interactive_learning_path"></a>Interactive Learning Path</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_cloud_native_developer"><a class="anchor" href="#_cloud_native_developer"></a><a href="https://developers.redhat.com/learning/devnation:cloud-native-developer/resource/resources:containers-tutorial">Cloud native developer</a></h3>
+<div class="paragraph">
+<p>Time to dust off the mental cobwebs and get started with containers! Learn the basics and make a pit stop in our developer sandbox. Try interactive labs and more through this learning path.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/containers-learning-path.png" alt="Containers learning path" width="300">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ebooks"><a class="anchor" href="#_ebooks"></a>eBooks</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_modernizing_enterprise_java"><a class="anchor" href="#_modernizing_enterprise_java"></a><a href="https://developers.redhat.com/e-books/modernizing-enterprise-java">Modernizing Enterprise Java</a></h3>
+<div class="paragraph">
+<p>While containers, microservices, and distributed systems dominate discussions in the tech world, most applications in use today still run monolithic architectures that follow traditional development processes. This practical book helps developers examine long-established Java-based models and demonstrates how to bring these monolithic applications successfully into the cloud-native model with Kubernetes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/modern-java.png" alt="Modern Java eBook" width="200">
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html" class="query-params-link">Containers Tutorial</a></span>
-  <span class="next"><a href="containerfile.html" class="query-params-link">Containerfile</a></span>
+  <span class="prev"><a href="jib.html" class="query-params-link">Jib</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -259,8 +297,8 @@ By default, the commands in this tutorial are using Docker, but you use <code>po
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../_/js/vendor/clipboard.js"></script>
-<script src="../_/js/site.js"></script>
-<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>

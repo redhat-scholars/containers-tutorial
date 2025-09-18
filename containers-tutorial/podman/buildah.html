@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Pushing an image to a public registry :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/pushing.html">
-    <link rel="prev" href="inside.html">
-    <link rel="next" href="podman-desktop.html">
+    <title>Buildah :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/buildah.html">
+    <link rel="prev" href="podman-desktop.html">
+    <link rel="next" href="skopeo.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -17,7 +17,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -62,7 +62,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="master">
+<div class="nav-container" data-component="containers-tutorial" data-version="podman">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -102,7 +102,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inside.html">Inside a container</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="pushing.html">Pushing an image to a public registry</a>
   </li>
 </ul>
@@ -114,7 +114,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="podman-desktop.html">Podman Desktop</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="buildah.html">Buildah</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -142,17 +142,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.0</span>
+    <span class="version">v1.5</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
-        <li class="version">
-          <a href="podman/index.html">v1.5</a>
-        </li>
         <li class="version is-current">
-          <a href="index.html">v1.0</a>
+          <a href="index.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -164,78 +164,34 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>I. Basics</li>
-    <li><a href="pushing.html">Pushing an image to a public registry</a></li>
+    <li>II. Intermediate</li>
+    <li><a href="buildah.html">Buildah</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">v1.0</button>
+  <button class="version-menu-toggle" title="Show other versions of page">v1.5</button>
   <div class="version-menu">
-    <a class="version" href="podman/pushing.html">v1.5</a>
-    <a class="version is-current" href="pushing.html">v1.0</a>
+    <a class="version is-current" href="buildah.html">v1.5</a>
+    <a class="version" href="../buildah.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/pushing.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/buildah.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Pushing an image to a public registry</h1>
+<h1 class="page">Buildah</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far you&#8217;ve been working with your container image locally. Now let&#8217;s take it to a remote registry.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_tagging_an_image"><a class="anchor" href="#_tagging_an_image"></a>Tagging an image</h2>
-<div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Before continuing you will need to have/create a container registry account. You can sign up for a free one at <a href="https://quay.io">Quay.io</a> or the <a href="https://hub.docker.com/">Docker Hub</a>.
-</td>
-</tr>
-</table>
+<p><a href="https://buildah.io">Buildah</a> can be used to build container images compliant with the Open Container Initiative (OCI) image specification.
+Images can be built based on existing images from scratch and using Dockerfiles.</p>
 </div>
 <div class="paragraph">
-<p>First you&#8217;ll need to tag your image accordingly to the registry and name you gave to your repository. Say for example we create a repository <code>myrepository</code>.</p>
-</div>
-<div class="paragraph">
-<p>If you have a Docker Hub account:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag my-image docker.io/myrepository/my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If using Quay.io:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker tag my-image quay.io/myrepository/my-image</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Make sure to replace <code>myrepository</code> with the name of your own repository.
-</td>
-</tr>
-</table>
+<p>Buildah only offers a binary file for Linux, so to make the tutorial generic, we use the <code>buildah</code> container image as a standard way to run buildah.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -244,94 +200,128 @@ Make sure to replace <code>myrepository</code> with the name of your own reposit
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>If you build your image already using the tag, you won&#8217;t need to do this step before pushing it. In our case it would be like this:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t quay.io/myrepository/my-image .</code></pre>
-</div>
-</div>
+Buildah is a dockerless technology; you don&#8217;t need any Docker Host to build a container image.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>If you now run <code>docker images</code> you&#8217;ll see something like this:</p>
 </div>
-<div class="listingblock console-output">
+</div>
+<div class="sect1">
+<h2 id="_preparation"><a class="anchor" href="#_preparation"></a>Preparation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a terminal window, start the container having <code>buildah</code> installed:</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
-my-image                                     latest              a63dec174904        55 minutes ago      516MB
-quay.io/myrepository/my-image                latest              a63dec174904        55 minutes ago      516MB</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pushing_an_image"><a class="anchor" href="#_pushing_an_image"></a>Pushing an image</h2>
+<h2 id="_creating_a_container_image"><a class="anchor" href="#_creating_a_container_image"></a>Creating a Container Image</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s now ready to be pushed. Before doing it, you just need to login into your registry of choice within your terminal:</p>
+<p>Create a <code>Dockerfile</code> file, for this simple example, type <code>vi Dockerfile</code> and copy the content shown in the snippet:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_quay-io"></a>Quay.io</p>
-</li>
-<li>
-<p><a id="tabset1_docker-hub"></a>Docker Hub</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_quay-io">
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login quay.io</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_docker-hub">
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker login</code></pre>
-</div>
-</div>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">FROM alpine:3.17.3
+
+CMD ["echo", "'Hello World'"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And finally you can push it, eg.:</p>
+<p>Then exit <code>vi</code> (no joke, please) by typing <code>:wq!</code>.
+When you are back in the shell, use <code>buildah</code> to build the container:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker push quay.io/myrepository/my-image</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah build -t quay.io/lordofthejars/hello:latest</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>You should have an output like this:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">The push refers to repository [quay.io/myrepository/my-image]
-abea900bc08c: Pushed
-99d5cac89a03: Pushed
-7b08010864ba: Pushed
-90c2e42f948b: Pushed
-f9ddbcc4e795: Pushed
-latest: digest: sha256:de852b7869b9eff45994b676f0dd98cbfb2b8a76a8b11ca6d06e8f93c344e8c9 size: 1371</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">STEP 1/2: FROM alpine:3.17.3
+Resolved "alpine" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/alpine:3.17.3...
+Getting image source signatures
+Copying blob f56be85fc22e done
+Copying config 9ed4aefc74 done
+Writing manifest to image destination
+Storing signatures
+STEP 2/2: CMD ["echo", "'Hello World'"]
+COMMIT hello:latest
+Getting image source signatures
+Copying blob f1417ff83b31 skipped: already exists
+Copying blob 5f70bf18a086 done
+Copying config 9baf06d1b6 done
+Writing manifest to image destination
+Storing signatures
+--&gt; 9baf06d1b69
+Successfully tagged quay.io/lordofthejars/hello:latest
+9baf06d1b6916ca09ddb7a4742097d5b4be5f1286146b87d535d0ffa63fd6f90</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now if you go to your <a href="https://quay.io">Quay.io</a> or <a href="https://hub.docker.com">Docker Hub</a> account you&#8217;ll see your image right there.</p>
+<p>The image is committed to local machine but not pushed to container registry.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah images</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">REPOSITORY                            TAG         IMAGE ID      CREATED        SIZE
+quay.io/lordofthejars/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
+docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7.34 MB</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pushing_a_container_image"><a class="anchor" href="#_pushing_a_container_image"></a>Pushing a Container Image</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To push the image to the container registry:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah push --tls-verify=false --creds=username:password quay.io/lordofthejars/hello:latest quay.io/lordofthejars/hello:latest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that <code>--creds</code> is set with the username and password to access Docker Hub.
+By default, <code>buildah</code> reads credentials from <code>~/.docker/config.json</code>, but since this is a fresh container, credentials must be provided.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Getting image source signatures
+Copying blob b29c4850380c done
+Copying blob 13ab19dd2ece done
+Copying blob 4793a7e290ce done
+Copying blob 4582e1897cf2 done
+Copying blob cf75f156ae2e done
+Copying blob bdcb28f5294e done
+Copying blob 5f70bf18a086 done
+Copying blob c5e55ed43ef3 done
+Copying config 1de25d78a3 done
+Writing manifest to image destination
+Storing signatures</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A Linux container has been created and pushed to the registry from another Linux container.
+You can stop the <code>buildah</code> container by typing <code>exit</code>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="inside.html" class="query-params-link">Inside a container</a></span>
-  <span class="next"><a href="podman-desktop.html" class="query-params-link">Podman Desktop</a></span>
+  <span class="prev"><a href="podman-desktop.html" class="query-params-link">Podman Desktop</a></span>
+  <span class="next"><a href="skopeo.html" class="query-params-link">Skopeo</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -343,8 +333,8 @@ latest: digest: sha256:de852b7869b9eff45994b676f0dd98cbfb2b8a76a8b11ca6d06e8f93c
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../_/js/vendor/clipboard.js"></script>
-<script src="../_/js/site.js"></script>
-<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>

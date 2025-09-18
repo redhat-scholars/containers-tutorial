@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Setup :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/setup.html">
-    <link rel="prev" href="index.html">
-    <link rel="next" href="containerfile.html">
+    <title>Port :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/ports.html">
+    <link rel="prev" href="runningcontainers.html">
+    <link rel="next" href="env.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -17,7 +17,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -62,7 +62,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="master">
+<div class="nav-container" data-component="containers-tutorial" data-version="podman">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -75,7 +75,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Requirements</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="setup.html">Setup</a>
   </li>
 </ul>
@@ -93,7 +93,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="runningcontainers.html">Running containers</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -142,17 +142,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.0</span>
+    <span class="version">v1.5</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
-        <li class="version">
-          <a href="podman/index.html">v1.5</a>
-        </li>
         <li class="version is-current">
-          <a href="index.html">v1.0</a>
+          <a href="index.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -164,31 +164,62 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link"></a>
+  <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>Requirements</li>
-    <li><a href="setup.html">Setup</a></li>
+    <li>I. Basics</li>
+    <li><a href="ports.html">Ports</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">v1.0</button>
+  <button class="version-menu-toggle" title="Show other versions of page">v1.5</button>
   <div class="version-menu">
-    <a class="version" href="podman/setup.html">v1.5</a>
-    <a class="version is-current" href="setup.html">v1.0</a>
+    <a class="version is-current" href="ports.html">v1.5</a>
+    <a class="version" href="../ports.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/ports.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Setup</h1>
-<div class="sect1">
-<h2 id="_required_tools"><a class="anchor" href="#_required_tools"></a>Required Tools</h2>
+<h1 class="page">Port</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following tools are required for running the exercises in this tutorial. You&#8217;ll need to have them installed and configured before you get started with any of the tutorial chapters.</p>
+<p>Let&#8217;s take a look at how to enable communication of the container to the outside world by exposing and mapping ports.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exposing_ports"><a class="anchor" href="#_exposing_ports"></a>Exposing ports</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The application running inside your container can be accessed through the port 8080, so let&#8217;s try it:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should have gotten this output:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">curl: (7) Failed to connect to localhost port 8080: Connection refused</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is happening because we need to explicitly expose the ports you need, and we didn&#8217;t do it so far. So let&#8217;s fix it.</p>
+</div>
+<div class="paragraph">
+<p>First let&#8217;s remove the container:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman rm -f my-container</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -197,57 +228,48 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-By default, the commands in this tutorial are using Docker, but you use <code>podman</code> instead of <code>docker</code> throughout the tutorial&#8217;s instructions, or <code>alias docker=podman</code>. The advantage of Podman is that it is 100% Free Open Source and does not need to run with elevated privileges.
+<div class="paragraph">
+<p>Did you see something different?</p>
+</div>
+<div class="paragraph">
+<p>We used the <code>-f</code> flag to force the removal of the container even if it&#8217;s running. Be careful when using it!</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Tool</strong></th>
-<th class="tableblock halign-left valign-top"><strong>macOS</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Fedora</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Windows</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Podman Desktop</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Mac</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Linux</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://podman-desktop.io/downloads" target="_blank" rel="noopener">Podman Desktop for Windows</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Java 21 (or 17)</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptium.net/installation/" class="bare">https://adoptium.net/installation/</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptium.net/installation/" class="bare">https://adoptium.net/installation/</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://adoptium.net/installation/" class="bare">https://adoptium.net/installation/</a> (Make sure you set the <code>JAVA_HOME</code> environment variable and add <code>%JAVA_HOME%\bin</code> to your <code>PATH</code>)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Apache Maven 3.6.2+</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew install maven</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install maven</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://maven.apache.org/download.cgi">Windows</a> (Make sure you set the <code>MAVEN_HOME</code> environment variable and add <code>%MAVEN_HOME%\bin</code> to your <code>PATH</code>)</p></td>
-</tr>
-</tbody>
-</table>
-<div class="openblock">
-<div class="content">
-
+<div class="paragraph">
+<p>Now we re-create the container, but exposing the port 8080:</p>
 </div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run -d --name my-container -p 8080:8080 my-image</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try to reach the application again:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now see output like this:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello from Quarkus REST</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means that your application is now accessible!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html" class="query-params-link">Containers Tutorial</a></span>
-  <span class="next"><a href="containerfile.html" class="query-params-link">Containerfile</a></span>
+  <span class="prev"><a href="runningcontainers.html" class="query-params-link">Running containers</a></span>
+  <span class="next"><a href="env.html" class="query-params-link">Environment variables</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -259,8 +281,8 @@ By default, the commands in this tutorial are using Docker, but you use <code>po
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../_/js/vendor/clipboard.js"></script>
-<script src="../_/js/site.js"></script>
-<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>
