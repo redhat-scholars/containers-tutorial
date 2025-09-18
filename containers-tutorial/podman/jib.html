@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Inside a container :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/inside.html">
-    <link rel="prev" href="env.html">
-    <link rel="next" href="pushing.html">
+    <title>Jib :: Containers Tutorial</title>
+    <link rel="prev" href="skopeo.html">
+    <link rel="next" href="resources.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -17,7 +16,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -62,7 +61,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="master">
+<div class="nav-container" data-component="containers-tutorial" data-version="podman">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -99,7 +98,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="env.html">Environment variables</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inside.html">Inside a container</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -120,7 +119,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="skopeo.html">Skopeo</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="jib.html">Jib</a>
   </li>
 </ul>
@@ -142,14 +141,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.0</span>
+    <span class="version">v1.5</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
         <li class="version is-current">
-          <a href="index.html">v1.0</a>
+          <a href="index.html">v1.5</a>
         </li>
       </ul>
     </li>
@@ -165,94 +164,84 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>I. Basics</li>
-    <li><a href="inside.html">Inside a container</a></li>
+    <li>II. Intermediate</li>
+    <li><a href="jib.html">Jib</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/inside.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/jib.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Inside a container</h1>
+<h1 class="page">Jib</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can easily run commands inside a running container, as you do in any other host.</p>
+<p><a href="https://github.com/GoogleContainerTools/jib">Jib</a> builds optimized Docker and OCI images for your Java applications without a Docker daemon - and without deep mastery of Docker best practices.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_executing_commands_inside_a_container"><a class="anchor" href="#_executing_commands_inside_a_container"></a>Executing commands inside a container</h2>
+<h2 id="_building_an_image"><a class="anchor" href="#_building_an_image"></a>Building an Image</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To perform it in our running container, just execute this:</p>
+<p>We&#8217;ve provided a simple Spring Boot application to containerize using Jib.</p>
+</div>
+<div class="paragraph">
+<p>Go to the application directory:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker exec -it my-container /bin/bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd apps/greeting</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Your terminal prompt should by now look like this:</p>
+<p>Then run the following Maven command to build and push the container without using any Docker host:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[jboss@24543489a4b1 ~]$</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=docker.io/lordofthejars/greetings:1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>What you can do is directly related to what you installed inside your container, but a <code>curl</code> works in general:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
-</div>
+<p>Change <code>docker.io</code> for your container repository location (ie <code>quay.io</code>) and <code>lordofthejars</code> for your user id.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s see the .jar of our application:</p>
+<p>And the output should be similar:</p>
 </div>
-<div class="listingblock console-input">
+<div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls /deployments/</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">[INFO] Using credentials from Docker config (/Users/asotobu/.docker/config.json) for adoptopenjdk:11-jre
+[INFO] Using base image with digest: sha256:160242e83558e9ada7038601e1e7b4399903700a0b1685f5dced50e6ca05eced
+[INFO]
+[INFO] Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*, org.acme.greeting.GreetingApplication]
+[INFO]
+[INFO] Built and pushed image as lordofthejars/greetings:1.0.0
+[INFO] Executing tasks:
+[INFO] [============================  ] 91.7% complete
+[INFO] &gt; launching layer pushers
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>We can also print the VM settings of this container:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -XshowSettings:vm -version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>See Maven&#8217;s installed version:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn -v</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And even check the OS version details:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat /etc/os-release</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To go back to your previous terminal, just run:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">exit</code></pre>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+No credentials are required as they are taken from <code>~/.docker/config.json</code> if they are not set.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="env.html" class="query-params-link">Environment variables</a></span>
-  <span class="next"><a href="pushing.html" class="query-params-link">Pushing an image to a public registry</a></span>
+  <span class="prev"><a href="skopeo.html" class="query-params-link">Skopeo</a></span>
+  <span class="next"><a href="resources.html" class="query-params-link">Containers</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -264,8 +253,8 @@
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../_/js/vendor/clipboard.js"></script>
-<script src="../_/js/site.js"></script>
-<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>

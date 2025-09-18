@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Environment variables :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/env.html">
-    <link rel="prev" href="ports.html">
-    <link rel="next" href="inside.html">
+    <title>Port :: Containers Tutorial</title>
+    <link rel="prev" href="runningcontainers.html">
+    <link rel="next" href="env.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -17,7 +16,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -62,7 +61,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="master">
+<div class="nav-container" data-component="containers-tutorial" data-version="podman">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -93,10 +92,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="runningcontainers.html">Running containers</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="env.html">Environment variables</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -142,14 +141,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Containers Tutorial</span>
-    <span class="version">v1.0</span>
+    <span class="version">v1.5</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
         <li class="version is-current">
-          <a href="index.html">v1.0</a>
+          <a href="index.html">v1.5</a>
         </li>
       </ul>
     </li>
@@ -166,99 +165,26 @@
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
     <li>I. Basics</li>
-    <li><a href="env.html">Environment variables</a></li>
+    <li><a href="ports.html">Ports</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/master/documentation/modules/ROOT/pages/env.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/podman/documentation/modules/ROOT/pages/ports.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Environment variables</h1>
+<h1 class="page">Port</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Environment variables keep your app secure, flexible and organized. Let&#8217;s take a look at how to pass environment variables to containers.</p>
+<p>Let&#8217;s take a look at how to enable communication of the container to the outside world by exposing and mapping ports.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_an_environment_variable_with_your_container"><a class="anchor" href="#_using_an_environment_variable_with_your_container"></a>Using an environment variable with your container</h2>
+<h2 id="_exposing_ports"><a class="anchor" href="#_exposing_ports"></a>Exposing ports</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s edit the Java application you created using Quarkus:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">code .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now edit the <code>HelloResource.java</code> class like this:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.redhat.developers;
-
-import java.util.Optional;
-
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-
-@Path("/hello")
-public class HelloResource {
-
-    @ConfigProperty(name = "config")
-    Optional&lt;String&gt; config;
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return config.orElse("no config");
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice that instead of just printing <code>hello</code>, it will print the content of a <code>ConfigProperty</code> or print <code>no config</code> if the config doesn&#8217;t exist.</p>
-</div>
-<div class="paragraph">
-<p>Now, back to terminal, package your project:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn package -DskipTests=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Rebuild our image to get the new version of the application:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Remove your running container:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And run the new one:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now let&#8217;s call the application:</p>
+<p>The application running inside your container can be accessed through the port 8080, so let&#8217;s try it:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -266,75 +192,51 @@ public class HelloResource {
 </div>
 </div>
 <div class="paragraph">
-<p>You now got this output.</p>
+<p>You should have gotten this output:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">no config</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">curl: (7) Failed to connect to localhost port 8080: Connection refused</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>no config</code> output happens because we didn&#8217;t really create the environment variable. Let&#8217;s fix it.</p>
+<p>This is happening because we need to explicitly expose the ports you need, and we didn&#8217;t do it so far. So let&#8217;s fix it.</p>
 </div>
 <div class="paragraph">
-<p>Edit your Containerfile like this (or simply add the <code>ENV config=dockerfile</code> line):</p>
+<p>First let&#8217;s remove the container:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.18-4
-
-ENV LANGUAGE='en_US:en'
-
-COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 target/quarkus-app/*.jar /deployments/
-COPY --chown=185 target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
-
-EXPOSE 8080
-USER 185
-ENV JAVA_OPTS="-Djava.util.logging.manager=org.jboss.logmanager.LogManager"
-ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
-
-ENV config=containerfile</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman rm -f my-container</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Did you see something different?</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s rebuild our image, re-create the container and call it again:</p>
+<p>We used the <code>-f</code> flag to force the removal of the container even if it&#8217;s running. Be careful when using it!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now we re-create the container, but exposing the port 8080:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker build -t my-image .
-docker rm -f my-container
-docker run -d --name my-container -p 8080:8080 my-image
-curl localhost:8080/hello</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run -d --name my-container -p 8080:8080 my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now your output is:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">containerfile</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, let&#8217;s replace the variable&#8217;s content. First we remove the container:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And then we re-create it passing a new value for the environment variable:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 -e config=container my-image</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then we call the application again:</p>
+<p>Let&#8217;s try to reach the application again:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -342,18 +244,21 @@ curl localhost:8080/hello</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And the output is:</p>
+<p>You should now see output like this:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">container</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello from Quarkus REST</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>This means that your application is now accessible!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="ports.html" class="query-params-link">Ports</a></span>
-  <span class="next"><a href="inside.html" class="query-params-link">Inside a container</a></span>
+  <span class="prev"><a href="runningcontainers.html" class="query-params-link">Running containers</a></span>
+  <span class="next"><a href="env.html" class="query-params-link">Environment variables</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -365,8 +270,8 @@ curl localhost:8080/hello</code></pre>
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../_/js/vendor/clipboard.js"></script>
-<script src="../_/js/site.js"></script>
-<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>
