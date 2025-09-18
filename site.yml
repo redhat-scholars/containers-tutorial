@@ -8,7 +8,8 @@ site:
 
 content:
   sources:
-    - url: ./
+    - url: .
+      branches: [master, podman]
       start_path: documentation
 
 asciidoc:
@@ -21,7 +22,7 @@ asciidoc:
 
 ui:
   bundle:
-    url: https://github.com/redhat-developer-demos/rhd-tutorial-ui/releases/download/v0.1.10/ui-bundle.zip
+    url: https://github.com/redhat-scholars/course-ui/releases/download/v0.1.14/ui-bundle.zip
     snapshot: true
   supplemental_files:
     - path: ./supplemental-ui

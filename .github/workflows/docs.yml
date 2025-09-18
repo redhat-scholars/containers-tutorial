@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - podman
 env:
   SITE_DIR: "gh-pages"
 jobs:
