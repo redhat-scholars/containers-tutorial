@@ -19,7 +19,12 @@ It is less obvious thus it is preferable to use COPY unless you specifically nee
 
 == Creating an application to be containerized
 
-Let's first create a simple Java application so we can containerize it.
+While this tutorial won't delve into deep development topics, you'll be guided through creating a simple Java application using Quarkus. 
+https://quarkus.io/[Quarkus] is a *Kubernetes-native Java framework* designed to optimize Java for the cloud. 
+Its focus on a lower memory footprint and millisecond startup times makes it exceptionally efficient for modern architectures 
+like microservices and serverless functions, dramatically cutting cloud costs and boosting deployment density.
+
+Use the following command to scaffold a Quarkus application that includes a basic REST endpoint:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -41,7 +46,7 @@ mvn package
 
 == Building a Containerfile
 
-Create a file named Containerfile.
+To contenerize  your application, you'll need to create a file named `Containerfile`.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
