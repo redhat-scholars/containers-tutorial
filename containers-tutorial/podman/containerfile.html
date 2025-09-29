@@ -233,7 +233,13 @@ It is less obvious thus it is preferable to use COPY unless you specifically nee
 <h2 id="_creating_an_application_to_be_containerized"><a class="anchor" href="#_creating_an_application_to_be_containerized"></a>Creating an application to be containerized</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s first create a simple Java application so we can containerize it.</p>
+<p>While this tutorial won&#8217;t delve into deep development topics, you&#8217;ll be guided through creating a simple Java application using Quarkus.
+<a href="https://quarkus.io/">Quarkus</a> is a <strong>Kubernetes-native Java framework</strong> designed to optimize Java for the cloud.
+Its focus on a lower memory footprint and millisecond startup times makes it exceptionally efficient for modern architectures
+like microservices and serverless functions, dramatically cutting cloud costs and boosting deployment density.</p>
+</div>
+<div class="paragraph">
+<p>Use the following command to scaffold a Quarkus application that includes a basic REST endpoint:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -267,7 +273,7 @@ All the remaining parts of this tutorial assume that you&#8217;ll be working ins
 <h2 id="_building_a_containerfile"><a class="anchor" href="#_building_a_containerfile"></a>Building a Containerfile</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create a file named Containerfile.</p>
+<p>To contenerize  your application, you&#8217;ll need to create a file named <code>Containerfile</code>.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
