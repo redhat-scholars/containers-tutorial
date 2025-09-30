@@ -19,12 +19,12 @@ Then run the following Maven command to build and push the container without usi
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=docker.io/lordofthejars/greetings:1.0.0
+./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=quay.io/your-username/greetings:1.0.0
 ----
 
-Change `docker.io` for your container repository location (ie `quay.io`) and `lordofthejars` for your user id.
+Replace `your-username` with your actual user id and if you prefer Docker Hub, replace `quay.io` with `docker.io`.
 
-And the output should be similar:
+Your output should resemble something like this:
 
 [.console-output]
 [source,text]
@@ -34,7 +34,7 @@ And the output should be similar:
 [INFO]
 [INFO] Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*, org.acme.greeting.GreetingApplication]
 [INFO]
-[INFO] Built and pushed image as lordofthejars/greetings:1.0.0
+[INFO] Built and pushed image as your-username/greetings:1.0.0
 [INFO] Executing tasks:
 [INFO] [============================  ] 91.7% complete
 [INFO] > launching layer pushers
