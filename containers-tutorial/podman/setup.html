@@ -185,7 +185,7 @@
 <article class="doc">
 <h1 class="page">Setup</h1>
 <div class="sect1">
-<h2 id="_required_tools"><a class="anchor" href="#_required_tools"></a>Required Tools</h2>
+<h2 id="_required_tools"><a class="anchor" href="#_required_tools"></a>1. Required Tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following tools are required for running the exercises in this tutorial. You&#8217;ll need to have them installed and configured before you get started with any of the tutorial chapters.</p>
@@ -239,9 +239,137 @@ By default, the commands in this tutorial are using podman, but you can use <cod
 </tr>
 </tbody>
 </table>
-<div class="openblock">
-<div class="content">
-
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optional_tools"><a class="anchor" href="#_optional_tools"></a>2. Optional Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following tools are optional, feel free to replace with your own preferred ones.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Tool</strong></th>
+<th class="tableblock halign-left valign-top"><strong>macOS</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Fedora</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Windows</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Visual Studio Code</strong></p></td>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">Open <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">Visual Studio Code download page</a> and follow the installation instructions related to your operating system</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>curl</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>brew install curl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dnf install curl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://curl.se/windows/">Windows</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quay_io_account"><a class="anchor" href="#_quay_io_account"></a>3. Quay.io Account</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Quay.io</strong> is a <strong>container image registry</strong> service, similar to <em>Docker Hub</em>, which is fully managed by Red Hat. It provides a centralized, secure place for users and organizations to store, build, and distribute their OCI (Open Container Initiative) container images.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you already have a <em>Quay.io</em> account or a <em>Docker Hub</em> account, you can skip this section.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_quay_io_account"><a class="anchor" href="#_creating_a_quay_io_account"></a>3.1. Creating a Quay.io Account</h3>
+<div class="paragraph">
+<p>A Quay.io account is typically linked to a <strong>Red Hat account</strong>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Navigate to Quay.io</strong>: Go to the Quay.io website.</p>
+</li>
+<li>
+<p><strong>Sign In/Register</strong>: Look for a <strong>Sign In</strong> or <strong>Register</strong> option. Since Quay.io is part of Red Hat&#8217;s ecosystem, you&#8217;ll be directed to use your Red Hat credentials.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you <strong>already have a Red Hat account</strong>, sign in with those credentials.</p>
+</li>
+<li>
+<p>If you <strong>do not have a Red Hat account</strong>, you&#8217;ll be prompted to create one first. Follow the prompts to register for a new Red Hat account.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Confirm Username</strong>: Upon your first login to Quay.io using your Red Hat credentials, you may be redirected to a page to <strong>confirm your username</strong>. This username will serve as your <strong>namespace</strong> (e.g., <code>quay.io/&lt;your-username&gt;/&lt;repo-name&gt;</code>) in the container registry.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_repository"><a class="anchor" href="#_creating_a_repository"></a>3.2. Creating a Repository</h3>
+<div class="paragraph">
+<p>A repository is a storage location for your container images and related artifacts: think of it as a folder or directory for a specific containerized application or component.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Log In</strong>: Sign in to your Quay.io account.</p>
+</li>
+<li>
+<p><strong>Navigate to Repositories</strong>: On your main page, or in the navigation menu, look for a <strong>Repositories</strong> section or a <strong>+</strong> icon (or a <strong>Create Repository</strong> button).</p>
+</li>
+<li>
+<p><strong>Select Repository Type</strong>: Choose <strong>Container Image Repository</strong> (or similar option, if prompted).</p>
+</li>
+<li>
+<p><strong>Enter Details</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Namespace</strong>: Select your username (or an Organization you belong to).</p>
+</li>
+<li>
+<p><strong>Repository Name</strong>: Enter a name for your repository (e.g., <code>my-first-app</code>). <strong>Avoid</strong> using names like <code>build</code>, <code>trigger</code>, <code>tag</code>, or <code>notification</code> as they can cause access and deletion issues.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Visibility</strong>: Choose the <strong>Repository Visibility</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Public</strong>: Anyone can pull this image (free tier typically allows unlimited public repositories).</p>
+</li>
+<li>
+<p><strong>Private</strong>: Only you and users/teams you explicitly grant access to can pull this image (usually limited/paid in the free tier).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Create</strong>: Click the <strong>Create Repository</strong> button. The repository will now appear in your list, ready to receive images.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
