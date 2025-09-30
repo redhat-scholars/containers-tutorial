@@ -210,14 +210,14 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=docker.io/lordofthejars/greetings:1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=quay.io/your-username/greetings:1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Change <code>docker.io</code> for your container repository location (ie <code>quay.io</code>) and <code>lordofthejars</code> for your user id.</p>
+<p>Replace <code>your-username</code> with your actual user id and if you prefer Docker Hub, replace <code>quay.io</code> with <code>docker.io</code>.</p>
 </div>
 <div class="paragraph">
-<p>And the output should be similar:</p>
+<p>Your output should resemble something like this:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -226,7 +226,7 @@
 [INFO]
 [INFO] Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*, org.acme.greeting.GreetingApplication]
 [INFO]
-[INFO] Built and pushed image as lordofthejars/greetings:1.0.0
+[INFO] Built and pushed image as your-username/greetings:1.0.0
 [INFO] Executing tasks:
 [INFO] [============================  ] 91.7% complete
 [INFO] &gt; launching layer pushers

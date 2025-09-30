@@ -369,9 +369,32 @@ Let&#8217;s copy a container from a remote registry to a local registry (the one
 <div class="paragraph">
 <p>Having a Docker Host running in local machine, run the following command:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_docker"></a>Docker</p>
+</li>
+<li>
+<p><a id="tabset1_podman"></a>Podman</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_docker">
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">skopeo copy docker://quay.io/rhdevelopers/quarkus-demo:v1 docker-daemon:docker.io/rhdevelopers/quarkus-demo:skopeo</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_podman">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">skopeo copy docker://quay.io/rhdevelopers/quarkus-demo:v1 containers-storage:rhdevelopers/quarkus-demo:skopeo</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -393,7 +416,7 @@ If you run the <code>podman images</code> command, you&#8217;ll see the image do
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker images</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman images</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -415,7 +438,7 @@ First of all, let&#8217;s start a container registry inside Docker Host:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run --rm -ti -p 5000:5000 --restart=always --name registry registry:2</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run --rm -ti -p 5000:5000 --name registry registry:2</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -451,7 +474,7 @@ time="2023-04-12T13:29:37.927391556Z" level=info msg="response completed" go.ver
 </div>
 </div>
 <div class="paragraph">
-<p>Shut down the container registry by stopping the <code>docker run</code> process.</p>
+<p>Shut down the container registry by stopping the <code>podman run</code> process.</p>
 </div>
 </div>
 </div>

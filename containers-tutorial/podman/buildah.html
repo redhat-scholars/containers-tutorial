@@ -187,7 +187,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://buildah.io">Buildah</a> can be used to build container images compliant with the Open Container Initiative (OCI) image specification.
+<p><strong><a href="https://buildah.io">Buildah</a></strong> offers <strong>finer-grained control</strong> over image layers (e.g., commit multiple changes to one layer), allows <strong>building from scratch</strong> (for minimal images), and supports <strong>shell script</strong> image creation, providing a <strong>lower-level, specialized</strong> tool for building.</p>
+</div>
+<div class="paragraph">
+<p><strong>Podman build</strong> uses a <strong>subset</strong> of Buildah&#8217;s functionality, providing a more <strong>Docker-CLI-like experience</strong> mainly focused on building from a <strong>Dockerfile</strong>.
 Images can be built based on existing images from scratch and using Dockerfiles.</p>
 </div>
 <div class="paragraph">
@@ -218,6 +221,17 @@ Buildah is a dockerless technology; you don&#8217;t need any Docker Host to buil
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Now you are inside the <code>buildah</code> container, for such a reason, you need to login again to your container registry:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah login quay.io</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>quay.io</code> with <code>docker.io</code> if you prefer Docker Hub.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -239,7 +253,7 @@ When you are back in the shell, use <code>buildah</code> to build the container:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah build -t quay.io/lordofthejars/hello:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah build -t quay.io/your-username/hello:latest</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -261,7 +275,7 @@ Copying config 9baf06d1b6 done
 Writing manifest to image destination
 Storing signatures
 --&gt; 9baf06d1b69
-Successfully tagged quay.io/lordofthejars/hello:latest
+Successfully tagged quay.io/your-username/hello:latest
 9baf06d1b6916ca09ddb7a4742097d5b4be5f1286146b87d535d0ffa63fd6f90</code></pre>
 </div>
 </div>
@@ -276,8 +290,8 @@ Successfully tagged quay.io/lordofthejars/hello:latest
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">REPOSITORY                            TAG         IMAGE ID      CREATED        SIZE
-quay.io/lordofthejars/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
-docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7.34 MB</code></pre>
+quay.io/your-username/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
+docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 years ago    7.34 MB</code></pre>
 </div>
 </div>
 </div>
@@ -290,12 +304,8 @@ docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah push --tls-verify=false --creds=username:password quay.io/lordofthejars/hello:latest quay.io/lordofthejars/hello:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah push --tls-verify=false quay.io/your-username/hello:latest quay.io/your-username/hello:latest</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Notice that <code>--creds</code> is set with the username and password to access Docker Hub.
-By default, <code>buildah</code> reads credentials from <code>~/.docker/config.json</code>, but since this is a fresh container, credentials must be provided.</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
