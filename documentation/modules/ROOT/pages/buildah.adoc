@@ -19,6 +19,16 @@ In a terminal window, start the container having `buildah` installed:
 podman run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash
 ----
 
+Now you are inside the `buildah` container, for such a reason, you need to login again to your container registry:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+buildah login quay.io
+----
+
+Replace `quay.io` with `docker.io` if you prefer Docker Hub.
+
 == Creating a Container Image
 
 Create a `Dockerfile` file, for this simple example, type `vi Dockerfile` and copy the content shown in the snippet:
@@ -77,7 +87,7 @@ buildah images
 ----
 REPOSITORY                            TAG         IMAGE ID      CREATED        SIZE
 quay.io/your-username/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
-docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7.34 MB
+docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 years ago    7.34 MB
 ----
 
 == Pushing a Container Image
@@ -87,11 +97,8 @@ To push the image to the container registry:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-buildah push --tls-verify=false --creds=username:password quay.io/your-username/hello:latest quay.io/your-username/hello:latest
+buildah push --tls-verify=false quay.io/your-username/hello:latest quay.io/your-username/hello:latest
 ----
-
-Notice that `--creds` is set with the username and password to access Docker Hub.
-By default, `buildah` reads credentials from `~/.docker/config.json`, but since this is a fresh container, credentials must be provided.
 
 [.console-output]
 [source,text]
