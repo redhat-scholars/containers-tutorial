@@ -2,18 +2,23 @@
 
 So far you've been working with your container image locally. Now let's take it to a remote registry.
 
+[IMPORTANT]
+====
+Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or the https://hub.docker.com/[Docker Hub]. 
+
+Instructions on how to create your Quay.io account are available in the xref:setup.adoc[Setup] section.
+====
+
 == Tagging an image
 
-IMPORTANT: Before continuing you will need to have/create a container registry account. You can sign up for a free one at https://quay.io[Quay.io] or the https://hub.docker.com/[Docker Hub]. 
-
-First you'll need to tag your image accordingly to the registry and name you gave to your repository. Say for example we create a repository `myrepository`.
+First you'll need to tag your image accordingly to the registry and name you gave to your repository. Say for example we create a repository `my-image` in the organization id `your-user`.
 
 If you have a Docker Hub account:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-podman tag my-image docker.io/myrepository/my-image
+podman tag my-image docker.io/your-user/my-image
 ----
 
 If using Quay.io:
@@ -21,10 +26,10 @@ If using Quay.io:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-podman tag my-image quay.io/myrepository/my-image
+podman tag my-image quay.io/your-user/my-image
 ----
 
-IMPORTANT: Make sure to replace `myrepository` with the name of your own repository.
+IMPORTANT: Make sure to replace `your-user` with the name of your own user id or organization id.
 
 [TIP]
 ====
@@ -33,7 +38,7 @@ If you build your image already using the tag, you won't need to do this step be
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-podman build -t quay.io/myrepository/my-image .
+podman build -t quay.io/your-user/my-image .
 ----
 
 ====
@@ -45,7 +50,7 @@ If you now run `podman images` you'll see something like this:
 ----
 REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
 my-image                                     latest              a63dec174904        55 minutes ago      516MB
-quay.io/myrepository/my-image                latest              a63dec174904        55 minutes ago      516MB
+quay.io/your-user/my-image                latest              a63dec174904        55 minutes ago      516MB
 ----
 
 == Pushing an image
@@ -79,7 +84,7 @@ And finally you can push it, eg.:
 [.console-input]  
 [source,bash,subs="+macros,+attributes"]
 ----
-podman push quay.io/myrepository/my-image
+podman push quay.io/your-user/my-image
 ----
 
 You should have an output like this:
@@ -87,7 +92,7 @@ You should have an output like this:
 [.console-output]
 [source,text]
 ----
-The push refers to repository [quay.io/myrepository/my-image]
+The push refers to repository [quay.io/your-user/my-image]
 abea900bc08c: Pushed
 99d5cac89a03: Pushed
 7b08010864ba: Pushed
