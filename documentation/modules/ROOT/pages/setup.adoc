@@ -10,8 +10,7 @@ TIP: By default, the commands in this tutorial are using podman, but you can use
 
 [options="header"]
 |===
-|**Tool**|**macOS**|**Fedora**|**Windows**
-
+| **Tool** | **macOS** | **Fedora** |**Windows**
 
 | **Podman Desktop**
 | https://podman-desktop.io/downloads[Podman Desktop for Mac, window="_blank"]
@@ -30,7 +29,69 @@ TIP: By default, the commands in this tutorial are using podman, but you can use
 | `dnf install maven`
 | https://maven.apache.org/download.cgi[Windows] (Make sure you set the `MAVEN_HOME` environment variable and add `%MAVEN_HOME%\bin` to your `PATH`)
 
+|===
+
+== Optional Tools
+
+The following tools are optional, feel free to replace with your own preferred ones.
+
+
+[options="header"]
+|===
+|**Tool**|**macOS**|**Fedora**|**Windows**
+
+| **Visual Studio Code**
+3+| Open https://code.visualstudio.com/download[Visual Studio Code download page, window="_blank"] and follow the installation instructions related to your operating system
+
+| **curl**
+| `brew install curl`
+| `dnf install curl`
+| https://curl.se/windows/[Windows]
 
 |===
 
---
+== Quay.io Account
+
+**Quay.io** is a **container image registry** service, similar to _Docker Hub_, which is fully managed by Red Hat. It provides a centralized, secure place for users and organizations to store, build, and distribute their OCI (Open Container Initiative) container images.
+
+NOTE: If you already have a _Quay.io_ account or a _Docker Hub_ account, you can skip this section.
+
+=== Creating a Quay.io Account
+
+A Quay.io account is typically linked to a **Red Hat account**.
+
+.  *Navigate to Quay.io*: Go to the Quay.io website.
+.  *Sign In/Register*: Look for a *Sign In* or *Register* option. Since Quay.io is part of Red Hat's ecosystem, you'll be directed to use your Red Hat credentials.
+      * If you *already have a Red Hat account*, sign in with those credentials.
+      * If you *do not have a Red Hat account*, you'll be prompted to create one first. Follow the prompts to register for a new Red Hat account.
+.  *Confirm Username*: Upon your first login to Quay.io using your Red Hat credentials, you may be redirected to a page to *confirm your username*. This username will serve as your *namespace* (e.g., `quay.io/<your-username>/<repo-name>`) in the container registry.
+
+=== Creating a Repository
+
+A repository is a storage location for your container images and related artifacts: think of it as a folder or directory for a specific containerized application or component.
+
+.  *Log In*: Sign in to your Quay.io account.
+.  *Navigate to Repositories*: On your main page, or in the navigation menu, look for a *Repositories* section or a *+* icon (or a *Create Repository* button).
+.  *Select Repository Type*: Choose *Container Image Repository* (or similar option, if prompted).
+.  *Enter Details*:
+      * *Namespace*: Select your username (or an Organization you belong to).
+      * *Repository Name*: Enter a name for your repository (e.g., `my-first-app`). *Avoid* using names like `build`, `trigger`, `tag`, or `notification` as they can cause access and deletion issues.
+.  *Visibility*: Choose the *Repository Visibility*:
+      * *Public*: Anyone can pull this image (free tier typically allows unlimited public repositories).
+      * *Private*: Only you and users/teams you explicitly grant access to can pull this image (usually limited/paid in the free tier).
+.  *Create*: Click the *Create Repository* button. The repository will now appear in your list, ready to receive images.
+
+=== Creating a robot account
+
+A good practice is to create a robot account to be used for automation purposes and to avoid accidental leaks of credentials.
+
+. Once you have logged in, in the top right corner click on your username and *navigate* to the _Account Settings_ page.
+. In the left vertical menu select the *Robot Accounts* icon to open the releated tab.
+. Click on the *Create Robot Account* button.
+. Enter a name for the robot account and click on the *Create* button.
+. The next screen will propose you to *add permissions* to the robot account. You can choose to add permissions to a specific repository or to all repositories.
+  .. Make sure to select the *Write* permission to use it for pushing images to the repository.
+  .. Click on the *Add permissions* button.
+. The robot account will now appear in your list, ready to be used.
+
+NOTE: The robot account takes the following format: `<username>+<robot-account-name>`.
