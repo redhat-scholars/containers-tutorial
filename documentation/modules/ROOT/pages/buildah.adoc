@@ -1,6 +1,8 @@
 = Buildah
 
-https://buildah.io[Buildah] can be used to build container images compliant with the Open Container Initiative (OCI) image specification. 
+*https://buildah.io[Buildah]* offers *finer-grained control* over image layers (e.g., commit multiple changes to one layer), allows *building from scratch* (for minimal images), and supports *shell script* image creation, providing a *lower-level, specialized* tool for building.
+
+*Podman build* uses a *subset* of Buildah's functionality, providing a more *Docker-CLI-like experience* mainly focused on building from a *Dockerfile*.
 Images can be built based on existing images from scratch and using Dockerfiles.
 
 Buildah only offers a binary file for Linux, so to make the tutorial generic, we use the `buildah` container image as a standard way to run buildah.
@@ -35,7 +37,7 @@ When you are back in the shell, use `buildah` to build the container:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-buildah build -t quay.io/lordofthejars/hello:latest
+buildah build -t quay.io/your-username/hello:latest
 ----
 
 [.console-output]
@@ -58,7 +60,7 @@ Copying config 9baf06d1b6 done
 Writing manifest to image destination
 Storing signatures
 --> 9baf06d1b69
-Successfully tagged quay.io/lordofthejars/hello:latest
+Successfully tagged quay.io/your-username/hello:latest
 9baf06d1b6916ca09ddb7a4742097d5b4be5f1286146b87d535d0ffa63fd6f90
 ----
 
@@ -74,7 +76,7 @@ buildah images
 [source,bash,subs="+macros,+attributes"]
 ----
 REPOSITORY                            TAG         IMAGE ID      CREATED        SIZE
-quay.io/lordofthejars/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
+quay.io/your-username/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
 docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7.34 MB
 ----
 
@@ -85,7 +87,7 @@ To push the image to the container registry:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-buildah push --tls-verify=false --creds=username:password quay.io/lordofthejars/hello:latest quay.io/lordofthejars/hello:latest
+buildah push --tls-verify=false --creds=username:password quay.io/your-username/hello:latest quay.io/your-username/hello:latest
 ----
 
 Notice that `--creds` is set with the username and password to access Docker Hub.
