@@ -3,6 +3,10 @@ title: Containers Tutorial
 version: podman
 display_version: v1.5
 prerelease: true
+asciidoc:
+  attributes:
+    sectnums: ''
+    sectnumlevels: 2 
 nav:
   - modules/ROOT/nav.adoc
 
