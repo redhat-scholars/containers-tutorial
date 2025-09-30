@@ -441,6 +441,18 @@ First of all, let&#8217;s start a container registry inside Docker Host:</p>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">podman run --rm -ti -p 5000:5000 --name registry registry:2</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If your port 5000 is already in use, you can run the registry in a different port e.g. <code>-p 5001:5000</code> .
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>In a new terminal window, run the <code>copy</code> command setting origin to quay.io and the destination, the registry created in the previous step:</p>
 </div>
