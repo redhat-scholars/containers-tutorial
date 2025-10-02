@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Buildah :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/buildah.html">
-    <link rel="prev" href="podman-desktop.html">
-    <link rel="next" href="skopeo.html">
+    <title>Port :: Containers Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/v1.0/ports.html">
+    <link rel="prev" href="runningcontainers.html">
+    <link rel="next" href="env.html">
     <meta name="generator" content="Antora 3.0.0">
-    <link rel="stylesheet" href="../_/css/site.css">
-<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
@@ -17,7 +17,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+          src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
       <a class="navbar-item" href="https://redhat-scholars.github.io/containers-tutorial">Containers Tutorial</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -62,7 +62,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="containers-tutorial" data-version="master">
+<div class="nav-container" data-component="containers-tutorial" data-version="v1.0">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -93,7 +93,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="runningcontainers.html">Running containers</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ports.html">Ports</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -114,7 +114,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="podman-desktop.html">Podman Desktop</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="buildah.html">Buildah</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -149,7 +149,7 @@
       <span class="title">Containers Tutorial</span>
       <ul class="versions">
         <li class="version">
-          <a href="podman/index.html">v1.5</a>
+          <a href="../podman/index.html">v1.5</a>
         </li>
         <li class="version is-current">
           <a href="index.html">v1.0</a>
@@ -168,30 +168,58 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
-    <li>II. Intermediate</li>
-    <li><a href="buildah.html">Buildah</a></li>
+    <li>I. Basics</li>
+    <li><a href="ports.html">Ports</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">v1.0</button>
   <div class="version-menu">
-    <a class="version" href="podman/buildah.html">v1.5</a>
-    <a class="version is-current" href="buildah.html">v1.0</a>
+    <a class="version" href="../podman/ports.html">v1.5</a>
+    <a class="version is-current" href="ports.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/v1.0/documentation/modules/ROOT/pages/buildah.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/containers-tutorial/edit/v1.0/documentation/modules/ROOT/pages/ports.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Buildah</h1>
+<h1 class="page">Port</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://buildah.io">Buildah</a> can be used to build container images compliant with the Open Container Initiative (OCI) image specification.
-Images can be built based on existing images from scratch and using Dockerfiles.</p>
+<p>Let&#8217;s take a look at how to enable communication of the container to the outside world by exposing and mapping ports.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exposing_ports"><a class="anchor" href="#_exposing_ports"></a>Exposing ports</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The application running inside your container can be accessed through the port 8080, so let&#8217;s try it:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Buildah only offers a binary file for Linux, so to make the tutorial generic, we use the <code>buildah</code> container image as a standard way to run buildah.</p>
+<p>You should have gotten this output:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">curl: (7) Failed to connect to localhost port 8080: Connection refused</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is happening because we need to explicitly expose the ports you need, and we didn&#8217;t do it so far. So let&#8217;s fix it.</p>
+</div>
+<div class="paragraph">
+<p>First let&#8217;s remove the container:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker rm -f my-container</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -200,128 +228,48 @@ Images can be built based on existing images from scratch and using Dockerfiles.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Buildah is a dockerless technology; you don&#8217;t need any Docker Host to build a container image.
+<div class="paragraph">
+<p>Did you see something different?</p>
+</div>
+<div class="paragraph">
+<p>We used the <code>-f</code> flag to force the removal of the container even if it&#8217;s running. Be careful when using it!</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_preparation"><a class="anchor" href="#_preparation"></a>Preparation</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>In a terminal window, start the container having <code>buildah</code> installed:</p>
+<p>Now we re-create the container, but exposing the port 8080:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -it --device /dev/fuse:rw --security-opt seccomp=unconfined --security-opt apparmor=unconfined quay.io/buildah/stable:latest bash</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creating_a_container_image"><a class="anchor" href="#_creating_a_container_image"></a>Creating a Container Image</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Create a <code>Dockerfile</code> file, for this simple example, type <code>vi Dockerfile</code> and copy the content shown in the snippet:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">FROM alpine:3.17.3
-
-CMD ["echo", "'Hello World'"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d --name my-container -p 8080:8080 my-image</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then exit <code>vi</code> (no joke, please) by typing <code>:wq!</code>.
-When you are back in the shell, use <code>buildah</code> to build the container:</p>
+<p>Let&#8217;s try to reach the application again:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah build -t quay.io/lordofthejars/hello:latest</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>You should now see output like this:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">STEP 1/2: FROM alpine:3.17.3
-Resolved "alpine" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
-Trying to pull docker.io/library/alpine:3.17.3...
-Getting image source signatures
-Copying blob f56be85fc22e done
-Copying config 9ed4aefc74 done
-Writing manifest to image destination
-Storing signatures
-STEP 2/2: CMD ["echo", "'Hello World'"]
-COMMIT hello:latest
-Getting image source signatures
-Copying blob f1417ff83b31 skipped: already exists
-Copying blob 5f70bf18a086 done
-Copying config 9baf06d1b6 done
-Writing manifest to image destination
-Storing signatures
---&gt; 9baf06d1b69
-Successfully tagged quay.io/lordofthejars/hello:latest
-9baf06d1b6916ca09ddb7a4742097d5b4be5f1286146b87d535d0ffa63fd6f90</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Hello from Quarkus REST</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The image is committed to local machine but not pushed to container registry.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah images</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">REPOSITORY                            TAG         IMAGE ID      CREATED        SIZE
-quay.io/lordofthejars/hello           latest      9baf06d1b691  6 minutes ago  7.34 MB
-docker.io/library/alpine              3.17.3      9ed4aefc74f6  2 weeks ago    7.34 MB</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_pushing_a_container_image"><a class="anchor" href="#_pushing_a_container_image"></a>Pushing a Container Image</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To push the image to the container registry:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">buildah push --tls-verify=false --creds=username:password quay.io/lordofthejars/hello:latest quay.io/lordofthejars/hello:latest</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice that <code>--creds</code> is set with the username and password to access Docker Hub.
-By default, <code>buildah</code> reads credentials from <code>~/.docker/config.json</code>, but since this is a fresh container, credentials must be provided.</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Getting image source signatures
-Copying blob b29c4850380c done
-Copying blob 13ab19dd2ece done
-Copying blob 4793a7e290ce done
-Copying blob 4582e1897cf2 done
-Copying blob cf75f156ae2e done
-Copying blob bdcb28f5294e done
-Copying blob 5f70bf18a086 done
-Copying blob c5e55ed43ef3 done
-Copying config 1de25d78a3 done
-Writing manifest to image destination
-Storing signatures</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A Linux container has been created and pushed to the registry from another Linux container.
-You can stop the <code>buildah</code> container by typing <code>exit</code>.</p>
+<p>This means that your application is now accessible!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="podman-desktop.html" class="query-params-link">Podman Desktop</a></span>
-  <span class="next"><a href="skopeo.html" class="query-params-link">Skopeo</a></span>
+  <span class="prev"><a href="runningcontainers.html" class="query-params-link">Running containers</a></span>
+  <span class="next"><a href="env.html" class="query-params-link">Environment variables</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -333,8 +281,8 @@ You can stop the <code>buildah</code> container by typing <code>exit</code>.</p>
 <footer class="footer">
   <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
 </footer>
-<script src="../_/js/vendor/clipboard.js"></script>
-<script src="../_/js/site.js"></script>
-<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>
