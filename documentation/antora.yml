@@ -1,6 +1,6 @@
 name: containers-tutorial
 title: Containers Tutorial
-version: master
+version: v1.0
 display_version: v1.0
 nav:
   - modules/ROOT/nav.adoc
