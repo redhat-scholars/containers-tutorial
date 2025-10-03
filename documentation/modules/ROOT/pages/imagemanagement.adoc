@@ -64,17 +64,7 @@ my-image                                     latest              87776d35fc85   
 registry.access.redhat.com/ubi9/openjdk-21-runtime 1.18-4        80786be7434f        3 weeks ago         375 MB
 ----
 
-Your image is the `my-image` and the `registry.access.redhat.com/ubi9/openjdk-21` is the image used to build yours.
-
-== Removing images
-
-To remove your just created image:
-
-[.console-input]
-[source,bash,subs="+macros,+attributes"]
-----
-podman image rm my-image
-----
+Your image is the `my-image` and the `registry.access.redhat.com/ubi9/openjdk-21` is the base image used to build yours.
 
 == Exploring the Desktop interface
 
