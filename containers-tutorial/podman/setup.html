@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Setup :: Containers Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/v1.0/setup.html">
+    <link rel="canonical" href="https://redhat-scholars.github.io/containers-tutorial/containers-tutorial/podman/setup.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="containerfile.html">
     <meta name="generator" content="Antora 3.0.0">
@@ -164,7 +164,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../v1.0/index.html" class="home-link"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Containers Tutorial</a></li>
@@ -303,17 +303,17 @@ If you already have a <em>Quay.io</em> account or a <em>Docker Hub</em> account,
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Navigate to Quay.io</strong>: Go to the Quay.io website.</p>
+<p><strong>Navigate to Quay.io</strong>: Go to the <a href="https://quay.io/">Quay.io</a> website.</p>
 </li>
 <li>
-<p><strong>Sign In/Register</strong>: Look for a <strong>Sign In</strong> or <strong>Register</strong> option. Since Quay.io is part of Red Hat&#8217;s ecosystem, you&#8217;ll be directed to use your Red Hat credentials.</p>
+<p><strong>Sign In</strong>: Look for a <code>Sign In</code> button in the top right corner and <strong>click on</strong> it. Since Quay.io is part of Red Hat&#8217;s ecosystem, you&#8217;ll be directed to use your Red Hat credentials.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>If you <strong>already have a Red Hat account</strong>, sign in with those credentials.</p>
 </li>
 <li>
-<p>If you <strong>do not have a Red Hat account</strong>, you&#8217;ll be prompted to create one first. Follow the prompts to register for a new Red Hat account.</p>
+<p>If you <strong>do not have a Red Hat account</strong>, select <code>Register for a Red Hat account</code> and follow the prompts to register for a new Red Hat account.</p>
 </li>
 </ul>
 </div>
@@ -335,36 +335,29 @@ If you already have a <em>Quay.io</em> account or a <em>Docker Hub</em> account,
 <p><strong>Log In</strong>: Sign in to your Quay.io account.</p>
 </li>
 <li>
-<p><strong>Navigate to Repositories</strong>: On your main page, or in the navigation menu, look for a <strong>Repositories</strong> section or a <strong>+</strong> icon (or a <strong>Create Repository</strong> button).</p>
+<p>Make sure that you are in the <em>Repositories</em> tab: On the left side of your screen, look for a <strong>+</strong> icon followed by <strong>Create New Repository</strong> label and click on it.</p>
 </li>
 <li>
-<p><strong>Select Repository Type</strong>: Choose <strong>Container Image Repository</strong> (or similar option, if prompted).</p>
+<p><strong>Insert a name for your repository</strong>: e.g., <code>my-first-app</code>.</p>
 </li>
 <li>
-<p><strong>Enter Details</strong>:</p>
+<p>Optionally add a repository description.</p>
+</li>
+<li>
+<p>Choose the <em>Repository Visibility</em>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Namespace</strong>: Select your username (or an Organization you belong to).</p>
+<p><strong>Public</strong>: Anyone can see and pull from this repository. You choose who can push.</p>
 </li>
 <li>
-<p><strong>Repository Name</strong>: Enter a name for your repository (e.g., <code>my-first-app</code>). <strong>Avoid</strong> using names like <code>build</code>, <code>trigger</code>, <code>tag</code>, or <code>notification</code> as they can cause access and deletion issues.</p>
+<p><strong>Private</strong>: You choose who can see, pull and push from/to this repository.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Visibility</strong>: Choose the <strong>Repository Visibility</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Public</strong>: Anyone can pull this image (free tier typically allows unlimited public repositories).</p>
-</li>
-<li>
-<p><strong>Private</strong>: Only you and users/teams you explicitly grant access to can pull this image (usually limited/paid in the free tier).</p>
-</li>
-</ul>
-</div>
+<p>For this tutorial purposes, leave the initialization option set to <code>(Empty repository)</code>.</p>
 </li>
 <li>
 <p><strong>Create</strong>: Click the <strong>Create Repository</strong> button. The repository will now appear in your list, ready to receive images.</p>
@@ -375,7 +368,7 @@ If you already have a <em>Quay.io</em> account or a <em>Docker Hub</em> account,
 <div class="sect2">
 <h3 id="_creating_a_robot_account"><a class="anchor" href="#_creating_a_robot_account"></a>3.3. Creating a robot account</h3>
 <div class="paragraph">
-<p>A good practice is to create a robot account to be used for automation purposes and to avoid accidental leaks of credentials.</p>
+<p>In order to log in with the <code>podman</code> command line, you will need a robot account, here is how to create it:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
