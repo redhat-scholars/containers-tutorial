@@ -60,30 +60,29 @@ NOTE: If you already have a _Quay.io_ account or a _Docker Hub_ account, you can
 
 A Quay.io account is typically linked to a **Red Hat account**.
 
-.  *Navigate to Quay.io*: Go to the Quay.io website.
-.  *Sign In/Register*: Look for a *Sign In* or *Register* option. Since Quay.io is part of Red Hat's ecosystem, you'll be directed to use your Red Hat credentials.
+.  *Navigate to Quay.io*: Go to the https://quay.io/[Quay.io] website.
+.  *Sign In*: Look for a `Sign In` button in the top right corner and *click on* it. Since Quay.io is part of Red Hat's ecosystem, you'll be directed to use your Red Hat credentials.
       * If you *already have a Red Hat account*, sign in with those credentials.
-      * If you *do not have a Red Hat account*, you'll be prompted to create one first. Follow the prompts to register for a new Red Hat account.
+      * If you *do not have a Red Hat account*, select `Register for a Red Hat account` and follow the prompts to register for a new Red Hat account.
 .  *Confirm Username*: Upon your first login to Quay.io using your Red Hat credentials, you may be redirected to a page to *confirm your username*. This username will serve as your *namespace* (e.g., `quay.io/<your-username>/<repo-name>`) in the container registry.
 
 === Creating a Repository
 
 A repository is a storage location for your container images and related artifacts: think of it as a folder or directory for a specific containerized application or component.
 
-.  *Log In*: Sign in to your Quay.io account.
-.  *Navigate to Repositories*: On your main page, or in the navigation menu, look for a *Repositories* section or a *+* icon (or a *Create Repository* button).
-.  *Select Repository Type*: Choose *Container Image Repository* (or similar option, if prompted).
-.  *Enter Details*:
-      * *Namespace*: Select your username (or an Organization you belong to).
-      * *Repository Name*: Enter a name for your repository (e.g., `my-first-app`). *Avoid* using names like `build`, `trigger`, `tag`, or `notification` as they can cause access and deletion issues.
-.  *Visibility*: Choose the *Repository Visibility*:
-      * *Public*: Anyone can pull this image (free tier typically allows unlimited public repositories).
-      * *Private*: Only you and users/teams you explicitly grant access to can pull this image (usually limited/paid in the free tier).
-.  *Create*: Click the *Create Repository* button. The repository will now appear in your list, ready to receive images.
+. *Log In*: Sign in to your Quay.io account.
+. Make sure that you are in the _Repositories_ tab: On the left side of your screen, look for a *+* icon followed by *Create New Repository* label and click on it.
+. *Insert a name for your repository*: e.g., `my-first-app`.
+. Optionally add a repository description.
+. Choose the _Repository Visibility_:
+      * *Public*: Anyone can see and pull from this repository. You choose who can push.
+      * *Private*: You choose who can see, pull and push from/to this repository.
+. For this tutorial purposes, leave the initialization option set to `(Empty repository)`.
+. *Create*: Click the *Create Repository* button. The repository will now appear in your list, ready to receive images.
 
 === Creating a robot account
 
-A good practice is to create a robot account to be used for automation purposes and to avoid accidental leaks of credentials.
+In order to log in with the `podman` command line, you will need a robot account, here is how to create it:
 
 . Once you have logged in, in the top right corner click on your username and *navigate* to the _Account Settings_ page.
 . In the left vertical menu select the *Robot Accounts* icon to open the releated tab.

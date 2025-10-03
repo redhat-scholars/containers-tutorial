@@ -2,7 +2,7 @@ name: containers-tutorial
 title: Containers Tutorial
 version: podman
 display_version: v1.5
-prerelease: true
+prerelease: false
 asciidoc:
   attributes:
     sectnums: ''
