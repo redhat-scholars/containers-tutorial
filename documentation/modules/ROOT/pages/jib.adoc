@@ -19,7 +19,7 @@ Then run the following Maven command to build and push the container without usi
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.0.0:build -Dimage=quay.io/your-username/greetings:1.0.0
+./mvnw compile com.google.cloud.tools:jib-maven-plugin:3.4.6:build -Dimage=quay.io/your-username/greetings:1.0.0
 ----
 
 Replace `your-username` with your actual user id and if you prefer Docker Hub, replace `quay.io` with `docker.io`.
